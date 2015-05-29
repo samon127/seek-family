@@ -29,6 +29,13 @@ class ProjectController extends Controller
 
     public function actionIndex()
     {
+    	$data = Project::find()
+				->joinWith('city', true, 'LEFT JOIN')
+		        ->joinWith('industry', true, 'LEFT JOIN')
+				->where('ext15 = "880客户" or ext15 = "5000广告客户"');
+				
+    	print_r($data);exit;
+    	
         return $this->render('index');
     }
 

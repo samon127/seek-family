@@ -1,11 +1,12 @@
 <?php
 use yii\helpers\Url;
+use yii\web\View;
 
 ?>
 
 <link href="vendor/select2.min.css" rel="stylesheet" />
-<script src="vendor/select2.min.js"></script>
 
+<?php $this->registerJsFile('/vendor/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
 <form class="form-horizontal" action="<?php echo Url::to(['project/submit']) ?>" method="post">

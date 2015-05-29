@@ -11,6 +11,7 @@ use Yii;
  * @property integer $city_id
  * @property integer $teacher_id
  * @property integer $type_id
+ * @property integer $client_id
  */
 class Project extends \yii\db\ActiveRecord
 {
@@ -28,8 +29,8 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['city_id', 'teacher_id', 'type_id'], 'required'],
-            [['city_id', 'teacher_id', 'type_id'], 'integer']
+            [['city_id', 'teacher_id', 'type_id', 'client_id'], 'required'],
+            [['city_id', 'teacher_id', 'type_id', 'client_id'], 'integer']
         ];
     }
 
@@ -43,6 +44,7 @@ class Project extends \yii\db\ActiveRecord
             'city_id' => 'City ID',
             'teacher_id' => 'Teacher ID',
             'type_id' => 'Type ID',
+            'client_id' => 'Client ID',
         ];
     }
 }
