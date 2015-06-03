@@ -1,8 +1,12 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\View;
 ?>
 
+<link href="vendor/bootstrap-datepicker/datepicker3.css" rel="stylesheet" />
+
+<?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
 <form class="form-horizontal" action="<?php echo Url::to(['project/submit']) ?>" method="post">
@@ -19,8 +23,8 @@ use yii\helpers\Html;
   <label class="col-md-4 control-label" for="radios">项目类型</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['type'] : '';
-    echo HTML::radioList('pay[type]', $defaultInvoice,
+    $defaultStyle = $defaultValue ? $defaultValue['style'] : '';
+    echo HTML::radioList('project[style]', $defaultStyle,
             [ 1 => '独立项目', 2 => '母项目', 3 => '子项目'],
             [
                 'item' => function($index, $label, $name, $checked, $value) {
@@ -39,34 +43,6 @@ use yii\helpers\Html;
 </div>
 
 
-<script>
-//母项目
-$('#pay_type_2').change(function(){
-	if (this.checked)
-	{
-	    $('#nameInputDiv').show();
-
-
-	    $('#typeSelect').val('');$('#typeSelectDiv').hide();
-	    $('#clientSelect').val('');$('#clientSelectDiv').hide();
-	    $('#teacherSelect').val('');$('#teacherSelectDiv').hide();
-	}
-});
-
-//独立项目或者子项目
-$('#pay_type_1,#pay_type_3').change(function(){
-	if (this.checked)
-	{
-		$('#typeSelectDiv').show();
-		$('#clientSelectDiv').show();
-
-		$('#nameInput').val('');$('#nameInputDiv').hide();
-	}
-});
-
-</script>
-
-
 <!-- Text input-->
 <div class="form-group" id="nameInputDiv">
   <label class="col-md-4 control-label">项目名称</label>
@@ -75,6 +51,22 @@ $('#pay_type_1,#pay_type_3').change(function(){
   $defaultName = $defaultValue ? $defaultValue['name'] : '';
   echo HTML::input('text', 'project[name]', $defaultName, ['id' => 'nameInput', 'class'=>'form-control input-md'] )
   ?>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group" style="display:none" id="parentProjectInputDiv">
+  <label class="col-md-4 control-label">母项目</label>
+  <div class="col-md-4">
+  <?php
+    $options = [];
+    $options[''] = '';
+    foreach ($parentProject as $id => $type)
+    {
+        $options[$id] = $type['name'];
+    }
+    echo HTML::dropDownList('project[parent]', $defaultValue ? $defaultValue['parent_id'] : '', $options, ['id' => 'parentProjectSelect', 'class' => 'form-control']);
+    ?>
   </div>
 </div>
 
@@ -96,7 +88,28 @@ $('#pay_type_1,#pay_type_3').change(function(){
 </div>
 
 
-
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">项目执行日期</label>
+  <div class="col-md-4">
+          <div class="input-daterange input-group" id="dateAreaPicker">
+            <?php
+            $sateStart = $defaultValue ? $defaultValue['date_start'] : '';
+            echo HTML::input('text', 'project[date_start]', $sateStart, ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
+            ?>
+            <span class="input-group-addon">to</span>
+            <?php
+            $dateEnd = $defaultValue ? $defaultValue['date_end'] : '';
+            echo HTML::input('text', 'project[date_end]', $dateEnd, ['id' => 'dateEndInput', 'class'=>'form-control input-md'] )
+            ?>
+        </div>
+  </div>
+</div>
+<script>
+$('#dateAreaPicker').datepicker({
+	format: "yyyy-mm-dd",
+});
+    </script>
 
 <!-- Select Basic -->
 <div class="form-group" style="display:none" id="teacherSelectDiv">
@@ -123,7 +136,7 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 'project', 'def
 
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="form-group" id="citySelectDiv">
   <label class="col-md-4 control-label" for="citySelect">城市</label>
   <div class="col-md-4">
   <?php
@@ -140,30 +153,37 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 'project', 'def
 </div>
 
 
+
+
+
+
 <!-- Multiple Radios (inline) -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="radios">活跃期</label>
+  <label class="col-md-4 control-label" for="radios">项目开放期</label>
   <div class="col-md-4">
-  <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['status'] : '';
-    echo HTML::radioList('pay[type]', $defaultInvoice,
-            [ 1 => '活跃', 2 => '关闭'],
-            [
-                'item' => function($index, $label, $name, $checked, $value) {
-
-                    $return = '<label class="radio-inline">';
-                    $return .= HTML::radio($name, $checked, ['value' => $value]);
-                    $return .= $label;
-                    $return .= '</label>';
-
-                    return $return;
-                }
-            ]
-        );
-    ?>
-    <span>这里可以放一个月份的开始到结束的选择菜单（两个input）</span>
+          <div class="input-daterange input-group" id="monthAreaPicker">
+            <?php
+            $defaultAreaStart = $defaultValue ? $defaultValue['area_start'] : '';
+            echo HTML::input('text', 'project[area_start]', $defaultAreaStart, ['id' => 'monthAreaStartInput', 'class'=>'form-control input-md'] )
+            ?>
+            <span class="input-group-addon">to</span>
+            <?php
+            $defaultAreaEnd = $defaultValue ? $defaultValue['area_end'] : '';
+            echo HTML::input('text', 'project[area_end]', $defaultAreaEnd, ['id' => 'monthAreaEndInput', 'class'=>'form-control input-md'] )
+            ?>
+        </div>
   </div>
 </div>
+
+<script>
+$('#monthAreaPicker').datepicker({
+	format: "yyyy-mm",
+	startView: "months", 
+    minViewMode: "months"
+});
+    </script>
+
+
 
 <!-- Button -->
 <div class="form-group">
@@ -178,9 +198,22 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 'project', 'def
 
 <script type="text/javascript">
 
-$('#nameInputDiv').hide();
-$('#typeSelectDiv').hide();
-$('#clientSelectDiv').hide();
+if($('#pay_type_1').attr('checked') == 'checked')
+{
+	$('#nameInputDiv').hide();
+}
+else if ($('#pay_type_2').attr('checked') == 'checked')
+{
+	$('#typeSelectDiv').hide();
+	$('#clientSelectDiv').hide();
+	$('#citySelectDiv').hide();
+}
+else if ($('#pay_type_3').attr('checked') == 'checked')
+{
+	$('#nameInputDiv').hide();
+	$('#parentProjectInputDiv').show();
+}
+
 
 </script>
 
@@ -219,4 +252,56 @@ $('#typeSelect').change(function(){
 <?php if ($defaultValue) :?>
 $('#typeSelect').change();
 <?php endif;?>
+</script>
+
+<script>
+
+function hideAll()
+{
+	$('#typeSelectDiv').hide();
+	$('#clientSelectDiv').hide();
+	$('#teacherSelectDiv').hide();
+	$('#citySelectDiv').hide();
+	$('#nameInputDiv').hide();
+	$('#parentProjectInputDiv').hide();
+}
+
+function clearAllHide()
+{
+	// todo
+}
+
+//母项目
+$('#pay_type_2').change(function(){
+	if (this.checked)
+	{
+		hideAll();
+		
+	    $('#nameInputDiv').show();
+	}
+});
+
+//独立项目
+$('#pay_type_1').change(function(){
+	if (this.checked)
+	{
+		hideAll();
+		
+		$('#typeSelect').val('');$('#typeSelectDiv').show();
+		$('#citySelect').val('');$('#citySelectDiv').show();
+	}
+});
+
+//子项目
+$('#pay_type_3').change(function(){
+	if (this.checked)
+	{
+		hideAll();
+
+		$('#parentProjectInputDiv').show();
+		$('#typeSelect').val('');$('#typeSelectDiv').show();
+		$('#citySelect').val('');$('#citySelectDiv').show();
+	}
+});
+
 </script>

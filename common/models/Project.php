@@ -8,11 +8,17 @@ use Yii;
  * This is the model class for table "project".
  *
  * @property integer $id
+ * @property integer $style
  * @property string $name
+ * @property string $date_start
+ * @property string $date_end
  * @property integer $city_id
  * @property integer $teacher_id
  * @property integer $type_id
  * @property integer $client_id
+ * @property integer $parent_id
+ * @property string $area_start
+ * @property string $area_end
  *
  * @property Income[] $incomes
  * @property Pay[] $pays
@@ -20,6 +26,9 @@ use Yii;
  * @property Teacher $teacher
  * @property ProjectType $type
  * @property GllueClient $client
+ * @property Project $parent
+ * @property Project[] $projects
+ * @property Time[] $times
  */
 class Project extends \yii\db\ActiveRecord
 {
@@ -37,9 +46,10 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'city_id', 'type_id'], 'required'],
-            [['city_id', 'teacher_id', 'type_id', 'client_id'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['style', 'area_start', 'area_end'], 'required'],
+            [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id'], 'integer'],
+            [['date_start', 'date_end'], 'safe'],
+            [['name', 'area_start', 'area_end'], 'string', 'max' => 255]
         ];
     }
 
@@ -50,11 +60,17 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'style' => 'Style',
             'name' => 'Name',
+            'date_start' => 'Date Start',
+            'date_end' => 'Date End',
             'city_id' => 'City ID',
             'teacher_id' => 'Teacher ID',
             'type_id' => 'Type ID',
             'client_id' => 'Client ID',
+            'parent_id' => 'Parent ID',
+            'area_start' => 'Area Start',
+            'area_end' => 'Area End',
         ];
     }
 
@@ -104,5 +120,29 @@ class Project extends \yii\db\ActiveRecord
     public function getClient()
     {
         return $this->hasOne(GllueClient::className(), ['id' => 'client_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParent()
+    {
+        return $this->hasOne(Project::className(), ['id' => 'parent_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjects()
+    {
+        return $this->hasMany(Project::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTimes()
+    {
+        return $this->hasMany(Time::className(), ['project_id' => 'id']);
     }
 }

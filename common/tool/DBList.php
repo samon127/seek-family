@@ -24,9 +24,16 @@ class DBList
 	    return ProjectCity::find()->asArray()->indexBy('id')->where([])->all();
 	}
 
+	public static function getParentProject()
+	{
+		return Project::find()->asArray()->indexBy('id')->where(['style' => 2])->all();
+	}
+	
 	public static function getPayType()
 	{
 	    return PayType::find()->asArray()->indexBy('id')->where([])->all();
 	}
+	
+	
 
 }

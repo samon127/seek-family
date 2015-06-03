@@ -52,24 +52,18 @@ class ProjectController extends Controller
             $model = new Project();
         }
 
-        $model->type_id = $data['type'];
-        $model->city_id = $data['city'];
+        $model->style = $data['style'];
+        $model->area_start = $data['area_start'];
+        $model->area_end = $data['area_end'];
 
-        if (isset($data['teacher']))
-        {
-            $model->teacher_id = $data['teacher'];
-        }
-        else {
-            $model->teacher_id = '';
-        }
-
-        if (isset($data['client']))
-        {
-            $model->client_id = $data['client'];
-        }
-        else {
-            $model->client_id = '';
-        }
+        $model->teacher_id = isset($data['teacher']) ? $data['teacher'] : '';
+        $model->client_id = isset($data['client']) ? $data['client'] : '';
+        $model->city_id = isset($data['city']) ? $data['city'] : '';
+        $model->type_id = isset($data['type']) ? $data['type'] : '';
+        $model->name = isset($data['name']) ? $data['name'] : '';
+        $model->parent_id = isset($data['parent']) ? $data['parent'] : '';
+        $model->date_start = isset($data['date_start']) ? $data['date_start'] : '';
+        $model->date_end = isset($data['date_end']) ? $data['date_end'] : '';
 
         $model->save();
 
@@ -81,7 +75,7 @@ class ProjectController extends Controller
     {
         $keyWorld = Yii::$app->getRequest()->get('q');
 
-        $all = GllueClient::find()->asArray()->indexBy('id')->where(['like', 'name1', $keyWorld])->all();
+        $all = GllueClient::find()->asArray()->indexBy('id')->where(['like', 'name1', $keyWorld])->orWhere(['like', 'name', $keyWorld])->all();
 
         $items = [];
         foreach ($all as $one)
@@ -109,8 +103,9 @@ class ProjectController extends Controller
     	$projectTypes = DBList::getProjectType();
     	$teachers = DBList::getTeacher();
     	$city = DBList::getCity();
+    	$parentProject = DBList::getParentProject();
 
-        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue]);
+        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue, 'parentProject'=>$parentProject]);
     }
 
 }

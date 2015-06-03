@@ -5,6 +5,13 @@ class Family
 {
 	public static function getProjectName($project)
 	{
+		return 1212;
+		
+		if ($project->name)
+		{
+		    return $project->name;
+		}
+		
 	    $name = $project->city->name . '-';
 	    if ($project->teacher)
 	    {

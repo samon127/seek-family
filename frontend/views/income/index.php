@@ -8,11 +8,13 @@ use common\tool\Family;
 ?>
 <!-- DataTables CSS -->
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="/vendor/dataTables/jquery.dataTables.css">
+
+<!-- DataTables -->
+<?php $this->registerJsFile('/vendor/dataTables/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <!-- DataTables -->
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
-<?php $this->registerJsFile('http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <table id="table_id" class="display">
     <thead>
