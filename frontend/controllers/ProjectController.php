@@ -29,38 +29,51 @@ class ProjectController extends Controller
 
     public function actionIndex()
     {
-    	$data = Project::find()
+    	$projects = Project::find()
+				->joinWith('type', true, 'LEFT JOIN')
+				->joinWith('teacher', true, 'LEFT JOIN')
 				->joinWith('city', true, 'LEFT JOIN')
-		        ->joinWith('industry', true, 'LEFT JOIN')
-				->where('ext15 = "880客户" or ext15 = "5000广告客户"');
-				
-    	print_r($data);exit;
-    	
-        return $this->render('index');
+    	        ->all();
+
+        return $this->render('index', array('projects' => $projects));
     }
 
     public function actionSubmit()
     {
 
         $data = Yii::$app->getRequest()->post('project');
-        //print_r($data);exit;
 
         if (isset($data['id']) && $data['id'])
         {
-
+            $model = Project::find()->where(['id' => $data['id']])->one();
         }
         else
         {
             $model = new Project();
-            $model->type_id = $data['type'];
-            $model->teacher_id = $data['teacher'];
-            $model->city_id = $data['city'];
-            $model->client_id = $data['client'];
-            $model->save();
         }
 
+        $model->type_id = $data['type'];
+        $model->city_id = $data['city'];
 
-        return $this->render('index');
+        if (isset($data['teacher']))
+        {
+            $model->teacher_id = $data['teacher'];
+        }
+        else {
+            $model->teacher_id = '';
+        }
+
+        if (isset($data['client']))
+        {
+            $model->client_id = $data['client'];
+        }
+        else {
+            $model->client_id = '';
+        }
+
+        $model->save();
+
+        return $this->redirect(['project/index']);
     }
 
     // AJAX, used by select2
@@ -84,10 +97,20 @@ class ProjectController extends Controller
 
 	public function actionEdit()
     {
+        if ($id = Yii::$app->getRequest()->get('id'))
+        {
+            $defaultValue = Project::find()->asArray()->where(['id' => $id])->one();
+        }
+        else
+        {
+            $defaultValue = [];
+        }
+
     	$projectTypes = DBList::getProjectType();
     	$teachers = DBList::getTeacher();
+    	$city = DBList::getCity();
 
-        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers]);
+        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue]);
     }
 
 }

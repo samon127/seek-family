@@ -1,5 +1,10 @@
-<?php 
+<?php
 use yii\web\View;
+use common\tool\Gllue;
+use yii\helpers\Url;
+use yii\helpers\Html;
+use common\tool\Family;
+
 ?>
 <!-- DataTables CSS -->
 
@@ -11,19 +16,27 @@ use yii\web\View;
 <table id="table_id" class="display">
     <thead>
         <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
+            <th>项目编号</th>
+            <th>项目名称</th>
+            <th>类型</th>
+            <th>讲师</th>
+            <th>城市</th>
+            <th>客户</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
+    <?php foreach ($projects as $project): ?>
         <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
+            <td><?php echo $project->id ?></td>
+            <td><?php echo Family::getProjectName($project)?></td>
+            <td><?php echo $project->type->name ?></td>
+            <td><?php echo $project->teacher ? $project->teacher->name : '-' ?></td>
+            <td><?php echo $project->city->name ?></td>
+            <td><?php echo Gllue::getClientById($project->client_id)['name'] ? Gllue::getClientById($project->client_id)['name'] : '-' ?></td>
+            <td><?php echo Html::a('编辑', Url::to(['project/edit', 'id' => $project->id])) ?></td>
         </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
 

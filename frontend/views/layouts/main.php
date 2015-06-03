@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -26,33 +27,63 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => '斯程项目管理系统',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
+//                 ['label' => 'Home', 'url' => ['/site/index']],
+//                 ['label' => 'About', 'url' => ['/site/about']],
+//                 ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
-            }
+//             if (Yii::$app->user->isGuest) {
+//                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+//                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+//             } else {
+//                 $menuItems[] = [
+//                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+//                     'url' => ['/site/logout'],
+//                     'linkOptions' => ['data-method' => 'post']
+//                 ];
+//             }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
             ]);
+
+            ?>
+<ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目设置 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><?php echo Html::a('项目列表', Url::to(['project/index'])) ?></li>
+            <li><?php echo Html::a('新建项目', Url::to(['project/edit'])) ?></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">收支统计 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><?php echo Html::a('项目收入列表', Url::to(['income/index'])) ?></li>
+            <li><?php echo Html::a('项目收入新建', Url::to(['income/edit'])) ?></li>
+            <li><?php echo Html::a('项目支出列表', Url::to(['pay/index'])) ?></li>
+            <li><?php echo Html::a('项目支出新建', Url::to(['pay/edit'])) ?></li>
+            <li class="divider"></li>
+            <li><?php echo Html::a('其他收入列表', Url::to(['income/index'])) ?></li>
+            <li><?php echo Html::a('日常支出列表', Url::to(['income/index'])) ?></li>
+          </ul>
+        </li>
+      </ul>
+
+            <?php
             NavBar::end();
         ?>
+
+
 
         <div class="container">
         <?= Breadcrumbs::widget([
