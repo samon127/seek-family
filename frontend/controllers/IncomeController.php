@@ -12,11 +12,15 @@ class IncomeController extends \yii\web\Controller
 
     public function actionIndex()
     {
+        $pid = Yii::$app->getRequest()->get('pid');
+
         $incomes = Income::find()
+        ->where(['project_id'=>$pid])
         ->joinWith('project', true, 'LEFT JOIN')
         ->joinWith('project.type', true, 'LEFT JOIN')
         ->joinWith('project.teacher', true, 'LEFT JOIN')
         ->joinWith('project.city', true, 'LEFT JOIN')
+        ->orderBy('income.income_date')
         ->all();
 
         return $this->render('index', array('defaultValue' => '', 'incomes' => $incomes));
@@ -65,6 +69,8 @@ class IncomeController extends \yii\web\Controller
         $model->invoice = $data['invoice'];
 
         $model->save();
+
+        //print_r($model);exit;
 
         return $this->redirect(['income/index']);
     }

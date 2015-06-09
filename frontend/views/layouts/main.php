@@ -6,11 +6,13 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use yii\web\View;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AppAsset::register($this);
+$this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View::POS_HEAD]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -68,7 +70,6 @@ AppAsset::register($this);
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">收支统计 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><?php echo Html::a('项目收入列表', Url::to(['income/index'])) ?></li>
             <li><?php echo Html::a('项目收入新建', Url::to(['income/edit'])) ?></li>
             <li><?php echo Html::a('项目支出列表', Url::to(['pay/index'])) ?></li>
             <li><?php echo Html::a('项目支出新建', Url::to(['pay/edit'])) ?></li>

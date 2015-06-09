@@ -6,6 +6,11 @@ use yii\web\View;
 ?>
 
 
+<link href="vendor/select2/select2.min.css" rel="stylesheet" />
+
+<?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
 
 <form class="form-horizontal" action="<?php echo Url::to(['pay/submit']) ?>" method="post">
 <?php if ($defaultValue) : ?>
@@ -47,16 +52,29 @@ use yii\web\View;
   <label class="col-md-4 control-label" for="selectbasic">项目</label>
   <div class="col-md-4">
     <?php
-    $options = $attrs = [];
-    $options[''] = '';
+    $options = $attrs = $selections = [];
     foreach ($projects as $project)
     {
         $options[$project['id']] = Family::getProjectName($project);
     }
-    echo HTML::dropDownList('pay[project]', $defaultValue ? $defaultValue['project_id'] : '', $options, ['options' => $attrs, 'id' => 'projectSelect', 'class' => 'form-control']);
+    if ($defaultValue)
+    {
+        foreach ($defaultValue['payProjects'] as $project)
+        {
+            $selections[] = $project['project_id'];
+        }
+    }
+
+    echo HTML::dropDownList('pay[project]', $selections, $options, ['options' => $attrs, 'class' => 'form-control', 'id' => 'projectSelect', 'multiple'=>'multiple']);
+    //echo HTML::dropDownList($page.'[client]', $defaultValue, $options, ['id' => 'clientSelect', 'class' => 'js-example-basic-multiple', 'multiple'=>'multiple']);
+
     ?>
   </div>
 </div>
+
+<script>
+$("#projectSelect").select2();
+</script>
 
 <!-- Select Basic -->
 <div class="form-group">

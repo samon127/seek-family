@@ -21,7 +21,7 @@ use yii\web\View;
   <label class="col-md-4 control-label" for="radios">收入类型</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['type'] : '';
+    $defaultInvoice = $defaultValue ? $defaultValue['type'] : 1;
     echo HTML::radioList('income[type]', $defaultInvoice,
             [ 1 => '项目收入', 2 => '其他收入'],
             [
@@ -68,7 +68,7 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 'income', 'defa
   <label class="col-md-4 control-label" for="radios">是否走年卡费用</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['card'] : '';
+    $defaultInvoice = $defaultValue ? $defaultValue['card'] : 1;
     echo HTML::radioList('income[card]', $defaultInvoice,
             [ 1 => '否', 2 => '是'],
             [
@@ -107,7 +107,7 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
   <label class="col-md-4 control-label" for="radios">发票</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['invoice'] : '';
+    $defaultInvoice = $defaultValue ? $defaultValue['invoice'] : 1;
     echo HTML::radioList('income[invoice]', $defaultInvoice,
             [ 1 => '需要', 2 => '不需要'],
             [

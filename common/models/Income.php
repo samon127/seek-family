@@ -36,7 +36,7 @@ class Income extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'project_id', 'client_id', 'number', 'card', 'income_date', 'invoice', 'comment'], 'required'],
+            [['type', 'project_id', 'client_id', 'number', 'card', 'invoice'], 'required'],
             [['type', 'project_id', 'client_id', 'card', 'invoice'], 'integer'],
             [['number'], 'number'],
             [['income_date'], 'safe'],

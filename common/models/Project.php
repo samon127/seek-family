@@ -19,9 +19,10 @@ use Yii;
  * @property integer $parent_id
  * @property string $area_start
  * @property string $area_end
+ * @property string $comment
  *
  * @property Income[] $incomes
- * @property Pay[] $pays
+ * @property PayProject[] $payProjects
  * @property ProjectCity $city
  * @property Teacher $teacher
  * @property ProjectType $type
@@ -49,7 +50,7 @@ class Project extends \yii\db\ActiveRecord
             [['style', 'area_start', 'area_end'], 'required'],
             [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
-            [['name', 'area_start', 'area_end'], 'string', 'max' => 255]
+            [['name', 'area_start', 'area_end', 'comment'], 'string', 'max' => 255]
         ];
     }
 
@@ -71,6 +72,7 @@ class Project extends \yii\db\ActiveRecord
             'parent_id' => 'Parent ID',
             'area_start' => 'Area Start',
             'area_end' => 'Area End',
+            'comment' => 'Comment',
         ];
     }
 
@@ -85,9 +87,9 @@ class Project extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPays()
+    public function getPayProjects()
     {
-        return $this->hasMany(Pay::className(), ['project_id' => 'id']);
+        return $this->hasMany(PayProject::className(), ['project_id' => 'id']);
     }
 
     /**

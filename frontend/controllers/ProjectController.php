@@ -4,6 +4,9 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Project;
+use common\models\Income;
+use common\models\Time;
+use common\models\Pay;
 use common\models\GllueClient;
 use common\tool\DBList;
 use frontend\models\PasswordResetRequestForm;
@@ -64,6 +67,7 @@ class ProjectController extends Controller
         $model->parent_id = isset($data['parent']) ? $data['parent'] : '';
         $model->date_start = isset($data['date_start']) ? $data['date_start'] : '';
         $model->date_end = isset($data['date_end']) ? $data['date_end'] : '';
+        $model->comment = isset($data['comment']) ? $data['comment'] : '';
 
         $model->save();
 
@@ -106,6 +110,34 @@ class ProjectController extends Controller
     	$parentProject = DBList::getParentProject();
 
         return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue, 'parentProject'=>$parentProject]);
+    }
+
+
+    public function actionBalance()
+    {
+
+        $pid = Yii::$app->getRequest()->get('pid');
+
+        $model = Project::find()->where(['id' => $pid])->one();
+
+        if ($model->style==2) // 母项目
+        {
+            $projects = Project::find()->where(['parent_id' => $pid])->all();
+            $activeId = $projects[0]->id;
+            $parentProject = Project::find()->where(['id' => $pid])->one();
+        }
+        else if ($model->style==1){ // 独立项目
+            $projects = [$model];
+            $activeId = $model->id;
+            $parentProject = false;
+        }
+        else if ($model->style==3){ // 子项目
+            $projects = Project::find()->where(['parent_id' => $model->parent_id])->all();
+            $activeId = $model->id;
+            $parentProject = Project::find()->where(['id' => $model->parent_id])->one();
+        }
+
+        return $this->render('balance', ['projects'=>$projects, 'activeId'=>$activeId, 'parentProject'=>$parentProject]);
     }
 
 }

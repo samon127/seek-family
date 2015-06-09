@@ -25,7 +25,7 @@ use common\tool\Family;
     <?php foreach ($pays as $pay): ?>
         <tr>
             <td><?php echo $pay->id ?></td>
-            <td><?php echo Family::getProjectName($pay->project)?></td>
+            <td><?php echo Family::getProjectNames($pay->projects)?></td>
             <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $pay->id])) ?></td>
         </tr>
         <?php endforeach; ?>

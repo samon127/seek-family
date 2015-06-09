@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Project;
+use common\models\iPay;
 use common\models\Pay;
 use common\tool\DBList;
 
@@ -13,12 +14,12 @@ class PayController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        $pays = Pay::find()
+        $pays = iPay::find()
         ->joinWith('type', true, 'LEFT JOIN')
-        ->joinWith('project', true, 'LEFT JOIN')
-        ->joinWith('project.type', true, 'LEFT JOIN')
-        ->joinWith('project.teacher', true, 'LEFT JOIN')
-        ->joinWith('project.city', true, 'LEFT JOIN')
+        ->joinWith('projects', true, 'LEFT JOIN')
+        ->joinWith('projects.type', true, 'LEFT JOIN')
+        ->joinWith('projects.teacher', true, 'LEFT JOIN')
+        ->joinWith('projects.city', true, 'LEFT JOIN')
         ->all();
 
         return $this->render('index', ['pays'=>$pays]);
@@ -28,13 +29,13 @@ class PayController extends \yii\web\Controller
     {
         if ($id = Yii::$app->getRequest()->get('id'))
         {
-            $defaultValue = Pay::find()->asArray()->where(['id' => $id])->one();
+            $defaultValue = iPay::find()->with('payProjects')->asArray()->where(['id' => $id])->one();
         }
         else
         {
             $defaultValue = [];
         }
-
+//print_r($defaultValue);exit;
         $projects = Project::find()
         ->joinWith('type', true, 'LEFT JOIN')
         ->joinWith('teacher', true, 'LEFT JOIN')
@@ -50,23 +51,31 @@ class PayController extends \yii\web\Controller
     {
 
         $data = Yii::$app->getRequest()->post('pay');
-        //print_r($data);exit;
+
         if (isset($data['id']) && $data['id'])
         {
-            $model = Pay::find()->where(['id' => $data['id']])->one();
+            $model = iPay::find()->with('projects')->where(['id'=>$data['id']])->one();
+            $model->unlinkAll('projects', true);
         }
         else
         {
-            $model = new Pay();
+            $model = new iPay();
         }
 
         $model->type_id = $data['type'];
-        $model->project_id = $data['project'];
         $model->number = str_replace(',', '', $data['money']);
         $model->pay_date = $data['date'];
         $model->comment = $data['comment'];
 
         $model->save();
+
+        foreach ($data['project'] as $projectId)
+        {
+            $project = Project::findOne($projectId);
+            $model->link('projects', $project);
+        }
+
+
 
         return $this->redirect(['pay/index']);
     }

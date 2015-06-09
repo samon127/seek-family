@@ -21,13 +21,14 @@ use common\tool\Family;
         <tr>
             <th>项目编号</th>
             <th>项目名称</th>
+            <th>到账时间</th>
             <th style="text-align:right">收入</th>
             <th>操作</th>
         </tr>
     </thead>
     <tfoot>
             <tr>
-                <th colspan="3" style="text-align:right"></th>
+                <th colspan="4" style="text-align:right"></th>
                 <th></th>
             </tr>
         </tfoot>
@@ -36,6 +37,7 @@ use common\tool\Family;
         <tr>
             <td><?php echo $income->id ?></td>
             <td><?php echo Family::getProjectName($income->project) ?></td>
+            <td><?php echo $income->income_date ? $income->income_date : '应收账款' ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
             <td><?php echo Html::a('编辑', Url::to(['income/edit', 'id' => $income->id])) ?></td>
         </tr>
@@ -49,6 +51,7 @@ $(document).ready( function () {
     	paging: false,
     	"info": false,
     	"searching": false,
+    	"order": [],
     	"footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
 
@@ -62,15 +65,15 @@ $(document).ready( function () {
 
             // Total over this page
             pageTotal = api
-                .column( 2, { page: 'current'} )
+                .column( 3, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
             // Update footer
-            $( api.column( 2 ).footer() ).html(
-            	'Total: <span id="total">'+pageTotal+'</span>'
+            $( api.column( 3 ).footer() ).html(
+            	'合计：<span id="total">'+pageTotal+'</span>'
             );
 
             $('#total').autoNumeric('init');

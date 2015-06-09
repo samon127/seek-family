@@ -6,6 +6,7 @@ use common\models\ProjectType;
 use common\models\Teacher;
 use common\models\ProjectCity;
 use common\models\PayType;
+use common\models\User;
 
 class DBList
 {
@@ -28,12 +29,17 @@ class DBList
 	{
 		return Project::find()->asArray()->indexBy('id')->where(['style' => 2])->all();
 	}
-	
+
 	public static function getPayType()
 	{
 	    return PayType::find()->asArray()->indexBy('id')->where([])->all();
 	}
-	
-	
+
+	public static function getUser()
+	{
+	    return User::find()->asArray()->indexBy('id')->where([])->all();
+	}
+
+
 
 }

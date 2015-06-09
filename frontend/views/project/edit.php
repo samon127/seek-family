@@ -178,11 +178,23 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 'project', 'def
 <script>
 $('#monthAreaPicker').datepicker({
 	format: "yyyy-mm",
-	startView: "months", 
+	startView: "months",
     minViewMode: "months"
 });
     </script>
 
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label">备注</label>
+  <div class="col-md-4">
+  <?php
+  $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
+  echo HTML::input('text', 'project[comment]', $defaultComment, ['id' => 'commentInput', 'class'=>'form-control input-md'] )
+  ?>
+  </div>
+</div>
 
 
 <!-- Button -->
@@ -276,7 +288,7 @@ $('#pay_type_2').change(function(){
 	if (this.checked)
 	{
 		hideAll();
-		
+
 	    $('#nameInputDiv').show();
 	}
 });
@@ -286,7 +298,7 @@ $('#pay_type_1').change(function(){
 	if (this.checked)
 	{
 		hideAll();
-		
+
 		$('#typeSelect').val('');$('#typeSelectDiv').show();
 		$('#citySelect').val('');$('#citySelectDiv').show();
 	}

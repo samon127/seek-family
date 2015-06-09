@@ -9,13 +9,12 @@ use Yii;
  *
  * @property integer $id
  * @property integer $type_id
- * @property integer $project_id
  * @property double $number
  * @property string $pay_date
  * @property string $comment
  *
- * @property Project $project
  * @property PayType $type
+ * @property PayProject[] $payProjects
  */
 class Pay extends \yii\db\ActiveRecord
 {
@@ -33,8 +32,8 @@ class Pay extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'project_id', 'number', 'pay_date', 'comment'], 'required'],
-            [['type_id', 'project_id'], 'integer'],
+            [['type_id', 'number'], 'required'],
+            [['type_id'], 'integer'],
             [['number'], 'number'],
             [['pay_date'], 'safe'],
             [['comment'], 'string']
@@ -49,7 +48,6 @@ class Pay extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'type_id' => 'Type ID',
-            'project_id' => 'Project ID',
             'number' => 'Number',
             'pay_date' => 'Pay Date',
             'comment' => 'Comment',
@@ -59,16 +57,16 @@ class Pay extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProject()
+    public function getType()
     {
-        return $this->hasOne(Project::className(), ['id' => 'project_id']);
+        return $this->hasOne(PayType::className(), ['id' => 'type_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getType()
+    public function getPayProjects()
     {
-        return $this->hasOne(PayType::className(), ['id' => 'type_id']);
+        return $this->hasMany(PayProject::className(), ['pay_id' => 'id']);
     }
 }

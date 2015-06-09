@@ -26,6 +26,7 @@ else {
     $options = [];
 }
 echo HTML::dropDownList($page.'[client]', $defaultValue, $options, ['id' => 'clientSelect', 'class' => 'form-control']);
+
 ?>
   </div>
 </div>
