@@ -6,17 +6,21 @@ use yii\helpers\Html;
 use common\tool\Family;
 
 ?>
-<!-- DataTables CSS -->
 
-<link rel="stylesheet" type="text/css" href="/vendor/dataTables/jquery.dataTables.css">
+<style>
+.container-page{
+  width:100%;
+}
+</style>
 
-<!-- DataTables -->
-<?php $this->registerJsFile('/vendor/dataTables/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+<?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <table id="table_id" class="display">
     <thead>
         <tr>
-            <th>项目编号</th>
+            <th>月份</th>
             <th>分类</th>
             <th>项目名称</th>
             <th>执行时间</th>
@@ -30,7 +34,7 @@ use common\tool\Family;
     <tbody>
     <?php foreach ($projects as $project): ?>
         <tr>
-            <td><?php echo $project->id ?></td>
+            <td><?php echo date('Y年m月', strtotime($project->date_start))  ?></td>
             <td><?php echo Family::getProjectStyle($project) ?></td>
             <td><?php echo Family::getProjectName($project) ?></td>
             <td><?php echo Family::displayDateArea($project->date_start, $project->date_end)  ?></td>
@@ -52,10 +56,28 @@ use common\tool\Family;
 <script>
 $(document).ready( function () {
     $('#table_id').DataTable({
-    	paging: false,
-    	"info": false,
-    	"searching": true,
-    	"order": [],
-        });
+	"columnDefs": [
+           { "visible": false, "targets": 0 }
+       ],
+   	paging: false,
+   	"info": false,
+   	"searching": true,
+   	"order": [[ 0, 'asc' ]],
+   	"drawCallback": function ( settings ) {
+           var api = this.api();
+           var rows = api.rows( {page:'current'} ).nodes();
+           var last=null;
+
+           api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+               if ( last !== group ) {
+                   $(rows).eq( i ).before(
+                       '<tr class="group"><td colspan="14" style="color:red">'+group+'</td></tr>'
+                   );
+
+                   last = group;
+               }
+           } );
+       }
+    });
 } );
 </script>

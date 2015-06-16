@@ -21,6 +21,8 @@ use Yii;
  * @property string $area_end
  * @property string $comment
  * @property string $weight
+ * @property string $partner_profit
+ * @property string $team_profit
  *
  * @property Income[] $incomes
  * @property PayProject[] $payProjects
@@ -52,7 +54,7 @@ class Project extends \yii\db\ActiveRecord
             [['style', 'area_start', 'area_end'], 'required'],
             [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
-            [['name', 'area_start', 'area_end', 'comment', 'weight'], 'string', 'max' => 255]
+            [['name', 'area_start', 'area_end', 'comment', 'weight', 'partner_profit', 'team_profit'], 'string', 'max' => 255]
         ];
     }
 
@@ -76,6 +78,8 @@ class Project extends \yii\db\ActiveRecord
             'area_end' => 'Area End',
             'comment' => 'Comment',
             'weight' => 'Weight',
+            'partner_profit' => 'Partner Profit',
+            'team_profit' => 'Team Profit',
         ];
     }
 

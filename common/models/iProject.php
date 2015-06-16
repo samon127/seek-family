@@ -8,8 +8,6 @@ use common\models\Project;
 
 class iProject extends Project
 {
-	public $times;
-
     public static function getProject()
     {
         $user_id = Yii::$app->getRequest()->get('user_id');

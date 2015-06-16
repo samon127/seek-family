@@ -73,14 +73,20 @@ class ProjectController extends Controller
         $model->date_end = isset($data['date_end']) ? $data['date_end'] : '';
         $model->comment = isset($data['comment']) ? $data['comment'] : '';
         $model->weight = isset($data['weight']) ? $data['weight'] : '';
+        $model->partner_profit = isset($data['partner_profit']) ? $data['partner_profit'] : '';
+        $model->team_profit = isset($data['team_profit']) ? $data['team_profit'] : '';
 
         $model->save();
 
-        foreach ($data['user'] as $userId)
+        if (isset($data['users']) && $data['users'])
         {
-            $user = User::findOne($userId);
-            $model->link('users', $user);
+            foreach ($data['users'] as $userId)
+            {
+                $user = User::findOne($userId);
+                $model->link('users', $user);
+            }
         }
+        
 
         return $this->redirect(['project/index']);
     }
@@ -159,11 +165,24 @@ class ProjectController extends Controller
         ->with('incomes')
         ->with('pays')
         ->with('pays.projects')
+        ->with('times')
+        ->with('times.user')
         ->orderBy('date_start')
         ->joinWith('type', true, 'LEFT JOIN')
         ->all();
-
+        
         return $this->render('finance', ['projects'=>$projects]);
 
+    }
+    
+    public function actionDelete()
+    {
+        $pid = Yii::$app->getRequest()->get('id');
+        
+        $model = Project::find()->where(['id' => $pid])->one();
+        $model->delete();
+    
+        return $this->render('index');
+    
     }
 }

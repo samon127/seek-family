@@ -225,11 +225,34 @@ $('#monthAreaPicker').datepicker({
 
 <!-- Text input-->
 <div class="form-group">
+  <label class="col-md-4 control-label">合作伙伴收益</label>
+  <div class="col-md-4">
+  <?php
+  $defaultComment = $defaultValue ? $defaultValue['partner_profit'] : '';
+  echo HTML::input('text', 'project[partner_profit]', $defaultComment, ['id' => 'partnerProfitInput', 'class'=>'form-control input-md'] )
+  ?>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label">项目组收益</label>
+  <div class="col-md-4">
+  <?php
+  $defaultComment = $defaultValue ? $defaultValue['team_profit'] : '';
+  echo HTML::input('text', 'project[team_profit]', $defaultComment, ['id' => 'teamProfitInput', 'class'=>'form-control input-md'] )
+  ?>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
   <label class="col-md-4 control-label">备注</label>
   <div class="col-md-4">
   <?php
   $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
-  echo HTML::input('text', 'project[comment]', $defaultComment, ['id' => 'commentInput', 'class'=>'form-control input-md'] )
+  echo HTML::textarea('project[comment]', $defaultComment, ['id' => 'commentInput', 'class'=>'form-control input-md'] )
   ?>
   </div>
 </div>
@@ -253,7 +276,10 @@ $('#monthAreaPicker').datepicker({
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
     <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
-  </div>
+    <?php if ($defaultValue) : ?>
+    <a href="<?php echo Url::to(['project/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <?php endif; ?>
+    </div>
 </div>
 
 </fieldset>

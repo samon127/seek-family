@@ -65,7 +65,7 @@ class Family
 
 	public static function getNumberByWeight($projectId, $projects, $number)
 	{
-	    $total = 0;
+	    $total = $current = 0;
 	    foreach ($projects as $p)
 	    {
 	        if ($p->weight)
@@ -82,12 +82,18 @@ class Family
 	        }
 	    }
 
-	    return $number*$current/$total;
+	    if ($current == 0)
+	    {
+	        return $number;
+	    }
+	    else {
+	        return $number*$current/$total;
+	    }
 	}
 
 	public static function getSeperateByWeight($projectId, $projects, $number)
 	{
-	    $total = 0;
+	    $total = $current = 0;
 	    foreach ($projects as $p)
 	    {
 	        if ($p->weight)
@@ -193,8 +199,37 @@ class Family
 	    return $totle;
 	}
 
-	public static function getTotleStuffPays()
+	public static function getTotleStuffPays($times)
 	{
-	    return 123;
+	    $totle = 0;
+	    
+	    foreach ($times as $time)
+	    {
+	        $totle += $time->percent*$time->user->balance_base/100;
+	    }
+
+	    return $totle;
+	}
+	
+	public static function getPartnerProfit($totalProfit, $project)
+	{
+	    if (is_numeric($project->partner_profit))
+	    {
+	        return $project->partner_profit;
+	    }
+	    else {
+	        return $totalProfit * $project->partner_profit / 100;
+	    }
+	}
+	
+	public static function getTeamProfit($totalProfit, $project)
+	{
+	    if (is_numeric($project->team_profit))
+	    {
+	        return $project->team_profit;
+	    }
+	    else {
+	        return $totalProfit * $project->team_profit / 100;
+	    }
 	}
 }

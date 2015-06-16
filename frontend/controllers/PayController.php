@@ -33,7 +33,7 @@ class PayController extends \yii\web\Controller
     {
         if ($id = Yii::$app->getRequest()->get('id'))
         {
-            $defaultValue = iPay::find()->with('payProjects')->asArray()->where(['id' => $id])->one();
+            $defaultValue = iPay::find()->with('projects')->asArray()->where(['id' => $id])->one();
         }
         else {
             $defaultValue = [];
@@ -73,6 +73,7 @@ class PayController extends \yii\web\Controller
         $model->comment = $data['comment'];
 
         $model->save();
+        
 
         foreach ($data['project'] as $projectId)
         {

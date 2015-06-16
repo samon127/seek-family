@@ -15,7 +15,7 @@ use common\tool\Family;
 
 <style>
 .container-page{
-  width:95%;
+  width:100%;
 }
 </style>
 
@@ -33,13 +33,18 @@ use common\tool\Family;
         <tr>
             <th>月份</th>
             <th>执行时间</th>
-            <th>分类</th>
-            <th>项目名称</th>
+<!--             <th>分类</th> -->
+<!--             <th>项目名称</th> -->
             <th>类型</th>
             <th>负责人</th>
             <th>项目收入</th>
-            <th>项目支出（不含发票支出）</th>
+            <th>项目支出（无发票）</th>
             <th>人员支出</th>
+            <th>总收益</th>
+            <th>合作伙伴收益</th>
+            <th>项目组收益</th>
+            <th>公司收益</th>
+            
 
 
             <th>操作</th>
@@ -50,13 +55,17 @@ use common\tool\Family;
         <tr>
             <td><?php echo date('Y年m月', strtotime($project->date_start))  ?></td>
             <td><?php echo Family::displayDateArea($project->date_start, $project->date_end)  ?></td>
-            <td><?php echo Family::getProjectStyle($project) ?></td>
-            <td><?php echo Family::getProjectName($project) ?></td>
+            <!-- <td><?php //echo Family::getProjectStyle($project) ?></td> -->
+            <!-- <td><?php //echo Family::getProjectName($project) ?></td> -->
             <td><?php echo $project->type ? $project->type->name : '-' ?></td>
             <td><?php echo Family::getUserNames($project->users) ?></td>
-            <td class="money"><?php echo Family::getTotleIncomes($project->incomes) ?></td>
-            <td class="money"><?php echo Family::getTotlePays($project) ?></td>
-            <td class="money"><?php echo Family::getTotleStuffPays($project) ?></td>
+            <td class="money"><?php echo $totalIncomes = Family::getTotleIncomes($project->incomes) ?></td>
+            <td class="money"><?php echo $totalPays = Family::getTotlePays($project) ?></td>
+            <td class="money"><?php echo $totalStuffPays = Family::getTotleStuffPays($project->times) ?></td>
+            <td class="money"><?php echo $totalProfit = $totalIncomes - $totalPays - $totalStuffPays ?></td>
+            <td class="money"><?php echo $totalPartnerProfit = Family::getPartnerProfit($totalProfit, $project)  ?></td>
+            <td class="money"><?php echo $totalTeamProfit = Family::getTeamProfit($totalProfit - $totalPartnerProfit, $project)  ?></td>
+            <td class="money"><?php echo $totalCompanyProfit = $totalProfit - $totalPartnerProfit - $totalTeamProfit ?></td>
 
 
 
@@ -91,7 +100,7 @@ $(document).ready( function () {
             api.column(0, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="10" style="color:red">'+group+'</td></tr>'
+                        '<tr class="group"><td colspan="14" style="color:red">'+group+'</td></tr>'
                     );
 
                     last = group;

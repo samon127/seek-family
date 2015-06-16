@@ -15,9 +15,8 @@ use yii\web\View;
 <form class="form-horizontal" action="<?php echo Url::to(['pay/submit']) ?>" method="post">
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="pay[id]" value="<?php echo $defaultValue['id'] ?>" />
-<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
 <?php endif; ?>
-
+<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
 <fieldset>
 
 <!-- Form Name -->
