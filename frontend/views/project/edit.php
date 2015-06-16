@@ -4,6 +4,13 @@ use yii\helpers\Html;
 use yii\web\View;
 ?>
 
+<link href="vendor/select2/select2.min.css" rel="stylesheet" />
+
+<?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
+
+
 <link href="vendor/bootstrap-datepicker/datepicker3.css" rel="stylesheet" />
 
 <?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
@@ -86,6 +93,37 @@ use yii\web\View;
     ?>
   </div>
 </div>
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">负责人</label>
+  <div class="col-md-4">
+    <?php
+    $options = $attrs = $selections = [];
+    foreach ($users as $user)
+    {
+        $options[$user['id']] = $user['english'];
+    }
+
+    if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
+    {
+        foreach ($defaultValue['projectOwners'] as $user)
+        {
+            $selections[] = $user['user_id'];
+        }
+    }
+
+    echo HTML::dropDownList('project[user]', $selections, $options, ['options' => $attrs, 'class' => 'form-control', 'id' => 'multipleUserSelect', 'multiple'=>'multiple']);
+    //echo HTML::dropDownList($page.'[client]', $defaultValue, $options, ['id' => 'clientSelect', 'class' => 'js-example-basic-multiple', 'multiple'=>'multiple']);
+
+    ?>
+  </div>
+</div>
+<script>
+$("#multipleUserSelect").select2();
+</script>
+
 
 
 <!-- Multiple Radios (inline) -->
@@ -195,6 +233,19 @@ $('#monthAreaPicker').datepicker({
   ?>
   </div>
 </div>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label">权重</label>
+  <div class="col-md-4">
+  <?php
+  $defaultComment = $defaultValue ? $defaultValue['weight'] : '';
+  echo HTML::input('text', 'project[weight]', $defaultComment, ['id' => 'weightInput', 'class'=>'form-control input-md'] )
+  ?>
+  </div>
+</div>
+
 
 
 <!-- Button -->

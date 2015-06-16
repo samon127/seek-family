@@ -27,6 +27,7 @@ $pays = iPay::find()
 ->joinWith('projects.type', true, 'LEFT JOIN')
 ->joinWith('projects.teacher', true, 'LEFT JOIN')
 ->joinWith('projects.city', true, 'LEFT JOIN')
+->orderBy('pay.pay_date')
 ->all();
 
 $times = Time::find()
@@ -39,10 +40,8 @@ $random = rand(1,1000000);
 
 ?>
 
-<link rel="stylesheet" type="text/css" href="/vendor/dataTables/jquery.dataTables.css">
-
-<!-- DataTables -->
-<?php $this->registerJsFile('/vendor/dataTables/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <!-- DataTables -->
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
@@ -52,14 +51,16 @@ $random = rand(1,1000000);
         <tr>
             <th>项目编号</th>
             <th>项目名称</th>
+            <th>客户名称</th>
             <th>到账时间</th>
+            <th>发票</th>
             <th style="text-align:right">收入</th>
             <th>操作</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <th colspan="4" style="text-align:right"></th>
+            <th colspan="6" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>
@@ -68,7 +69,9 @@ $random = rand(1,1000000);
         <tr>
             <td><?php echo $income->id ?></td>
             <td><?php echo Family::getProjectName($income->project) ?></td>
+            <td><?php echo Gllue::getClientById($income->client_id)['name'] ?></td>
             <td><?php echo $income->income_date ? $income->income_date : '应收账款' ?></td>
+            <td><?php echo $income->invoice == 1 ? "开" : '不开' ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
             <td><?php echo Html::a('编辑', Url::to(['income/edit', 'id' => $income->id])) ?></td>
         </tr>
@@ -96,7 +99,7 @@ $(document).ready( function () {
 
             // Total over this page
             pageTotal = api
-                .column( 3, { page: 'current'} )
+                .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
@@ -105,7 +108,7 @@ $(document).ready( function () {
 
 
             // Update footer
-            $( api.column( 3 ).footer() ).html(
+            $( api.column( 5 ).footer() ).html(
             	'合计：<span id="total">'+Math.round(pageTotal*100)/100+'</span>'
             );
 
@@ -122,14 +125,16 @@ $(document).ready( function () {
         <tr>
             <th>项目编号</th>
             <th>项目名称</th>
-            <th>到账时间</th>
+            <th>分类</th>
+            <th>支出时间</th>
+            <th>备注</th>
             <th style="text-align:right">支出</th>
             <th>操作</th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <th colspan="4" style="text-align:right"></th>
+            <th colspan="6" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>
@@ -137,9 +142,11 @@ $(document).ready( function () {
     <?php foreach ($pays as $pay): ?>
         <tr>
             <td><?php echo $pay->id ?></td>
-            <td><?php echo Family::getProjectNames($pay->projects)?></td>
+            <td><?php echo Family::getProjectName($project)?></td>
+            <td><?php echo $pay->type->name ?></td>
             <td><?php echo $pay->pay_date ? $pay->pay_date : '应付账款' ?></td>
-            <td style="text-align:right"><?php echo number_format($pay->number, 2) ?></td>
+            <td><?php echo $pay->comment.Family::getSeperateByWeight($project->id, $pay->projects, $pay->number) ?></td>
+            <td style="text-align:right"><?php echo number_format(Family::getNumberByWeight($project->id, $pay->projects, $pay->number), 2) ?></td>
             <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $pay->id])) ?></td>
         </tr>
         <?php endforeach; ?>
@@ -166,14 +173,14 @@ $(document).ready( function () {
 
             // Total over this page
             pageTotal = api
-                .column( 3, { page: 'current'} )
+                .column( 5, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
             // Update footer
-            $( api.column( 3 ).footer() ).html(
+            $( api.column( 5 ).footer() ).html(
             	'合计：<span id="total">'+Math.round(pageTotal*100)/100+'</span>'
             );
 
@@ -190,7 +197,7 @@ $(document).ready( function () {
             <th>分配编号</th>
             <th>项目名称</th>
             <th>分配人</th>
-            <th>分配时间</th>
+            <th>分配月份</th>
             <th>分配比例</th>
             <th style="text-align:right">结算费用</th>
             <th>操作</th>
@@ -275,7 +282,7 @@ foreach ($incomes as $income)
 $allPay = 0;
 foreach ($pays as $pay)
 {
-    $allPay += $pay->number;
+    $allPay += Family::getNumberByWeight($project->id, $pay->projects, $pay->number);
 }
 
 $timeValue = 0;
@@ -288,6 +295,13 @@ $allProfit = $allIncome-$allInvoice-$allPay-$timeValue;
 $allPartnerProfit = $allProfit*0.5;
 $allOwnerProfit = ($allProfit-$allPartnerProfit)*0.2;
 
+?>
+
+<?php
+if ($parentProject)
+{
+    echo $this->render('@common/views/partial/parentProjectBalanceInfo', ['parentProject'=>$parentProject]);
+}
 ?>
 
 

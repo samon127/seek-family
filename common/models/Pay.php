@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "pay".
  *
  * @property integer $id
+ * @property string $category
  * @property integer $type_id
  * @property double $number
  * @property string $pay_date
@@ -32,11 +33,12 @@ class Pay extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'number'], 'required'],
+            [['category', 'type_id', 'number'], 'required'],
             [['type_id'], 'integer'],
             [['number'], 'number'],
             [['pay_date'], 'safe'],
-            [['comment'], 'string']
+            [['comment'], 'string'],
+            [['category'], 'string', 'max' => 255]
         ];
     }
 
@@ -47,6 +49,7 @@ class Pay extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'category' => 'Category',
             'type_id' => 'Type ID',
             'number' => 'Number',
             'pay_date' => 'Pay Date',

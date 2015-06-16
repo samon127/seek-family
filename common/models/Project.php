@@ -20,6 +20,7 @@ use Yii;
  * @property string $area_start
  * @property string $area_end
  * @property string $comment
+ * @property string $weight
  *
  * @property Income[] $incomes
  * @property PayProject[] $payProjects
@@ -29,6 +30,7 @@ use Yii;
  * @property GllueClient $client
  * @property Project $parent
  * @property Project[] $projects
+ * @property ProjectOwner[] $projectOwners
  * @property Time[] $times
  */
 class Project extends \yii\db\ActiveRecord
@@ -50,7 +52,7 @@ class Project extends \yii\db\ActiveRecord
             [['style', 'area_start', 'area_end'], 'required'],
             [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
-            [['name', 'area_start', 'area_end', 'comment'], 'string', 'max' => 255]
+            [['name', 'area_start', 'area_end', 'comment', 'weight'], 'string', 'max' => 255]
         ];
     }
 
@@ -73,6 +75,7 @@ class Project extends \yii\db\ActiveRecord
             'area_start' => 'Area Start',
             'area_end' => 'Area End',
             'comment' => 'Comment',
+            'weight' => 'Weight',
         ];
     }
 
@@ -138,6 +141,14 @@ class Project extends \yii\db\ActiveRecord
     public function getProjects()
     {
         return $this->hasMany(Project::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectOwners()
+    {
+        return $this->hasMany(ProjectOwner::className(), ['project_id' => 'id']);
     }
 
     /**

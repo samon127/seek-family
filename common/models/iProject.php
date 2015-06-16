@@ -35,4 +35,16 @@ class iProject extends Project
             ->all();
     }
 
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])
+        ->via('projectOwners');
+    }
+
+    public function getPays()
+    {
+        return $this->hasMany(iPay::className(), ['id' => 'pay_id'])
+        ->via('payProjects');
+    }
+
 }

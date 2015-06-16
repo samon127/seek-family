@@ -14,7 +14,11 @@ class PayController extends \yii\web\Controller
 
     public function actionIndex()
     {
+        $pid = Yii::$app->getRequest()->get('pid');
+
         $pays = iPay::find()
+        ->where(['project_id'=>$pid])
+        ->orderBy('pay.pay_date')
         ->joinWith('type', true, 'LEFT JOIN')
         ->joinWith('projects', true, 'LEFT JOIN')
         ->joinWith('projects.type', true, 'LEFT JOIN')
@@ -31,8 +35,7 @@ class PayController extends \yii\web\Controller
         {
             $defaultValue = iPay::find()->with('payProjects')->asArray()->where(['id' => $id])->one();
         }
-        else
-        {
+        else {
             $defaultValue = [];
         }
 //print_r($defaultValue);exit;
@@ -51,6 +54,7 @@ class PayController extends \yii\web\Controller
     {
 
         $data = Yii::$app->getRequest()->post('pay');
+        $pid = Yii::$app->getRequest()->post('pid');
 
         if (isset($data['id']) && $data['id'])
         {
@@ -62,6 +66,7 @@ class PayController extends \yii\web\Controller
             $model = new iPay();
         }
 
+        $model->category = $data['category'];
         $model->type_id = $data['type'];
         $model->number = str_replace(',', '', $data['money']);
         $model->pay_date = $data['date'];
@@ -77,6 +82,6 @@ class PayController extends \yii\web\Controller
 
 
 
-        return $this->redirect(['pay/index']);
+        return $this->redirect(['pay/index', 'pid'=>$pid]);
     }
 }

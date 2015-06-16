@@ -4,8 +4,10 @@ namespace frontend\controllers;
 use Yii;
 use common\models\LoginForm;
 use common\models\Project;
+use common\models\iProject;
 use common\models\Income;
 use common\models\Time;
+use common\models\User;
 use common\models\Pay;
 use common\models\GllueClient;
 use common\tool\DBList;
@@ -33,6 +35,7 @@ class ProjectController extends Controller
     public function actionIndex()
     {
     	$projects = Project::find()
+    	        ->orderBy('date_start')
 				->joinWith('type', true, 'LEFT JOIN')
 				->joinWith('teacher', true, 'LEFT JOIN')
 				->joinWith('city', true, 'LEFT JOIN')
@@ -48,11 +51,12 @@ class ProjectController extends Controller
 
         if (isset($data['id']) && $data['id'])
         {
-            $model = Project::find()->where(['id' => $data['id']])->one();
+            $model = iProject::find()->with('users')->where(['id' => $data['id']])->one();
+            $model->unlinkAll('users', true);
         }
         else
         {
-            $model = new Project();
+            $model = new iProject();
         }
 
         $model->style = $data['style'];
@@ -68,8 +72,15 @@ class ProjectController extends Controller
         $model->date_start = isset($data['date_start']) ? $data['date_start'] : '';
         $model->date_end = isset($data['date_end']) ? $data['date_end'] : '';
         $model->comment = isset($data['comment']) ? $data['comment'] : '';
+        $model->weight = isset($data['weight']) ? $data['weight'] : '';
 
         $model->save();
+
+        foreach ($data['user'] as $userId)
+        {
+            $user = User::findOne($userId);
+            $model->link('users', $user);
+        }
 
         return $this->redirect(['project/index']);
     }
@@ -97,7 +108,7 @@ class ProjectController extends Controller
     {
         if ($id = Yii::$app->getRequest()->get('id'))
         {
-            $defaultValue = Project::find()->asArray()->where(['id' => $id])->one();
+            $defaultValue = Project::find()->with('projectOwners')->asArray()->where(['id' => $id])->one();
         }
         else
         {
@@ -108,8 +119,9 @@ class ProjectController extends Controller
     	$teachers = DBList::getTeacher();
     	$city = DBList::getCity();
     	$parentProject = DBList::getParentProject();
+    	$users = DBList::getUser();
 
-        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue, 'parentProject'=>$parentProject]);
+        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue, 'parentProject'=>$parentProject, 'users'=>$users]);
     }
 
 
@@ -140,4 +152,18 @@ class ProjectController extends Controller
         return $this->render('balance', ['projects'=>$projects, 'activeId'=>$activeId, 'parentProject'=>$parentProject]);
     }
 
+    public function actionFinance()
+    {
+        $projects = iProject::find()
+        ->with('users')
+        ->with('incomes')
+        ->with('pays')
+        ->with('pays.projects')
+        ->orderBy('date_start')
+        ->joinWith('type', true, 'LEFT JOIN')
+        ->all();
+
+        return $this->render('finance', ['projects'=>$projects]);
+
+    }
 }

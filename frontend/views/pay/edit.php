@@ -15,6 +15,7 @@ use yii\web\View;
 <form class="form-horizontal" action="<?php echo Url::to(['pay/submit']) ?>" method="post">
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="pay[id]" value="<?php echo $defaultValue['id'] ?>" />
+<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
 <?php endif; ?>
 
 <fieldset>
@@ -27,8 +28,8 @@ use yii\web\View;
   <label class="col-md-4 control-label" for="radios">支出类型</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['type_id'] : '';
-    echo HTML::radioList('pay[type]', $defaultInvoice,
+    $defaultInvoice = $defaultValue ? $defaultValue['category'] : 2;
+    echo HTML::radioList('pay[category]', $defaultInvoice,
             [ 1 => '日常支出', 2 => '项目支出'],
             [
                 'item' => function($index, $label, $name, $checked, $value) {
@@ -57,7 +58,13 @@ use yii\web\View;
     {
         $options[$project['id']] = Family::getProjectName($project);
     }
-    if ($defaultValue)
+
+    if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
+    {
+        $selections[] = $pid;
+    }
+
+    if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
     {
         foreach ($defaultValue['payProjects'] as $project)
         {

@@ -63,4 +63,138 @@ class Family
 	}
 
 
+	public static function getNumberByWeight($projectId, $projects, $number)
+	{
+	    $total = 0;
+	    foreach ($projects as $p)
+	    {
+	        if ($p->weight)
+	        {
+	            $total += $p->weight;
+	        }
+	        else {
+	            $total += 1;
+	        }
+
+	        if ($p->id == $projectId)
+	        {
+	            $current = $p->weight ? $p->weight : 1;
+	        }
+	    }
+
+	    return $number*$current/$total;
+	}
+
+	public static function getSeperateByWeight($projectId, $projects, $number)
+	{
+	    $total = 0;
+	    foreach ($projects as $p)
+	    {
+	        if ($p->weight)
+	        {
+	            $total += $p->weight;
+	        }
+	        else {
+	            $total += 1;
+	        }
+
+	        if ($p->id == $projectId)
+	        {
+	            $current = $p->weight ? $p->weight : 1;
+	        }
+	    }
+
+	    if ($total == $current)
+	    {
+	        return '';
+	    }
+	    else
+	    {
+	        return "（总费用".$number."的".$current."/".$total."）";
+	    }
+	}
+
+	public static function displayDateArea($start, $end)
+	{
+	    $str = '';
+
+	    $startYear = date('Y', strtotime($start));
+	    $startMonth = date('m', strtotime($start));
+	    $startDay = date('d', strtotime($start));
+
+	    $endYear = date('Y', strtotime($end));
+	    $endMonth = date('m', strtotime($end));
+	    $endDay = date('d', strtotime($end));
+
+	    if ($startYear == $endYear)
+	    {
+	        $str = $startYear.'年';
+	    }
+	    else
+	    {
+	        return date('Y年m月d日', strtotime($start)) .'-'. date('Y年m月d日', strtotime($end));
+	    }
+
+	    if ($startMonth == $endMonth)
+	    {
+	        $str .= $startMonth.'月';
+	    }
+	    else {
+	        return date('Y年m月d日', strtotime($start)) .'-'. date('m月d日', strtotime($end));
+	    }
+
+	    if ($startDay == $endDay)
+	    {
+	        $str .= $startDay.'日';
+	    }
+	    else {
+	        return date('Y年m月d日', strtotime($start)) .'-'. date('d日', strtotime($end));
+	    }
+
+	    return $str;
+	}
+
+	public static function getUserNames($users){
+	    $name = '';
+	    foreach ($users as $user)
+	    {
+	        $name .=  $user->english. '<br />';
+	    }
+
+	    if (!$name)
+	    {
+	        $name = '-';
+	    }
+
+	    return $name;
+	}
+
+	public static function getTotleIncomes($incomes)
+	{
+        $totle = 0;
+
+        foreach ($incomes as $income)
+        {
+            $totle += $income->number;
+        }
+
+        return $totle;
+	}
+
+	public static function getTotlePays($project)
+	{
+	    $totle = 0;
+
+	    foreach ($project->pays as $pay)
+	    {
+	        $totle += Family::getNumberByWeight($project->id, $pay->projects, $pay->number);
+	    }
+
+	    return $totle;
+	}
+
+	public static function getTotleStuffPays()
+	{
+	    return 123;
+	}
 }

@@ -60,8 +60,11 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目设置 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><?php echo Html::a('项目列表', Url::to(['project/index'])) ?></li>
             <li><?php echo Html::a('新建项目', Url::to(['project/edit'])) ?></li>
+            <li class="divider"></li>
+            <li><?php echo Html::a('项目信息表', Url::to(['project/index'])) ?></li>
+            <li><?php echo Html::a('项目财务表', Url::to(['project/finance'])) ?></li>
+
           </ul>
         </li>
       </ul>
@@ -71,8 +74,6 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">收支统计 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><?php echo Html::a('项目收入新建', Url::to(['income/edit'])) ?></li>
-            <li><?php echo Html::a('项目支出列表', Url::to(['pay/index'])) ?></li>
-            <li><?php echo Html::a('项目支出新建', Url::to(['pay/edit'])) ?></li>
             <li class="divider"></li>
             <li><?php echo Html::a('其他收入列表', Url::to(['income/index'])) ?></li>
             <li><?php echo Html::a('日常支出列表', Url::to(['income/index'])) ?></li>
@@ -95,7 +96,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 
 
 
-        <div class="container">
+        <div class="container container-page">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

@@ -1,7 +1,7 @@
 <?php
 use common\tool\Family;
 ?>
-<!-- DataTables CSS -->
+
 
 
 <div role="tabpanel">
@@ -18,7 +18,7 @@ use common\tool\Family;
     <?php foreach ($projects as $key => $project) :?>
     <div role="tabpanel" class="tab-pane <?php echo $project->id == $activeId ? 'active' : '' ?>" id="project<?php echo $project->id ?>">
         <?php
-        echo $this->render('@common/views/partial/projectBalanceInfo', ['project'=>$project]);
+        echo $this->render('@common/views/partial/projectBalanceInfo', ['project'=>$project, 'parentProject'=>$parentProject]);
 
         if ($parentProject)
         {
