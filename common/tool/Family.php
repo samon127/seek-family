@@ -1,6 +1,9 @@
 <?php
 namespace common\tool;
 
+use yii\helpers\Html;
+use yii\helpers\Url;
+
 class Family
 {
 	public static function getProjectName($project)
@@ -252,5 +255,42 @@ class Family
         }
 
         return '-';
+	}
+
+	public static function financeInfoExist($date, $incomes, $pays)
+	{
+	    foreach ($incomes as $income)
+	    {
+	        if ($income->income_date == $date)
+	        {
+	            return true;
+	        }
+	    }
+	}
+
+	public static function getDailyIncome($date, $incomes)
+	{
+	    foreach ($incomes as $income)
+	    {
+	        if ($income->income_date == $date)
+	        {
+	            return Html::a($income->incomeSum, Url::to(['revenue/income-detail', 'date_start'=>$date, 'date_end'=>$date]));
+	        }
+	    }
+
+	    return '-';
+	}
+
+	public static function getDailyPay($date, $pays)
+	{
+	    foreach ($pays as $pay)
+	    {
+	        if ($pay->pay_date == $date)
+	        {
+	            return Html::a($pay->paySum, Url::to(['revenue/pay-detail', 'date_start'=>$date, 'date_end'=>$date]));
+	        }
+	    }
+
+	    return '-';
 	}
 }

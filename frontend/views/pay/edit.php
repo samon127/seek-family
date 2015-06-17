@@ -3,6 +3,8 @@ use common\tool\Family;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
+
+$pid = Yii::$app->getRequest()->get('pid');
 ?>
 
 
@@ -16,7 +18,7 @@ use yii\web\View;
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="pay[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
-<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
+<input type="hidden" name="pid" value="<?php echo $pid ?>" />
 <fieldset>
 
 <!-- Form Name -->
@@ -122,6 +124,9 @@ echo $this->render('@common/views/form/commentTextarea', ['page' => 'pay', 'defa
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
     <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
+    <?php if ($defaultValue) : ?>
+    <a href="<?php echo Url::to(['pay/delete', 'id'=>$defaultValue['id'], 'pid'=>$pid]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <?php endif; ?>
   </div>
 </div>
 

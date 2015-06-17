@@ -4,15 +4,14 @@ use yii\helpers\Html;
 use yii\web\View;
 ?>
 
-<link href="vendor/select2/select2.min.css" rel="stylesheet" />
-
+<?php $this->registerCssFile("/vendor/select2/select2.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
 
 
-<link href="vendor/bootstrap-datepicker/datepicker3.css" rel="stylesheet" />
 
+<?php $this->registerCssFile("/vendor/bootstrap-datepicker/datepicker3.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
@@ -132,8 +131,8 @@ $("#multipleUserSelect").select2();
   <div class="col-md-4">
           <div class="input-daterange input-group" id="dateAreaPicker">
             <?php
-            $sateStart = $defaultValue ? $defaultValue['date_start'] : '';
-            echo HTML::input('text', 'project[date_start]', $sateStart, ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
+            $dateStart = $defaultValue ? $defaultValue['date_start'] : '';
+            echo HTML::input('text', 'project[date_start]', $dateStart, ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
             ?>
             <span class="input-group-addon">to</span>
             <?php

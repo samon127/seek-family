@@ -73,7 +73,7 @@ class PayController extends \yii\web\Controller
         $model->comment = $data['comment'];
 
         $model->save();
-        
+
 
         foreach ($data['project'] as $projectId)
         {
@@ -84,5 +84,18 @@ class PayController extends \yii\web\Controller
 
 
         return $this->redirect(['pay/index', 'pid'=>$pid]);
+    }
+
+    public function actionDelete()
+    {
+        $id = Yii::$app->getRequest()->get('id');
+        $pid = Yii::$app->getRequest()->get('pid');
+
+
+        $model = Pay::find()->where(['id' => $id])->one();
+        $model->delete();
+
+        return $this->redirect(['pay/index', 'pid'=>$pid]);
+
     }
 }

@@ -18,6 +18,8 @@ use Yii;
  */
 class iPay extends Pay
 {
+    public $paySum;
+
     public function getProjects()
     {
         return $this->hasMany(Project::className(), ['id' => 'project_id'])

@@ -6,12 +6,68 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\tool\Family;
 
+
 ?>
+
+<?php $this->registerCssFile("/vendor/bootstrap-datepicker/datepicker3.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+<?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
 
 
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
+
+
+<?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+<form class="form-horizontal" action="index.php" method="get">
+<input type="hidden" name="r" value="revenue/pay-detail" />
+<fieldset>
+
+<!-- Form Name -->
+<legend>支出查询</legend>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">时间段</label>
+  <div class="col-md-4">
+          <div class="input-daterange input-group" id="dateAreaPicker">
+            <?php
+            echo HTML::input('text', 'date_start', date('Y-m-d', strtotime($date_start)), ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
+            ?>
+            <span class="input-group-addon">to</span>
+            <?php
+            echo HTML::input('text', 'date_end', date('Y-m-d', strtotime($date_end)), ['id' => 'dateEndInput', 'class'=>'form-control input-md'] )
+            ?>
+        </div>
+  </div>
+</div>
+<script>
+$('#dateAreaPicker').datepicker({
+	format: "yyyy-mm-dd",
+});
+</script>
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
+    </div>
+</div>
+
+
+
+
+</fieldset>
+</form>
+
+<?php if ($date_start == $date_end) : ?>
+<ul class="nav nav-pills" style="float:right;padding:20px">
+    <li role="presentation" class="active"><a href="<?php echo Url::to(['pay/edit']) ?>" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新建支出</a></li>
+</ul>
+<?php endif; ?>
 
 
 
@@ -40,13 +96,19 @@ use common\tool\Family;
             <td><?php echo Family::getProjectNames($pay->projects)?></td>
             <td><?php echo $pay->type->name ?></td>
             <td><?php echo $pay->pay_date ? $pay->pay_date : '应付账款' ?></td>
-            <td><?php echo $pay->comment.Family::getSeperateByWeight($pid, $pay->projects, $pay->number) ?></td>
-            <td style="text-align:right"><?php echo number_format(Family::getNumberByWeight($pid, $pay->projects, $pay->number), 2) ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $pay->id, 'pid' => Yii::$app->getRequest()->get('pid')])) ?></td>
+            <td><?php echo $pay->comment ?></td>
+            <td style="text-align:right"><?php echo number_format($pay->number, 2) ?></td>
+            <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $pay->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<style>
+.toolbar {
+    float: left;
+}
+</style>
 
 <script>
 $(document).ready( function () {

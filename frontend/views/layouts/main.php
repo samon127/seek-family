@@ -73,7 +73,10 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">收支统计 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><?php echo Html::a('项目收入新建', Url::to(['income/edit'])) ?></li>
+            <li><?php echo Html::a('日收支核对', Url::to(['revenue/daily'])) ?></li>
+            <li class="divider"></li>
+            <li><?php echo Html::a('收入明细', Url::to(['revenue/income-detail'])) ?></li>
+            <li><?php echo Html::a('支出明细', Url::to(['revenue/pay-detail'])) ?></li>
             <li class="divider"></li>
             <li><?php echo Html::a('其他收入列表', Url::to(['income/index'])) ?></li>
             <li><?php echo Html::a('日常支出列表', Url::to(['income/index'])) ?></li>
