@@ -15,6 +15,10 @@ $pid = Yii::$app->getRequest()->get('pid');
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
+
+<?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
 <ul class="nav nav-pills" style="float:right;padding:20px">
   <li role="presentation" class="active"><?php echo Html::a('新建支出', Url::to(['pay/edit', 'pid' => $pid])) ?></li>
 </ul>
@@ -54,12 +58,19 @@ $pid = Yii::$app->getRequest()->get('pid');
     </tbody>
 </table>
 
+<style>
+.toolbar {
+    float: left;
+}
+</style>
+
 <script>
 $(document).ready( function () {
     $('#table_id').DataTable({
+    	"dom": '<"toolbar">frtip',
     	paging: false,
     	"info": false,
-    	"searching": false,
+    	//"searching": false,
     	"order": [],
     	"footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
@@ -88,5 +99,7 @@ $(document).ready( function () {
             $('#total').autoNumeric('init');
         }
     });
+
+    $("div .toolbar").html('<b><?php echo '某某某项目' ?>支出明细表</b>');
 } );
 </script>

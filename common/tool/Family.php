@@ -26,6 +26,11 @@ class Family
 	    }
 	    $name .= $project->type->name;
 
+	    if ($project->parent_id)
+	    {
+	        $name .= '（'.$project->parent->name.'）';
+	    }
+
 		return $name;
 	}
 
