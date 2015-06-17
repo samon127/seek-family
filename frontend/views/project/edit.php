@@ -246,16 +246,10 @@ $('#monthAreaPicker').datepicker({
 </div>
 
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label">备注</label>
-  <div class="col-md-4">
-  <?php
-  $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
-  echo HTML::textarea('project[comment]', $defaultComment, ['id' => 'commentInput', 'class'=>'form-control input-md'] )
-  ?>
-  </div>
-</div>
+<?php
+$defaultComment = $defaultValue ? $defaultValue['comment'] : '';
+echo $this->render('@common/views/form/commentTextarea', ['page' => 'project', 'defaultValue' => $defaultComment]);
+?>
 
 
 <!-- Text input-->

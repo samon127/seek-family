@@ -78,15 +78,15 @@ class ProjectController extends Controller
 
         $model->save();
 
-        if (isset($data['users']) && $data['users'])
+        if (isset($data['user']) && $data['user'])
         {
-            foreach ($data['users'] as $userId)
+            foreach ($data['user'] as $userId)
             {
                 $user = User::findOne($userId);
                 $model->link('users', $user);
             }
         }
-        
+
 
         return $this->redirect(['project/index']);
     }
@@ -97,6 +97,7 @@ class ProjectController extends Controller
         $keyWorld = Yii::$app->getRequest()->get('q');
 
         $all = GllueClient::find()->asArray()->indexBy('id')->where(['like', 'name1', $keyWorld])->orWhere(['like', 'name', $keyWorld])->all();
+
 
         $items = [];
         foreach ($all as $one)
@@ -170,19 +171,19 @@ class ProjectController extends Controller
         ->orderBy('date_start')
         ->joinWith('type', true, 'LEFT JOIN')
         ->all();
-        
+
         return $this->render('finance', ['projects'=>$projects]);
 
     }
-    
+
     public function actionDelete()
     {
         $pid = Yii::$app->getRequest()->get('id');
-        
+
         $model = Project::find()->where(['id' => $pid])->one();
         $model->delete();
-    
-        return $this->render('index');
-    
+
+        return $this->redirect(['project/index']);
+
     }
 }

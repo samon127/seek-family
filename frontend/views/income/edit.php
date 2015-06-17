@@ -10,6 +10,7 @@ use yii\web\View;
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="income[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
+<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
 <fieldset>
 
 <!-- Form Name -->
@@ -46,13 +47,23 @@ use yii\web\View;
   <label class="col-md-4 control-label" for="projectSelect">项目</label>
   <div class="col-md-4">
   <?php
-    $options = $attrs = [];
-    $options[''] = '';
+    $options = $attrs = $selections = [];
     foreach ($projects as $project)
     {
         $options[$project['id']] = Family::getProjectName($project);
     }
-    echo HTML::dropDownList('income[project]', $defaultValue ? $defaultValue['project_id'] : '', $options, ['options' => $attrs, 'id' => 'projectSelect', 'class' => 'form-control']);
+
+    if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
+    {
+        $selections[] = $pid;
+    }
+
+    if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
+    {
+        $selections[] = $defaultValue['project_id'];
+    }
+
+    echo HTML::dropDownList('income[project]', $selections, $options, ['options' => $attrs, 'id' => 'projectSelect', 'class' => 'form-control']);
     ?>
   </div>
 </div>
@@ -97,7 +108,7 @@ echo $this->render('@common/views/form/moneyInput', ['page' => 'income', 'defaul
 
 <?php
 $defaultDate = $defaultValue ? $defaultValue['income_date'] : '';
-echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'defaultDate' => $defaultDate, 'label'=>"到账时间", 'help'=>"请对应账本确认到账时间"]);
+echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'defaultDate' => $defaultDate, 'label'=>"到账时间", 'help'=>"如不填写则表示为“应收账款”"]);
 ?>
 
 
@@ -126,6 +137,11 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
   </div>
 </div>
 
+
+<?php
+$defaultComment = $defaultValue ? $defaultValue['comment'] : '';
+echo $this->render('@common/views/form/commentTextarea', ['page' => 'income', 'defaultValue' => $defaultComment]);
+?>
 
 <!-- Button -->
 <div class="form-group">

@@ -73,7 +73,7 @@ $random = rand(1,1000000);
             <td><?php echo $income->income_date ? $income->income_date : '应收账款' ?></td>
             <td><?php echo $income->invoice == 1 ? "开" : '不开' ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['income/edit', 'id' => $income->id])) ?></td>
+            <td><?php echo Html::a('编辑', Url::to(['income/edit', 'id' => $income->id, 'pid' => $pid])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -291,9 +291,9 @@ foreach ($times as $time)
     $timeValue += $time->percent*$time->user->balance_base/100;
 }
 
-$allProfit = $allIncome-$allInvoice-$allPay-$timeValue;
-$allPartnerProfit = $allProfit*0.5;
-$allOwnerProfit = ($allProfit-$allPartnerProfit)*0.2;
+$totalProfit = $allIncome-$allInvoice-$allPay-$timeValue;
+$totalPartnerProfit = Family::getPartnerProfit($totalProfit, $project);
+$totalTeamProfit = Family::getTeamProfit($totalProfit - $totalPartnerProfit, $project);
 
 ?>
 
@@ -337,15 +337,15 @@ if ($parentProject)
         </tr>
         <tr>
             <td>项目收益</td>
-            <td><?php echo number_format($allProfit, 2) ?></td>
+            <td><?php echo number_format($totalProfit, 2) ?></td>
         </tr>
         <tr>
             <td>合作伙伴收益</td>
-            <td><?php echo number_format($allPartnerProfit, 2) ?></td>
+            <td><?php echo number_format($totalPartnerProfit, 2) ?></td>
         </tr>
         <tr>
             <td>项目组收益</td>
-            <td><?php echo number_format($allOwnerProfit, 2) ?></td>
+            <td><?php echo number_format($totalTeamProfit, 2) ?></td>
         </tr>
     </tbody>
 </table>

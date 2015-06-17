@@ -6,18 +6,12 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\tool\Family;
 
-$pid = Yii::$app->getRequest()->get('pid');
-
 ?>
 
 
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
-
-<ul class="nav nav-pills" style="float:right;padding:20px">
-  <li role="presentation" class="active"><?php echo Html::a('新建支出', Url::to(['pay/edit', 'pid' => $pid])) ?></li>
-</ul>
 
 
 

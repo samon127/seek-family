@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Project;
 use common\models\Income;
+use common\models\GllueClient;
 
 class IncomeController extends \yii\web\Controller
 {
@@ -23,7 +24,15 @@ class IncomeController extends \yii\web\Controller
         ->orderBy('income.income_date')
         ->all();
 
-        return $this->render('index', array('defaultValue' => '', 'incomes' => $incomes));
+        $ids = [];
+        foreach ($incomes as $income)
+        {
+            $ids[] = $income->client_id;
+        }
+
+        $clients = GllueClient::find()->where(['in', 'id', $ids])->all();
+
+        return $this->render('index', array('defaultValue' => '', 'incomes' => $incomes, 'clients'=>$clients));
     }
 
     public function actionEdit()
@@ -50,6 +59,7 @@ class IncomeController extends \yii\web\Controller
     {
 
         $data = Yii::$app->getRequest()->post('income');
+        $pid = Yii::$app->getRequest()->post('pid');
 //print_r($data);exit;
         if (isset($data['id']) && $data['id'])
         {
@@ -62,17 +72,20 @@ class IncomeController extends \yii\web\Controller
 
         $model->type = $data['type'];
         $model->project_id = $data['project'];
-        $model->client_id = $data['client'];
+        $model->client_id = (isset($data['client']) && $data['client'] ) ? $data['client'] : '';
         $model->number = str_replace(',', '', $data['money']);
         $model->card = $data['card'];
         $model->income_date = $data['date'];
         $model->invoice = $data['invoice'];
+        $model->comment = $data['comment'];
+
+
 
         $model->save();
 
         //print_r($model);exit;
 
-        return $this->redirect(['income/index']);
+        return $this->redirect(['income/index', 'pid'=>$pid]);
     }
 
 }

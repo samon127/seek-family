@@ -17,7 +17,6 @@ use Yii;
  * @property integer $invoice
  * @property string $comment
  *
- * @property GllueClient $client
  * @property Project $project
  */
 class Income extends \yii\db\ActiveRecord
@@ -36,7 +35,7 @@ class Income extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'project_id', 'client_id', 'number', 'card', 'invoice'], 'required'],
+            [['type', 'project_id', 'number', 'card', 'invoice'], 'required'],
             [['type', 'project_id', 'client_id', 'card', 'invoice'], 'integer'],
             [['number'], 'number'],
             [['income_date'], 'safe'],
@@ -60,14 +59,6 @@ class Income extends \yii\db\ActiveRecord
             'invoice' => 'Invoice',
             'comment' => 'Comment',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getClient()
-    {
-        return $this->hasOne(GllueClient::className(), ['id' => 'client_id']);
     }
 
     /**

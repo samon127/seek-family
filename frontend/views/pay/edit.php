@@ -112,16 +112,10 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'pay', 'defaultDat
 ?>
 
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label">备注</label>
-  <div class="col-md-4">
-  <?php
-  $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
-  echo HTML::input('text', 'pay[comment]', $defaultComment, ['id' => 'commentInput', 'class'=>'form-control input-md'] )
-  ?>
-  </div>
-</div>
+<?php
+$defaultComment = $defaultValue ? $defaultValue['comment'] : '';
+echo $this->render('@common/views/form/commentTextarea', ['page' => 'pay', 'defaultValue' => $defaultComment]);
+?>
 
 <!-- Button -->
 <div class="form-group">

@@ -202,7 +202,7 @@ class Family
 	public static function getTotleStuffPays($times)
 	{
 	    $totle = 0;
-	    
+
 	    foreach ($times as $time)
 	    {
 	        $totle += $time->percent*$time->user->balance_base/100;
@@ -210,7 +210,7 @@ class Family
 
 	    return $totle;
 	}
-	
+
 	public static function getPartnerProfit($totalProfit, $project)
 	{
 	    if (is_numeric($project->partner_profit))
@@ -221,7 +221,7 @@ class Family
 	        return $totalProfit * $project->partner_profit / 100;
 	    }
 	}
-	
+
 	public static function getTeamProfit($totalProfit, $project)
 	{
 	    if (is_numeric($project->team_profit))
@@ -229,7 +229,23 @@ class Family
 	        return $project->team_profit;
 	    }
 	    else {
-	        return $totalProfit * $project->team_profit / 100;
+
+	        $totalTeamProfit = $totalProfit * $project->team_profit / 100;
+
+	        return $totalTeamProfit > 0 ? $totalTeamProfit : 0;
 	    }
+	}
+
+	public static function getClinetNameById($clientId, $clients)
+	{
+        foreach ($clients as $client)
+        {
+            if ($client->id == $clientId)
+            {
+                return $client->name1." （".$client->name."）";
+            }
+        }
+
+        return '-';
 	}
 }
