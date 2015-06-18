@@ -65,7 +65,7 @@ $('#dateAreaPicker').datepicker({
 
 <?php if ($date_start == $date_end) : ?>
 <ul class="nav nav-pills" style="float:right;padding:20px">
-    <li role="presentation" class="active"><a href="<?php echo Url::to(['pay/edit']) ?>" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新建支出</a></li>
+    <li role="presentation" class="active"><a href="<?php echo Url::to(['pay/edit', 'pay_date'=>$date_start, 'category'=>1]) ?>" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新建支出</a></li>
 </ul>
 <?php endif; ?>
 

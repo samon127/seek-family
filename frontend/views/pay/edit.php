@@ -29,17 +29,27 @@ $pid = Yii::$app->getRequest()->get('pid');
   <label class="col-md-4 control-label" for="radios">支出类型</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['category'] : 2;
-    echo HTML::radioList('pay[category]', $defaultInvoice,
+  
+  $category = Yii::$app->getRequest()->get('category');
+  if ($category)
+  {
+      $defaultCategory = $category;
+  }
+  else {
+      $defaultCategory = $defaultValue ? $defaultValue['category'] : 2;
+  }
+  
+    
+    echo HTML::radioList('pay[category]', $defaultCategory,
             [ 1 => '日常支出', 2 => '项目支出'],
             [
                 'item' => function($index, $label, $name, $checked, $value) {
-
+    
                     $return = '<label class="radio-inline">';
                     $return .= HTML::radio($name, $checked, ['value' => $value]);
                     $return .= $label;
                     $return .= '</label>';
-
+    
                     return $return;
                 }
             ]
@@ -109,7 +119,16 @@ echo $this->render('@common/views/form/moneyInput', ['page' => 'pay', 'defaultNu
 
 
 <?php
-$defaultDate = $defaultValue ? $defaultValue['pay_date'] : '';
+
+$pay_date = Yii::$app->getRequest()->get('pay_date');
+if ($pay_date)
+{
+    $defaultDate = $pay_date;
+}
+else {
+    $defaultDate = $defaultValue ? $defaultValue['pay_date'] : '';
+}
+
 echo $this->render('@common/views/form/dateInput', ['page' => 'pay', 'defaultDate' => $defaultDate, 'label'=>"支出时间", 'help'=>"请对应账本确认支出时间"]);
 ?>
 

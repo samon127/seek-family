@@ -78,8 +78,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
             <li><?php echo Html::a('收入明细', Url::to(['revenue/income-detail'])) ?></li>
             <li><?php echo Html::a('支出明细', Url::to(['revenue/pay-detail'])) ?></li>
             <li class="divider"></li>
-            <li><?php echo Html::a('其他收入列表', Url::to(['income/index'])) ?></li>
-            <li><?php echo Html::a('日常支出列表', Url::to(['income/index'])) ?></li>
+            <li><?php echo Html::a('新建收入', Url::to(['income/edit'])) ?></li>
+            <li><?php echo Html::a('新建支出', Url::to(['pay/edit'])) ?></li>
           </ul>
         </li>
       </ul>

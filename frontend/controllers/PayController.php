@@ -58,8 +58,13 @@ class PayController extends \yii\web\Controller
 
         if (isset($data['id']) && $data['id'])
         {
-            $model = iPay::find()->with('projects')->where(['id'=>$data['id']])->one();
-            $model->unlinkAll('projects', true);
+            $model = iPay::find()->with('projects')->where(['id'=>$data['id']])->one(); // one的话是否会只删除第一条，有时间看看这个问题
+            
+            if ($data['category'] == 2) // 项目支出
+            {
+                $model->unlinkAll('projects', true);
+            }
+            
         }
         else
         {
@@ -75,15 +80,23 @@ class PayController extends \yii\web\Controller
         $model->save();
 
 
-        foreach ($data['project'] as $projectId)
+        if ($data['category'] == 2) // 项目支出
         {
-            $project = Project::findOne($projectId);
-            $model->link('projects', $project);
+            foreach ($data['project'] as $projectId)
+            {
+                $project = Project::findOne($projectId);
+                $model->link('projects', $project);
+            }
         }
 
-
-
-        return $this->redirect(['pay/index', 'pid'=>$pid]);
+        if ($pid)
+        {
+            return $this->redirect(['pay/index', 'pid'=>$pid]);
+        }
+        else {
+            return $this->redirect(['revenue/pay-detail', 'date_start'=>$data['date'], 'date_end'=>$data['date']]);
+        }
+        
     }
 
     public function actionDelete()
