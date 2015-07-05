@@ -7,7 +7,14 @@ use common\tool\Family;
 
 
 
-
+$clientIds = [];
+foreach ($projects as $project)
+{
+    if ($project['client_id'])
+    {
+        $clientIds[] = $project['client_id'];
+    }
+}
 
 
 
@@ -15,7 +22,7 @@ use common\tool\Family;
 
 <style>
 .container-page{
-  width:120%;
+  width:130%;
 }
 </style>
 
@@ -56,7 +63,7 @@ use common\tool\Family;
             <td><?php echo date('Y年m月', strtotime($project->date_start))  ?></td>
             <td><?php echo Family::displayDateArea($project->date_start, $project->date_end)  ?></td>
             <!-- <td><?php //echo Family::getProjectStyle($project) ?></td> -->
-            <td><?php echo Family::getProjectName($project) ?></td>
+            <td><?php echo Family::getProjectName($project, $clientIds) ?></td>
             <!-- <td><?php //echo $project->type ? $project->type->name : '-' ?></td> -->
             <td><?php echo Family::getUserNames($project->users) ?></td>
             <td class="money"><?php echo $totalIncomes = Family::getTotleIncomes($project->incomes) ?></td>

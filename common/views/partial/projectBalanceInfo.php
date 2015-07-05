@@ -9,16 +9,7 @@ use common\models\Income;
 use common\models\Time;
 use common\models\iPay;
 
-$pid = $project->id;
-
-$incomes = Income::find()
-->where(['project_id'=>$pid])
-->joinWith('project', true, 'LEFT JOIN')
-->joinWith('project.type', true, 'LEFT JOIN')
-->joinWith('project.teacher', true, 'LEFT JOIN')
-->joinWith('project.city', true, 'LEFT JOIN')
-->orderBy('income.income_date')
-->all();
+$pid = $currentProject->id;
 
 $pays = iPay::find()
 ->where(['project_id'=>$pid])
@@ -30,15 +21,32 @@ $pays = iPay::find()
 ->orderBy('pay.pay_date')
 ->all();
 
-$times = Time::find()
-->where(['project_id'=>$pid])
-->joinWith('user', true, 'LEFT JOIN')
-->all();
+$times = Time::find()->where(['project_id'=>$pid]);
+if ($currentProject->parent_id)
+{
+    $times = $times->orWhere(['project_id'=>$currentProject->parent_id]);
+}
+$times = $times->joinWith('user', true, 'LEFT JOIN')->all();
 
 
 $random = rand(1,1000000);
 
 ?>
+
+<?php
+
+$incomes = Income::find()
+->where(['project_id'=>$pid])
+->joinWith('project', true, 'LEFT JOIN')
+->joinWith('project.type', true, 'LEFT JOIN')
+->joinWith('project.teacher', true, 'LEFT JOIN')
+->joinWith('project.city', true, 'LEFT JOIN')
+->orderBy('income.income_date')
+->all();
+
+echo $this->render('@common/views/partial/incomeTable', ['incomes'=>$incomes]);
+?>
+
 
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
@@ -46,108 +54,36 @@ $random = rand(1,1000000);
 <!-- DataTables -->
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
-<table id="income_table<?php echo $random ?>" class="display">
-    <thead>
-        <tr>
-            <th>项目编号</th>
-            <th>项目名称</th>
-            <th>客户名称</th>
-            <th>到账时间</th>
-            <th>发票</th>
-            <th style="text-align:right">收入</th>
-            <th>操作</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th colspan="6" style="text-align:right"></th>
-            <th></th>
-        </tr>
-    </tfoot>
-    <tbody>
-    <?php foreach ($incomes as $income): ?>
-        <tr>
-            <td><?php echo $income->id ?></td>
-            <td><?php echo Family::getProjectName($income->project) ?></td>
-            <td><?php echo Gllue::getClientById($income->client_id)['name'] ?></td>
-            <td><?php echo $income->income_date ? $income->income_date : '应收账款' ?></td>
-            <td><?php echo $income->invoice == 1 ? "开" : '不开' ?></td>
-            <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['income/edit', 'id' => $income->id, 'pid' => $pid])) ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
 
-<script>
-$(document).ready( function () {
-    $('#income_table<?php echo $random ?>').DataTable({
-    	paging: false,
-    	"info": false,
-    	"searching": false,
-    	"order": [],
-    	"footerCallback": function ( row, data, start, end, display ) {
-            var api = this.api(), data;
-
-            // Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
-
-            // Total over this page
-            pageTotal = api
-                .column( 5, { page: 'current'} )
-                .data()
-                .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-
-
-            // Update footer
-            $( api.column( 5 ).footer() ).html(
-            	'合计：<span id="total">'+Math.round(pageTotal*100)/100+'</span>'
-            );
-
-            $('#total').autoNumeric('init');
-        }
-    });
-} );
-</script>
 
 
 
 <table id="pay_table<?php echo $random ?>" class="display">
     <thead>
         <tr>
-            <th>项目编号</th>
-            <th>项目名称</th>
-            <th>分类</th>
-            <th>支出时间</th>
-            <th>备注</th>
-            <th style="text-align:right">支出</th>
-            <th>操作</th>
+            <th><?php echo Yii::t('app', 'Project Name') ?></th>
+            <th><?php echo Yii::t('app', 'Category') ?></th>
+            <th><?php echo Yii::t('app', 'Pay Time') ?></th>
+            <th><?php echo Yii::t('app', 'Comment') ?></th>
+            <th style="text-align:right"><?php echo Yii::t('app', 'Pay') ?></th>
+            <th><?php echo Yii::t('app', 'Operate') ?></th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <th colspan="6" style="text-align:right"></th>
+            <th colspan="5" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>
     <tbody>
     <?php foreach ($pays as $pay): ?>
         <tr>
-            <td><?php echo $pay->id ?></td>
-            <td><?php echo Family::getProjectName($project)?></td>
-            <td><?php echo $pay->type->name ?></td>
-            <td><?php echo $pay->pay_date ? $pay->pay_date : '应付账款' ?></td>
-            <td><?php echo $pay->comment.Family::getSeperateByWeight($project->id, $pay->projects, $pay->number) ?></td>
-            <td style="text-align:right"><?php echo number_format(Family::getNumberByWeight($project->id, $pay->projects, $pay->number), 2) ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $pay->id])) ?></td>
+            <td><?php //echo Family::getProjectName($currentProject)?></td>
+            <td><?php echo Yii::t('app', $pay->type->key) ?></td>
+            <td><?php echo $pay->pay_date ? $pay->pay_date : Yii::t('app', 'Need to Pay') ?></td>
+            <td><?php echo $pay->comment.Family::getSeperateByWeight($currentProject->id, $pay->projects, $pay->number) ?></td>
+            <td style="text-align:right"><?php echo number_format(Family::getNumberByWeight($currentProject->id, $pay->projects, $pay->number), 2) ?></td>
+            <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['pay/edit', 'id' => $pay->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -173,14 +109,14 @@ $(document).ready( function () {
 
             // Total over this page
             pageTotal = api
-                .column( 5, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 );
 
             // Update footer
-            $( api.column( 5 ).footer() ).html(
+            $( api.column( 4 ).footer() ).html(
             	'合计：<span id="total">'+Math.round(pageTotal*100)/100+'</span>'
             );
 
@@ -194,31 +130,33 @@ $(document).ready( function () {
 <table id="time_table<?php echo $random ?>" class="display">
     <thead>
         <tr>
-            <th>分配编号</th>
-            <th>项目名称</th>
-            <th>分配人</th>
-            <th>分配月份</th>
-            <th>分配比例</th>
-            <th style="text-align:right">结算费用</th>
-            <th>操作</th>
+            <th><?php echo Yii::t('app', 'Project Name') ?></th>
+            <th><?php echo Yii::t('app', 'Stuff') ?></th>
+            <th><?php echo Yii::t('app', 'Month') ?></th>
+            <th><?php echo Yii::t('app', 'Percent') ?></th>
+            <th style="text-align:right"><?php echo Yii::t('app', 'Closing Cost') ?></th>
+            <th><?php echo Yii::t('app', 'Operate') ?></th>
         </tr>
     </thead>
     <tfoot>
         <tr>
-            <th colspan="6" style="text-align:right"></th>
+            <th colspan="5" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>
     <tbody>
     <?php foreach ($times as $time): ?>
         <tr>
-            <td><?php echo $time->id ?></td>
-            <td><?php echo Family::getProjectName($time->project)?></td>
+            <td><?php //echo Family::getProjectName($time->project) ?></td>
             <td><?php echo $time->user->english ?></td>
             <td><?php echo $time->month ?></td>
-            <td><?php echo $time->percent ?>%</td>
-            <td style="text-align:right"><?php echo number_format($time->percent*$time->user->balance_base/100, 2) ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['pay/edit', 'id' => $time->id])) ?></td>
+            <?php if ($time->project->style==2): ?>
+                <td><?php echo $percentNumber = Family::getTimePercentOfParent($time, $allSubProjects, $currentProject); ?>% <?php echo Family::getTimePercentOfParentInfo($time, $allSubProjects, $currentProject); ?></td>
+            <?php else: ?>
+                <td><?php echo $percentNumber = $time->percent ?>%</td>
+            <?php endif; ?>
+            <td style="text-align:right"><?php echo number_format($percentNumber*$time->user->balance_base/100, 2) ?></td>
+            <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['pay/edit', 'id' => $time->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -244,14 +182,14 @@ $(document).ready( function () {
 
             // Total over this page
             pageTotal = api
-                .column( 5, { page: 'current'} )
+                .column( 4, { page: 'current'} )
                 .data()
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b) ;
                 }, 0 );
 
             // Update footer
-            $( api.column( 5 ).footer() ).html(
+            $( api.column( 4 ).footer() ).html(
             	'合计：<span id="total">'+Math.round(pageTotal*100)/100+'</span>'
             );
 
@@ -264,6 +202,10 @@ $(document).ready( function () {
 </script>
 
 <?php
+$incomes = Income::find()
+->where(['project_id'=>$pid])
+->all();
+
 $allIncome = 0;
 foreach ($incomes as $income)
 {
@@ -282,25 +224,33 @@ foreach ($incomes as $income)
 $allPay = 0;
 foreach ($pays as $pay)
 {
-    $allPay += Family::getNumberByWeight($project->id, $pay->projects, $pay->number);
+    $allPay += Family::getNumberByWeight($currentProject->id, $pay->projects, $pay->number);
 }
 
 $timeValue = 0;
 foreach ($times as $time)
 {
-    $timeValue += $time->percent*$time->user->balance_base/100;
+    if (!$time->project->parent_id)
+    {
+        $percentNumber = Family::getTimePercentOfParent($time, $allSubProjects, $currentProject);
+    }
+    else
+    {
+        $percentNumber = $time->percent;
+    }
+    $timeValue += $percentNumber*$time->user->balance_base/100;
 }
 
 $totalProfit = $allIncome-$allInvoice-$allPay-$timeValue;
-$totalPartnerProfit = Family::getPartnerProfit($totalProfit, $project);
-$totalTeamProfit = Family::getTeamProfit($totalProfit - $totalPartnerProfit, $project);
+$totalPartnerProfit = Family::getPartnerProfit($totalProfit, $currentProject);
+$totalTeamProfit = Family::getTeamProfit($totalProfit - $totalPartnerProfit, $currentProject);
 
 ?>
 
 <?php
 if ($parentProject)
 {
-    echo $this->render('@common/views/partial/parentProjectBalanceInfo', ['parentProject'=>$parentProject]);
+    //echo $this->render('@common/views/partial/parentProjectBalanceInfo', ['parentProject'=>$parentProject]);
 }
 ?>
 
@@ -308,8 +258,8 @@ if ($parentProject)
 <table id="balance_table<?php echo $random ?>" class="display">
     <thead>
         <tr>
-            <th>名目</th>
-            <th>金额</th>
+            <th><?php echo Yii::t('app', 'Name') ?></th>
+            <th><?php echo Yii::t('app', 'Number') ?></th>
         </tr>
     </thead>
     <tfoot>
@@ -320,31 +270,31 @@ if ($parentProject)
     </tfoot>
     <tbody>
         <tr>
-            <td>项目收入</td>
+            <td><?php echo Yii::t('app', 'Project Income') ?></td>
             <td><?php echo number_format($allIncome, 2) ?></td>
         </tr>
         <tr>
-            <td>发票支出</td>
+            <td><?php echo Yii::t('app', 'Invoice Expense') ?></td>
             <td>-<?php echo number_format($allInvoice, 2) ?></td>
         </tr>
         <tr>
-            <td>项目支出</td>
+            <td><?php echo Yii::t('app', 'Project Pay') ?></td>
             <td>-<?php echo number_format($allPay, 2) ?></td>
         </tr>
         <tr>
-            <td>人员支出</td>
+            <td><?php echo Yii::t('app', 'Stuff Pay') ?></td>
             <td>-<?php echo number_format($timeValue, 2) ?></td>
         </tr>
         <tr>
-            <td>项目收益</td>
+            <td><?php echo Yii::t('app', 'Project Profit') ?></td>
             <td><?php echo number_format($totalProfit, 2) ?></td>
         </tr>
         <tr>
-            <td>合作伙伴收益</td>
+            <td><?php echo Yii::t('app', 'Cooperative Partner Profit') ?></td>
             <td><?php echo number_format($totalPartnerProfit, 2) ?></td>
         </tr>
         <tr>
-            <td>项目组收益</td>
+            <td><?php echo Yii::t('app', 'Team Profit') ?></td>
             <td><?php echo number_format($totalTeamProfit, 2) ?></td>
         </tr>
     </tbody>

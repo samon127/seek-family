@@ -38,16 +38,12 @@ class PayController extends \yii\web\Controller
         else {
             $defaultValue = [];
         }
-//print_r($defaultValue);exit;
-        $projects = Project::find()
-        ->joinWith('type', true, 'LEFT JOIN')
-        ->joinWith('teacher', true, 'LEFT JOIN')
-        ->joinWith('city', true, 'LEFT JOIN')
-        ->all();
+
+
 
         $payTypes = DBList::getPayType();
 
-        return $this->render('edit', array('defaultValue' => $defaultValue, 'projects' => $projects, 'payTypes'=>$payTypes));
+        return $this->render('edit', array('defaultValue' => $defaultValue, 'payTypes'=>$payTypes));
     }
 
     public function actionSubmit()
@@ -59,12 +55,12 @@ class PayController extends \yii\web\Controller
         if (isset($data['id']) && $data['id'])
         {
             $model = iPay::find()->with('projects')->where(['id'=>$data['id']])->one(); // one的话是否会只删除第一条，有时间看看这个问题
-            
+
             if ($data['category'] == 2) // 项目支出
             {
                 $model->unlinkAll('projects', true);
             }
-            
+
         }
         else
         {
@@ -85,7 +81,10 @@ class PayController extends \yii\web\Controller
             foreach ($data['project'] as $projectId)
             {
                 $project = Project::findOne($projectId);
+
                 $model->link('projects', $project);
+
+                //print_r($model);exit;
             }
         }
 
@@ -96,7 +95,7 @@ class PayController extends \yii\web\Controller
         else {
             return $this->redirect(['revenue/pay-detail', 'date_start'=>$data['date'], 'date_end'=>$data['date']]);
         }
-        
+
     }
 
     public function actionDelete()

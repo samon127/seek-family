@@ -9,7 +9,11 @@ use common\tool\Family;
 $pid = Yii::$app->getRequest()->get('pid');
 
 ?>
-
+<style>
+.container-page{
+  width:95%;
+}
+</style>
 
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>

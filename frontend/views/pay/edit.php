@@ -8,8 +8,7 @@ $pid = Yii::$app->getRequest()->get('pid');
 ?>
 
 
-<link href="vendor/select2/select2.min.css" rel="stylesheet" />
-
+<?php $this->registerCssFile("/vendor/select2/select2.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
@@ -29,7 +28,7 @@ $pid = Yii::$app->getRequest()->get('pid');
   <label class="col-md-4 control-label" for="radios">支出类型</label>
   <div class="col-md-4">
   <?php
-  
+
   $category = Yii::$app->getRequest()->get('category');
   if ($category)
   {
@@ -38,18 +37,18 @@ $pid = Yii::$app->getRequest()->get('pid');
   else {
       $defaultCategory = $defaultValue ? $defaultValue['category'] : 2;
   }
-  
-    
+
+
     echo HTML::radioList('pay[category]', $defaultCategory,
             [ 1 => '日常支出', 2 => '项目支出'],
             [
                 'item' => function($index, $label, $name, $checked, $value) {
-    
+
                     $return = '<label class="radio-inline">';
                     $return .= HTML::radio($name, $checked, ['value' => $value]);
                     $return .= $label;
                     $return .= '</label>';
-    
+
                     return $return;
                 }
             ]
@@ -58,41 +57,28 @@ $pid = Yii::$app->getRequest()->get('pid');
   </div>
 </div>
 
+<?php
+$defaultProjects = [];
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectbasic">项目</label>
-  <div class="col-md-4">
-    <?php
-    $options = $attrs = $selections = [];
-    foreach ($projects as $project)
+if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
+{
+    $defaultProjects[] = $pid;
+}
+
+if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
+{
+    foreach ($defaultValue['payProjects'] as $project)
     {
-        $options[$project['id']] = Family::getProjectName($project);
+        $defaultProjects[] = $project['project_id'];
     }
+}
 
-    if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
-    {
-        $selections[] = $pid;
-    }
+echo $this->render('@common/views/form/multipleProjectSelect', ['page' => 'pay', 'defaultProjects'=>$defaultProjects, 'label'=>'项目']);
+?>
 
-    if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
-    {
-        foreach ($defaultValue['payProjects'] as $project)
-        {
-            $selections[] = $project['project_id'];
-        }
-    }
 
-    echo HTML::dropDownList('pay[project]', $selections, $options, ['options' => $attrs, 'class' => 'form-control', 'id' => 'projectSelect', 'multiple'=>'multiple']);
-    //echo HTML::dropDownList($page.'[client]', $defaultValue, $options, ['id' => 'clientSelect', 'class' => 'js-example-basic-multiple', 'multiple'=>'multiple']);
 
-    ?>
-  </div>
-</div>
 
-<script>
-$("#projectSelect").select2();
-</script>
 
 <!-- Select Basic -->
 <div class="form-group">

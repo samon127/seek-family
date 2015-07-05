@@ -1,12 +1,18 @@
 <?php
 namespace common\tool;
 
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\models\iGllueClient;
 
 class Family
 {
-	public static function getProjectName($project)
+    public static $gllueClient;
+    public static $gllueClientInitIds;
+
+    // $ids 传
+	public static function getProjectName($project, $clientIds)
 	{
 
 		if ($project->name)
@@ -15,19 +21,25 @@ class Family
 		}
 
 		$name = '';
+
+		$name .= str_replace('-', '', $project->date_start) . '-';
+
 		if ($project->city)
 		{
-		    $name = $project->city->name . '-';
+		    $name .= Yii::t('app', $project->city->key) . '-';
 		}
 	    if ($project->teacher)
 	    {
 	        $name .= $project->teacher->name . '-';
 	    }
-	    if ($project->client)
+
+	    if ($project->client_id)
 	    {
-	        $name .= $project->client->name . '-';
+	        $clientName = self::getClientShortNameById($project->client_id, $clientIds);
+	        $name .= $clientName . '-';
 	    }
-	    $name .= $project->type->name;
+
+	    $name .= Yii::t('app', $project->type->key);
 
 	    if ($project->parent_id)
 	    {
@@ -40,9 +52,19 @@ class Family
 	public function getProjectNames($projects)
 	{
 	    $name = '';
+	    $ids = [];
+
 	    foreach ($projects as $project)
 	    {
-	        $name .= self::getProjectName($project) . '<br />';
+	        if ($project['client_id'])
+	        {
+	            $ids[] = $project['client_id'];
+	        }
+	    }
+
+	    foreach ($projects as $project)
+	    {
+	        $name .= self::getProjectName($project, $ids) . '<br />';
 	    }
         return $name;
 	}
@@ -124,7 +146,7 @@ class Family
 	    }
 	    else
 	    {
-	        return "（总费用".$number."的".$current."/".$total."）";
+	        return Yii::t('app', '(This is totle\'s {0}, total is {1})', [$current."/".$total, $number]);
 	    }
 	}
 
@@ -195,6 +217,20 @@ class Family
         return $totle;
 	}
 
+	public static function getInvoicePays($incomes)
+	{
+	    $allInvoice = 0;
+    	foreach ($incomes as $income)
+        {
+            if ($income->invoice == 1)
+            {
+                $allInvoice += $income->number*0.0506;
+            }
+        }
+
+        return $allInvoice;
+	}
+
 	public static function getTotlePays($project)
 	{
 	    $totle = 0;
@@ -244,9 +280,20 @@ class Family
 	    }
 	}
 
-	public static function getClinetNameById($clientId, $clients)
+	private static function initGllueClient($clientIds)
 	{
-        foreach ($clients as $client)
+	    if (!self::$gllueClient || self::$gllueClientInitIds != $clientIds)
+	    {
+	        self::$gllueClient = iGllueClient::find()->where(['in', 'id', $clientIds])->with('bd')->all();
+	        self::$gllueClientInitIds = $clientIds;
+	    }
+	}
+
+	public static function getClinetNameById($clientId, $ids)
+	{
+	    self::initGllueClient($ids);
+
+        foreach (self::$gllueClient as $client)
         {
             if ($client->id == $clientId)
             {
@@ -257,11 +304,70 @@ class Family
         return '-';
 	}
 
+	public static function getClientShortNameById($clientId, $clientIds)
+	{
+	    self::initGllueClient($clientIds);
+
+	    foreach (self::$gllueClient as $client)
+	    {
+	        if ($client->id == $clientId)
+	        {
+	            if ($client->name)
+	            {
+	                return $client->name;
+	            }
+	            else
+	            {
+	                return $client->name1;
+	            }
+	        }
+	    }
+
+	    return '-';
+	}
+
+	public static function getBdNameById($clientId, $ids)
+	{
+	    self::initGllueClient($ids);
+
+	    foreach (self::$gllueClient as $client)
+	    {
+	        if ($client->id == $clientId)
+	        {
+	            if ($client->bd)
+	            {
+	                if (strpos($client->bd->englishName, ' '))
+	                {
+	                    return strstr($client->bd->englishName, ' ', true);
+	                }
+	                else {
+	                    return $client->bd->englishName;
+	                }
+	            }
+	            else {
+	                return '-';
+	            }
+
+	        }
+	    }
+
+	    return '-';
+	}
+
+
 	public static function financeInfoExist($date, $incomes, $pays)
 	{
 	    foreach ($incomes as $income)
 	    {
 	        if ($income->income_date == $date)
+	        {
+	            return true;
+	        }
+	    }
+
+	    foreach ($pays as $pay)
+	    {
+	        if ($pay->pay_date == $date)
 	        {
 	            return true;
 	        }
@@ -274,7 +380,7 @@ class Family
 	    {
 	        if ($income->income_date == $date)
 	        {
-	            return Html::a($income->incomeSum, Url::to(['revenue/income-detail', 'date_start'=>$date, 'date_end'=>$date]));
+	            return Html::a(floatval($income->incomeSum), Url::to(['revenue/income-detail', 'date_start'=>$date, 'date_end'=>$date]));
 	        }
 	    }
 
@@ -287,10 +393,50 @@ class Family
 	    {
 	        if ($pay->pay_date == $date)
 	        {
-	            return Html::a($pay->paySum, Url::to(['revenue/pay-detail', 'date_start'=>$date, 'date_end'=>$date]));
+	            return Html::a(floatval($pay->paySum), Url::to(['revenue/pay-detail', 'date_start'=>$date, 'date_end'=>$date]));
 	        }
 	    }
 
 	    return '-';
 	}
+
+	// $currentTime 是母项目的time，$currentProject 是当前项目（在显示母项目的时候为第一个子项目）
+	public static function getTimePercentOfParent($currentTime, $allSubProjects, $currentProject)
+	{
+	    $total = $current = $currentWeight = 0;
+	    foreach ($allSubProjects as $project)
+	    {
+	        if ($project->weight)
+	        {
+	            $total += $project->weight;
+	        }
+	        else {
+	            $total += 1;
+	        }
+
+	        $currentWeight = $currentProject->weight ? $currentProject->weight : 1;
+	    }
+
+        return $currentTime->percent*$currentWeight/$total;
+	}
+
+	public static function getTimePercentOfParentInfo($currentTime, $allSubProjects, $currentProject)
+	{
+	    $total = $current = $currentWeight = 0;
+	    foreach ($allSubProjects as $project)
+	    {
+	        if ($project->weight)
+	        {
+	            $total += $project->weight;
+	        }
+	        else {
+	            $total += 1;
+	        }
+
+	        $currentWeight = $currentProject->weight ? $currentProject->weight : 1;
+	    }
+
+	    return Yii::t('app', '(This is totle\'s {0}, totle is {1}%)', [$currentWeight.'/'.$total, $currentTime->percent]);
+	}
+
 }

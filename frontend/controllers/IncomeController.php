@@ -5,7 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Project;
 use common\models\Income;
-use common\models\GllueClient;
+use common\models\iGllueClient;
 
 class IncomeController extends \yii\web\Controller
 {
@@ -13,26 +13,50 @@ class IncomeController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        $pid = Yii::$app->getRequest()->get('pid');
+        return $this->render('index');
+    }
 
-        $incomes = Income::find()
-        ->where(['project_id'=>$pid])
-        ->joinWith('project', true, 'LEFT JOIN')
-        ->joinWith('project.type', true, 'LEFT JOIN')
-        ->joinWith('project.teacher', true, 'LEFT JOIN')
-        ->joinWith('project.city', true, 'LEFT JOIN')
-        ->orderBy('income.income_date')
-        ->all();
+    public function actionSearch()
+    {
+        $searchKeyWord = Yii::$app->getRequest()->get('s');
 
-        $ids = [];
-        foreach ($incomes as $income)
+        if ($searchKeyWord)
         {
-            $ids[] = $income->client_id;
+            $model = Income::find();
+
+            if ($searchKeyWord['date_start'])
+            {
+                $model->andWhere(['>=', 'income_date', $searchKeyWord['date_start']]);
+            }
+
+            if ($searchKeyWord['date_end'])
+            {
+                $model->andWhere(['<=', 'income_date', $searchKeyWord['date_end']]);
+            }
+
+            if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
+            {
+                $model->andWhere(['income.client_id' => $searchKeyWord['client']]);
+            }
+
+            if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
+            {
+                $model->andWhere(['project_id' => $searchKeyWord['project']]);
+            }
+
+            $incomes = $model->joinWith('project', true, 'LEFT JOIN')
+            ->joinWith('project.type', true, 'LEFT JOIN')
+            ->joinWith('project.teacher', true, 'LEFT JOIN')
+            ->joinWith('project.city', true, 'LEFT JOIN')
+            ->orderBy('income.income_date')
+            ->all();
+        }
+        else
+        {
+            $incomes = [];
         }
 
-        $clients = GllueClient::find()->where(['in', 'id', $ids])->all();
-
-        return $this->render('index', array('defaultValue' => '', 'incomes' => $incomes, 'clients'=>$clients));
+        return $this->render('search', ['incomes'=>$incomes, 'defaultValue'=>$searchKeyWord]);
     }
 
     public function actionEdit()
@@ -46,13 +70,9 @@ class IncomeController extends \yii\web\Controller
             $defaultValue = [];
         }
 
-        $projects = Project::find()
-            ->joinWith('type', true, 'LEFT JOIN')
-            ->joinWith('teacher', true, 'LEFT JOIN')
-            ->joinWith('city', true, 'LEFT JOIN')
-            ->all();
 
-        return $this->render('edit', array('defaultValue' => $defaultValue, 'projects' => $projects));
+
+        return $this->render('edit', array('defaultValue' => $defaultValue));
     }
 
     public function actionSubmit()
@@ -79,13 +99,26 @@ class IncomeController extends \yii\web\Controller
         $model->invoice = $data['invoice'];
         $model->comment = $data['comment'];
 
-
-
         $model->save();
 
-        //print_r($model);exit;
+        $from = Yii::$app->getRequest()->post('from', array('revenue/income-detail'));
 
-        return $this->redirect(['income/index', 'pid'=>$pid]);
+        return $this->redirect($from);
+    }
+
+    public function actionDelete()
+    {
+        $id = Yii::$app->getRequest()->get('id');
+        $pid = Yii::$app->getRequest()->get('pid');
+
+
+        $model = Income::find()->where(['id' => $id])->one();
+        $model->delete();
+
+        $from = Yii::$app->getRequest()->post('from', array('revenue/income-detail'));
+
+        return $this->redirect($from);
+
     }
 
 }

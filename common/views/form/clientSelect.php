@@ -6,8 +6,7 @@ use yii\helpers\Html;
 ?>
 
 
-<link href="vendor/select2/select2.min.css" rel="stylesheet" />
-
+<?php $this->registerCssFile("/vendor/select2/select2.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 

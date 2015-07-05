@@ -3,6 +3,9 @@ use common\tool\Family;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
+
+$pid = Yii::$app->getRequest()->get('pid');
+$from = Yii::$app->getRequest()->get('from');
 ?>
 
 
@@ -10,7 +13,8 @@ use yii\web\View;
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="income[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
-<input type="hidden" name="pid" value="<?php echo Yii::$app->getRequest()->get('pid') ?>" />
+<input type="hidden" name="pid" value="<?php echo $pid ?>" />
+<input type="hidden" name="from" value="<?php echo $from ?>" />
 <fieldset>
 
 <!-- Form Name -->
@@ -24,7 +28,7 @@ use yii\web\View;
   <?php
     $defaultInvoice = $defaultValue ? $defaultValue['type'] : 1;
     echo HTML::radioList('income[type]', $defaultInvoice,
-            [ 1 => '项目收入', 2 => '其他收入'],
+            [ 1 => '项目收入', 2 => '非项目收入'],
             [
                 'item' => function($index, $label, $name, $checked, $value) {
 
@@ -42,31 +46,23 @@ use yii\web\View;
 </div>
 
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="projectSelect">项目</label>
-  <div class="col-md-4">
-  <?php
-    $options = $attrs = $selections = [];
-    foreach ($projects as $project)
-    {
-        $options[$project['id']] = Family::getProjectName($project);
-    }
+<?php
+$selections = [];
 
-    if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
-    {
-        $selections[] = $pid;
-    }
+if ($pid = Yii::$app->getRequest()->get('pid')) // 带 pid 参数表示在为某个 project 创建支出
+{
+    $selections[] = $pid;
+}
 
-    if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
-    {
-        $selections[] = $defaultValue['project_id'];
-    }
+if ($defaultValue) // 同时带有 pid 和 id 两个参数的话，表示在编辑，编辑完跳转到 pid 下面的 list 页面
+{
+    $selections[] = $defaultValue['project_id'];
+}
 
-    echo HTML::dropDownList('income[project]', $selections, $options, ['options' => $attrs, 'id' => 'projectSelect', 'class' => 'form-control']);
-    ?>
-  </div>
-</div>
+echo $this->render('@common/views/form/projectSelect', ['page' => 'income', 'selections' => $selections, 'label'=> '项目']);
+?>
+
+
 
 <?php
 $defaultClient = $defaultValue ? $defaultValue['client_id'] : '';
@@ -148,6 +144,9 @@ echo $this->render('@common/views/form/commentTextarea', ['page' => 'income', 'd
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
     <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
+    <?php if ($defaultValue) : ?>
+    <a href="<?php echo Url::to(['income/delete', 'id'=>$defaultValue['id'], 'pid'=>$pid]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <?php endif; ?>
   </div>
 </div>
 

@@ -124,29 +124,12 @@ $("#multipleUserSelect").select2();
 </script>
 
 
+<?php
+$defaultDates['date_start'] = $defaultValue ? $defaultValue['date_start'] : '';
+$defaultDates['date_end'] = $defaultValue ? $defaultValue['date_end'] : '';
+echo $this->render('@common/views/form/dateAreaInput', ['page' => 'project', 'defaultDates' => $defaultDates, 'label'=>'项目执行日期']);
+?>
 
-<!-- Multiple Radios (inline) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="radios">项目执行日期</label>
-  <div class="col-md-4">
-          <div class="input-daterange input-group" id="dateAreaPicker">
-            <?php
-            $dateStart = $defaultValue ? $defaultValue['date_start'] : '';
-            echo HTML::input('text', 'project[date_start]', $dateStart, ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
-            ?>
-            <span class="input-group-addon">to</span>
-            <?php
-            $dateEnd = $defaultValue ? $defaultValue['date_end'] : '';
-            echo HTML::input('text', 'project[date_end]', $dateEnd, ['id' => 'dateEndInput', 'class'=>'form-control input-md'] )
-            ?>
-        </div>
-  </div>
-</div>
-<script>
-$('#dateAreaPicker').datepicker({
-	format: "yyyy-mm-dd",
-});
-    </script>
 
 <!-- Select Basic -->
 <div class="form-group" style="display:none" id="teacherSelectDiv">
@@ -264,6 +247,13 @@ echo $this->render('@common/views/form/commentTextarea', ['page' => 'project', '
 
 
 
+<?php
+$defaultGllueProject = $defaultValue ? $defaultValue['gllue_project_id'] : '';
+echo $this->render('@common/views/form/gllueProjectSelect', ['page' => 'project', 'defaultValue' => $defaultGllueProject]);
+?>
+
+
+
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
@@ -307,7 +297,7 @@ $('#typeSelect').change(function(){
 
 	//动态显示某些表单
 	key = $( "#typeSelect option:selected" ).attr('key');
-	if(key == 'openclass' || key == 'internalclass' || key == 'consulting')
+	if(key == 'headhunter-openclass' || key == 'internalclass' || key == 'consulting')
 	{
 		$('#teacherSelectDiv').show();
 	}

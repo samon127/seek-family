@@ -23,16 +23,17 @@ use Yii;
  * @property string $weight
  * @property string $partner_profit
  * @property string $team_profit
+ * @property integer $gllue_project_id
  *
  * @property Income[] $incomes
  * @property PayProject[] $payProjects
  * @property ProjectCity $city
  * @property Teacher $teacher
  * @property ProjectType $type
- * @property GllueClient $client
  * @property Project $parent
  * @property Project[] $projects
  * @property ProjectOwner[] $projectOwners
+ * @property ProjectTarget[] $projectTargets
  * @property Time[] $times
  */
 class Project extends \yii\db\ActiveRecord
@@ -52,7 +53,7 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             [['style', 'area_start', 'area_end'], 'required'],
-            [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id'], 'integer'],
+            [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id', 'gllue_project_id'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
             [['name', 'area_start', 'area_end', 'comment', 'weight', 'partner_profit', 'team_profit'], 'string', 'max' => 255]
         ];
@@ -80,6 +81,7 @@ class Project extends \yii\db\ActiveRecord
             'weight' => 'Weight',
             'partner_profit' => 'Partner Profit',
             'team_profit' => 'Team Profit',
+            'gllue_project_id' => 'Gllue Project ID',
         ];
     }
 
@@ -126,14 +128,6 @@ class Project extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getClient()
-    {
-        return $this->hasOne(GllueClient::className(), ['id' => 'client_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getParent()
     {
         return $this->hasOne(Project::className(), ['id' => 'parent_id']);
@@ -153,6 +147,14 @@ class Project extends \yii\db\ActiveRecord
     public function getProjectOwners()
     {
         return $this->hasMany(ProjectOwner::className(), ['project_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectTargets()
+    {
+        return $this->hasMany(ProjectTarget::className(), ['project_id' => 'id']);
     }
 
     /**

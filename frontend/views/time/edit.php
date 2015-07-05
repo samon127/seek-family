@@ -2,6 +2,16 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use common\tool\Family;
+
+$ids = [];
+
+foreach ($projectArray as $project)
+{
+    if ($project['client_id'])
+    {
+        $ids[] = $project['client_id'];
+    }
+}
 ?>
 
 <form class="form-horizontal" action="<?php echo Url::to(['time/submit']) ?>" method="post">
@@ -25,7 +35,7 @@ use common\tool\Family;
 
 <?php foreach ($projectArray as $project) : ?>
 <tr>
-<td><?php echo Family::getProjectName($project) ?></td>
+<td><?php echo Family::getProjectName($project, $ids) ?></td>
 <?php foreach($monthArray as $month) : ?>
 <td>
 <?php if ($percent = Family::percentExist($month, $project, $userProjectTimes)) :?>

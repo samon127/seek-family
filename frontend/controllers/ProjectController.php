@@ -9,6 +9,7 @@ use common\models\Income;
 use common\models\Time;
 use common\models\User;
 use common\models\Pay;
+use common\models\iPay;
 use common\models\GllueClient;
 use common\tool\DBList;
 use frontend\models\PasswordResetRequestForm;
@@ -20,6 +21,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\GllueJoborder;
 
 /**
  * Site controller
@@ -76,6 +78,8 @@ class ProjectController extends Controller
         $model->partner_profit = isset($data['partner_profit']) ? $data['partner_profit'] : '';
         $model->team_profit = isset($data['team_profit']) ? $data['team_profit'] : '';
 
+        $model->gllue_project_id = isset($data['gllue_project']) ? $data['gllue_project'] : '';
+
         $model->save();
 
         if (isset($data['user']) && $data['user'])
@@ -103,6 +107,26 @@ class ProjectController extends Controller
         foreach ($all as $one)
         {
             $items[] =  array('id' => $one['id'], 'description' => $one['name1']." （".$one['name']."）", 'full_name' => $one['name']);
+        }
+
+        echo json_encode(array('items' => $items));
+
+
+        exit;
+    }
+
+    // AJAX, used by project/edit
+    public function actionGetGllueProject()
+    {
+        $keyWorld = Yii::$app->getRequest()->get('q');
+
+        $all = GllueJoborder::find()->asArray()->indexBy('id')->where(['like', 'jobTitle', $keyWorld])->all();
+
+
+        $items = [];
+        foreach ($all as $one)
+        {
+            $items[] =  array('id' => $one['id'], 'description' => $one['jobTitle'], 'full_name' => $one['jobTitle']);
         }
 
         echo json_encode(array('items' => $items));
@@ -141,22 +165,26 @@ class ProjectController extends Controller
 
         if ($model->style==2) // 母项目
         {
-            $projects = Project::find()->where(['parent_id' => $pid])->all();
-            $activeId = $projects[0]->id;
+            $projects = iProject::find()->where(['parent_id' => $pid])->all();
             $parentProject = Project::find()->where(['id' => $pid])->one();
+            return $this->render('parentBalance', ['projects'=>$projects, 'parentProject'=>$parentProject]);
         }
-        else if ($model->style==1){ // 独立项目
-            $projects = [$model];
-            $activeId = $model->id;
-            $parentProject = false;
-        }
-        else if ($model->style==3){ // 子项目
-            $projects = Project::find()->where(['parent_id' => $model->parent_id])->all();
-            $activeId = $model->id;
-            $parentProject = Project::find()->where(['id' => $model->parent_id])->one();
+        else
+        {
+            if ($model->style==1){ // 独立项目
+                $projects = [$model];
+                $activeId = $model->id;
+                $parentProject = false;
+            }
+            else if ($model->style==3){ // 子项目
+                $projects = Project::find()->where(['parent_id' => $model->parent_id])->with('parent')->all();
+                $activeId = $model->id;
+                $parentProject = Project::find()->where(['id' => $model->parent_id])->one();
+            }
+
+            return $this->render('balance', ['projects'=>$projects, 'activeId'=>$activeId, 'parentProject'=>$parentProject]);
         }
 
-        return $this->render('balance', ['projects'=>$projects, 'activeId'=>$activeId, 'parentProject'=>$parentProject]);
     }
 
     public function actionFinance()
@@ -180,10 +208,46 @@ class ProjectController extends Controller
     {
         $pid = Yii::$app->getRequest()->get('id');
 
+        $income = Income::find()->where(['project_id' => $pid])->one();
+        if ($income)
+        {
+            echo '需要先删除项目收入，才能删除项目';
+            exit;
+        }
+
+        $pay = iPay::find()->joinWith('projects', true, 'LEFT JOIN')->where(['project_id' => $pid])->one();
+        if ($pay)
+        {
+            echo '需要先删除项目支出，才能删除项目';
+            exit;
+        }
+
         $model = Project::find()->where(['id' => $pid])->one();
         $model->delete();
 
         return $this->redirect(['project/index']);
 
     }
+
+    public function actionType()
+    {
+        $tid = Yii::$app->getRequest()->get('tid');
+
+        $projects = iProject::find()
+        ->with('users')
+        ->with('incomes')
+        ->with('pays')
+        ->with('pays.projects')
+        ->with('times')
+        ->with('times.user')
+        ->where(['type_id' => $tid])
+        ->orderBy('date_start')
+        ->joinWith('type', true, 'LEFT JOIN')
+        ->all();
+
+        return $this->render('parentBalance', ['projects'=>$projects]);
+
+    }
+
+
 }

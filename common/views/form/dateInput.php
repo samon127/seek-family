@@ -3,8 +3,7 @@ use yii\helpers\HTMl;
 use yii\web\View;
 ?>
 
-<link href="vendor/bootstrap-datepicker/datepicker3.css" rel="stylesheet" />
-
+<?php $this->registerCssFile("/vendor/bootstrap-datepicker/datepicker3.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 

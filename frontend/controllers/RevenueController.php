@@ -39,9 +39,6 @@ class RevenueController extends \yii\web\Controller
         ->groupBy(['pay_date'])
         ->all();
 
-        $dateRange = [];
-
-
         return $this->render('daily', ['incomes'=>$incomes, 'pays'=>$pays, 'date_end'=>$date_end, 'date_start'=>$date_start]);
     }
 
@@ -102,6 +99,11 @@ class RevenueController extends \yii\web\Controller
 
 
         return $this->render('payDaily', ['pays'=>$pays, 'date_end'=>$date_end, 'date_start'=>$date_start]);
+    }
+
+    public function actionReceivable()
+    {
+        return $this->render('receivable');
     }
 
 }
