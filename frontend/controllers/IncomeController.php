@@ -6,6 +6,10 @@ use Yii;
 use common\models\Project;
 use common\models\Income;
 use common\models\iGllueClient;
+use common\tool\Family;
+use common\models\User;
+
+
 
 class IncomeController extends \yii\web\Controller
 {
@@ -15,36 +19,64 @@ class IncomeController extends \yii\web\Controller
     {
         return $this->render('index');
     }
-
+	
+	
     public function actionSearch()
-    {
-        $searchKeyWord = Yii::$app->getRequest()->get('s');
+    {	
 
+        $searchKeyWord = Yii::$app->getRequest()->get('s');
         if ($searchKeyWord)
         {
             $model = Income::find();
-
-            if ($searchKeyWord['date_start'])
-            {
+			
+            if ($searchKeyWord['date_start']){
                 $model->andWhere(['>=', 'income_date', $searchKeyWord['date_start']]);
-            }
-
+   			 }
+			
             if ($searchKeyWord['date_end'])
             {
                 $model->andWhere(['<=', 'income_date', $searchKeyWord['date_end']]);
             }
-
+			
             if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
             {
                 $model->andWhere(['income.client_id' => $searchKeyWord['client']]);
             }
-
+			
             if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
             {
                 $model->andWhere(['project_id' => $searchKeyWord['project']]);
             }
-
-            $incomes = $model->joinWith('project', true, 'LEFT JOIN')
+            
+            if(Isset ($searchKeyWord['user']) && $searchKeyWord['user'])
+            {
+            	$model->andWhere(['income.client_id' => $searchKeyWord['user']]);
+            }
+            
+            if(Isset ($searchKeyWord['invoice']) && $searchKeyWord['invoice'])
+            {
+            	$model->andWhere(['invoice' => $searchKeyWord['invoice']]);
+            }
+			
+            if(Isset ($searchKeyWord['card']) && $searchKeyWord['card'])
+            {
+            	$model->andWhere(['card' => $searchKeyWord['card']]);
+            }
+            
+            if(Isset ($searchKeyWord['money']) && $searchKeyWord['money'])
+            {
+            	if( $searchKeyWord['money'] == 1) {
+            		// money=1是应收账款
+            		//1不是年卡 2income_date 不为空
+            		$model->andWhere(['income_date' => null])->andWhere(['card' => 1]);
+            	}
+            	
+            	
+            	
+            }
+            
+            $incomes = $model
+            ->joinWith('project', true, 'LEFT JOIN')
             ->joinWith('project.type', true, 'LEFT JOIN')
             ->joinWith('project.teacher', true, 'LEFT JOIN')
             ->joinWith('project.city', true, 'LEFT JOIN')
@@ -52,7 +84,7 @@ class IncomeController extends \yii\web\Controller
             ->all();
         }
         else
-        {
+       {
             $incomes = [];
         }
 
@@ -80,7 +112,7 @@ class IncomeController extends \yii\web\Controller
 
         $data = Yii::$app->getRequest()->post('income');
         $pid = Yii::$app->getRequest()->post('pid');
-//print_r($data);exit;
+  //print_r($data);exit;
         if (isset($data['id']) && $data['id'])
         {
             $model = Income::find()->where(['id' => $data['id']])->one();

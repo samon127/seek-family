@@ -1,7 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fb9f206-d9cc-4995-972d-60063ce8b8b6" name="Default" comment="" />
+    <list default="true" id="5fb9f206-d9cc-4995-972d-60063ce8b8b6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/Readme.md" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/collection.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/collection.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/collection.psd" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/collection.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/collection_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/collection_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/copy document.psd" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/copy document.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/copy.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/copy.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/swf/copy_csv_xls.swf" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/swf/copy_csv_xls.swf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/swf/copy_csv_xls_pdf.swf" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/swf/copy_csv_xls_pdf.swf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/copy_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/copy_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/csv.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/csv.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/csv_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/csv_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/file_types.psd" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/file_types.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/images/filler.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/images/filler.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/images/insert.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/images/insert.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/images/loading-background.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/images/loading-background.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/pdf.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/pdf.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/pdf_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/pdf_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/print.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/print.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/print_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/print_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/printer.psd" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/psd/printer.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/xls.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/xls.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/xls_hover.png" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/images/xls_hover.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/data/2500.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/data/2500.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/GllueJoborder.php" afterPath="$PROJECT_DIR$/common/models/GllueJoborder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/GllueUser.php" afterPath="$PROJECT_DIR$/common/models/GllueUser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/Income.php" afterPath="$PROJECT_DIR$/common/models/Income.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/controllers/IncomeController.php" afterPath="$PROJECT_DIR$/frontend/controllers/IncomeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/License.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/License.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/License.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/License.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/License.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/License.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/License.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/License.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/ProjectTarget.php" afterPath="$PROJECT_DIR$/common/models/ProjectTarget.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/Readme.md" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/Readme.md" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/Readme.md" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/Readme.md" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/Readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/Readme.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/Readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/Readme.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/Readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/Readme.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/Readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/Readme.txt" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/Readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/controllers/TargetController.php" afterPath="$PROJECT_DIR$/frontend/controllers/TargetController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/tool/Tool.php" afterPath="$PROJECT_DIR$/common/tool/Tool.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/User.php" afterPath="$PROJECT_DIR$/common/models/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/ajax.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/ajax.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/ajax.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/alt_insert.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/alt_insert.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/alter_buttons.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/alter_buttons.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/api_scrolling.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/api_scrolling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/messages/zh-CN/app.php" afterPath="$PROJECT_DIR$/frontend/messages/zh-CN/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/auto.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/auto.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/ezyang/htmlpurifier/smoketests/basic.php" afterPath="$PROJECT_DIR$/vendor/ezyang/htmlpurifier/smoketests/basic.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/bootstrap.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/bootstrap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/bootstrap.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/bootstrap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/bootstrap.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/bootstrap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/button_order.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/button_order.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/button_text.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/button_text.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/className.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/className.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/classes.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/classes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/col_filter.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/col_filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/col_filter.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/col_filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/collection.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/collection.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/column-control.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/column-control.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/columns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/columns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/colvis.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/colvis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/colvis.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/colvis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/form/commentTextarea.php" afterPath="$PROJECT_DIR$/common/views/form/commentTextarea.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/compact.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/compact.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/complete-callback.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/complete-callback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/complexHeader.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/complexHeader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/css_size.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/css_size.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/custom-renderer.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/custom-renderer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/css/dataTables.autoFill.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/css/dataTables.autoFill.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/js/dataTables.autoFill.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/js/dataTables.autoFill.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/css/dataTables.autoFill.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/css/dataTables.autoFill.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/js/dataTables.autoFill.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/js/dataTables.autoFill.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/css/dataTables.colReorder.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/css/dataTables.colReorder.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/js/dataTables.colReorder.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/js/dataTables.colReorder.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/css/dataTables.colReorder.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/css/dataTables.colReorder.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/js/dataTables.colReorder.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/js/dataTables.colReorder.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colvis.jqueryui.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/css/dataTables.colvis.jqueryui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/css/dataTables.fixedColumns.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/css/dataTables.fixedColumns.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/js/dataTables.fixedColumns.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/css/dataTables.fixedHeader.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/css/dataTables.fixedHeader.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/js/dataTables.fixedHeader.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/js/dataTables.fixedHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/css/dataTables.keyTable.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/css/dataTables.keyTable.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/js/dataTables.keyTable.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/js/dataTables.keyTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/css/dataTables.keyTable.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/css/dataTables.keyTable.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/js/dataTables.keyTable.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/js/dataTables.keyTable.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/css/dataTables.responsive.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/css/dataTables.responsive.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/js/dataTables.responsive.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/js/dataTables.responsive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/js/dataTables.responsive.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/js/dataTables.responsive.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/css/dataTables.responsive.scss" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/css/dataTables.responsive.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/css/dataTables.scroller.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/css/dataTables.scroller.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/js/dataTables.scroller.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/js/dataTables.scroller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/css/dataTables.scroller.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/css/dataTables.scroller.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/js/dataTables.scroller.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/js/dataTables.scroller.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/css/dataTables.tableTools.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/css/dataTables.tableTools.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/js/dataTables.tableTools.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/js/dataTables.tableTools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/css/dataTables.tableTools.min.css" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/css/dataTables.tableTools.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/js/dataTables.tableTools.min.js" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/js/dataTables.tableTools.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/form/dateAreaInput.php" afterPath="$PROJECT_DIR$/common/views/form/dateAreaInput.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/default.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/default.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/defaults.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/defaults.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/disable-child-rows.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/disable-child-rows.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/target/edit.php" afterPath="$PROJECT_DIR$/frontend/views/target/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/events.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/events.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/exclude_columns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/exclude_columns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/fill-both.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/fill-both.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/fill-horizontal.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/fill-horizontal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/fixedHeader.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/fixedHeader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/fixedcolumns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/fixedcolumns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/fixedheader.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/fixedheader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/foundation.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/foundation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/form/gllueProjectSelect.php" afterPath="$PROJECT_DIR$/common/views/form/gllueProjectSelect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/group_columns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/group_columns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/header_footer.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/header_footer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/html.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/html.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/models/iGllueClient.php" afterPath="$PROJECT_DIR$/common/models/iGllueClient.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/revenue/incomeDaily.php" afterPath="$PROJECT_DIR$/frontend/views/revenue/incomeDaily.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/partial/incomeTable.php" afterPath="$PROJECT_DIR$/common/views/partial/incomeTable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/index.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/pay/index.php" afterPath="$PROJECT_DIR$/frontend/views/pay/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/project/index.php" afterPath="$PROJECT_DIR$/frontend/views/project/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/target/index.php" afterPath="$PROJECT_DIR$/frontend/views/target/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/index_column.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/index_column.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/init-classes.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/display-control/init-classes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/jqueryui.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/jqueryui.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/jqueryui.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/jqueryui.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/jqueryui.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/jqueryui.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/large_js_source.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/large_js_source.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/left_right_columns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/left_right_columns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/config/main-local.php" afterPath="$PROJECT_DIR$/common/config/main-local.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/mouseover.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/mouseover.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/multi_instance.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/multi_instance.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/form/multipleProjectSelect.php" afterPath="$PROJECT_DIR$/common/views/form/multipleProjectSelect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/multiple_tables.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/multiple_tables.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/new.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/new.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/new_init.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/new_init.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/new_init.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/new_init.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/new_init.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/new_init.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/option.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/initialisation/option.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/project/parentBalance.php" afterPath="$PROJECT_DIR$/frontend/views/project/parentBalance.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/pdf_message.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/pdf_message.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/plug-in.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/plug-in.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/predefined.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/predefined.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/views/form/projectSelect.php" afterPath="$PROJECT_DIR$/common/views/form/projectSelect.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/realtime.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/realtime.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/revenue/receivable.php" afterPath="$PROJECT_DIR$/frontend/views/revenue/receivable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/reset.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/reset.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/restore.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/restore.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/right-column.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/right-column.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/right_column.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/right_column.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/rowspan.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/rowspan.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/scrolling.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/scrolling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/scrolling.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/scrolling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/scrolling.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/scrolling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/scrolling.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/styling/scrolling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/income/search.php" afterPath="$PROJECT_DIR$/frontend/views/income/search.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_column.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_column.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_multi.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_multi.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_os.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_os.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_single.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/select_single.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/server-side-processing.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/server-side-processing.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/server-side_processing.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/server-side_processing.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/server_side.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/server_side.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/KeyTable/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/simple.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/simple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/size_fixed.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/size_fixed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/size_fluid.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/size_fluid.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/data/ssp.php" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/data/ssp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/state_save.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColReorder/examples/state_save.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/state_saving.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Scroller/examples/state_saving.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/step-callback.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/AutoFill/examples/step-callback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/swf_path.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/TableTools/examples/swf_path.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/text.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/text.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/title_callback.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/title_callback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/top_left_right.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/top_left_right.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/two_columns.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedColumns/examples/two_columns.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/two_tables.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/two_tables.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/two_tables.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/two_tables.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/two_tables_identical.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/ColVis/examples/two_tables_identical.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/project/type.php" afterPath="$PROJECT_DIR$/frontend/views/project/type.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/whole-row-control.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/Responsive/examples/child-rows/whole-row-control.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/zIndexes.html" afterPath="$PROJECT_DIR$/frontend/web/vendor/dataTables/extensions/FixedHeader/examples/zIndexes.html" />
+    </list>
     <ignored path="family.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -21,23 +232,21 @@
     <favorites_list name="family" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/views/pay/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6586696">
-              <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
-              <folding>
-                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/init" />
+        <option value="$PROJECT_DIR$/environments/dev/common/config/main-local.php" />
+        <option value="$PROJECT_DIR$/environments/dev/frontend/config/main-local.php" />
+        <option value="$PROJECT_DIR$/environments/dev/backend/config/main-local.php" />
+        <option value="$PROJECT_DIR$/common/config/main-local.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
   <component name="JsGulpfileManager">
@@ -45,6 +254,9 @@
   </component>
   <component name="NamedScopeManager">
     <order />
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -103,10 +315,14 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5fb9f206-d9cc-4995-972d-60063ce8b8b6" name="Default" comment="" />
@@ -117,28 +333,36 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="24" width="1873" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="47" y="24" width="1873" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925585" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925585" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19199122" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1941854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -148,6 +372,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/frontend/views/pay/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/common/tool/Family.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34310532">
@@ -164,13 +396,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/init">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39803708">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="e#25#353#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/views/pay/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6586696">
+        <state vertical-scroll-proportion="1.3544166">
           <caret line="58" column="108" selection-start-line="58" selection-start-column="108" selection-end-line="58" selection-end-column="108" />
-          <folding>
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/backend/config/params-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/backend/config/main-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15049073">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/frontend/config/params-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/frontend/config/main-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15049073">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/common/config/params-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/environments/dev/common/config/main-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17557251">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/config/main-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35114503">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/config/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/config/params.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/config/params-local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

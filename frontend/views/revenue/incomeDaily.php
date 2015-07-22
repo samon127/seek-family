@@ -43,7 +43,7 @@ use common\tool\Family;
 <script>
 $('#dateAreaPicker').datepicker({
 	format: "yyyy-mm-dd",
-});
+});                               
 </script>
 
 

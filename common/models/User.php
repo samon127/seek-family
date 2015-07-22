@@ -35,7 +35,8 @@ class User extends \yii\db\ActiveRecord
         return [
             [['key', 'name', 'english', 'balance_base'], 'required'],
             [['balance_base'], 'number'],
-            [['key', 'name', 'english'], 'string', 'max' => 255]
+            [['key', 'name', 'english'], 'string', 'max' => 255],
+            [['gllue_id'],'integer']
         ];
     }
 
@@ -50,9 +51,11 @@ class User extends \yii\db\ActiveRecord
             'name' => 'Name',
             'english' => 'English',
             'balance_base' => 'Balance Base',
+            'gllue_id' => 'Gllue_id',
         ];
     }
-
+	
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -76,4 +79,5 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Time::className(), ['user_id' => 'id']);
     }
+
 }
