@@ -8,7 +8,7 @@ use common\models\Income;
 use common\models\iGllueClient;
 use common\tool\Family;
 use common\models\User;
-
+use yii\db\ActiveQuery;
 
 
 class IncomeController extends \yii\web\Controller
@@ -23,12 +23,10 @@ class IncomeController extends \yii\web\Controller
 	
     public function actionSearch()
     {	
-
         $searchKeyWord = Yii::$app->getRequest()->get('s');
         if ($searchKeyWord)
         {
             $model = Income::find();
-			
             if ($searchKeyWord['date_start']){
                 $model->andWhere(['>=', 'income_date', $searchKeyWord['date_start']]);
    			 }
@@ -47,12 +45,7 @@ class IncomeController extends \yii\web\Controller
             {
                 $model->andWhere(['project_id' => $searchKeyWord['project']]);
             }
-            
-            if(Isset ($searchKeyWord['user']) && $searchKeyWord['user'])
-            {
-            	$model->andWhere(['income.client_id' => $searchKeyWord['user']]);
-            }
-            
+
             if(Isset ($searchKeyWord['invoice']) && $searchKeyWord['invoice'])
             {
             	$model->andWhere(['invoice' => $searchKeyWord['invoice']]);
@@ -67,14 +60,10 @@ class IncomeController extends \yii\web\Controller
             {
             	if( $searchKeyWord['money'] == 1) {
             		// money=1是应收账款
-            		//1不是年卡 2income_date 不为空
             		$model->andWhere(['income_date' => null])->andWhere(['card' => 1]);
             	}
-            	
-            	
-            	
             }
-            
+
             $incomes = $model
             ->joinWith('project', true, 'LEFT JOIN')
             ->joinWith('project.type', true, 'LEFT JOIN')

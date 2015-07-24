@@ -28,31 +28,16 @@ use common\tool\Family;
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <form class="form-horizontal" action="index.php" method="get">
-<input type="hidden" name="r" value="revenue/pay-detail" />
+<input type="hidden" name="r" value="pay/search" />
 <fieldset>
 
 <!-- Form Name -->
 <legend>支出查询</legend>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="radios">时间段</label>
-  <div class="col-md-4">
-          <div class="input-daterange input-group" id="dateAreaPicker">
-            <?php
-            echo HTML::input('text', 'date_start', date('Y-m-d', strtotime($date_start)), ['id' => 'dateStartInput', 'class'=>'form-control input-md'] )
-            ?>
-            <span class="input-group-addon">to</span>
-            <?php
-            echo HTML::input('text', 'date_end', date('Y-m-d', strtotime($date_end)), ['id' => 'dateEndInput', 'class'=>'form-control input-md'] )
-            ?>
-        </div>
-  </div>
-</div>
-<script>
-$('#dateAreaPicker').datepicker({
-	format: "yyyy-mm-dd",
-});
-</script>
+    <?php
+    $defaultDates['date_start'] = isset($defaultValue['date_start']) ? $defaultValue['date_start'] : '';
+    $defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
+    echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
+    ?>
 
 
 <!-- Button -->
@@ -65,17 +50,8 @@ $('#dateAreaPicker').datepicker({
 
 
 
-
 </fieldset>
 </form>
-
-<?php if ($date_start == $date_end) : ?>
-<ul class="nav nav-pills" style="float:right;padding:20px">
-    <li role="presentation" class="active"><a href="<?php echo Url::to(['pay/edit', 'pay_date'=>$date_start, 'category'=>1]) ?>" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新建支出</a></li>
-</ul>
-<?php endif; ?>
-
-
 
 <table id="table_id" class="display">
     <thead>

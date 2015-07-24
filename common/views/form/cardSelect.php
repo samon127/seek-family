@@ -14,7 +14,6 @@ $incomes = Income::find()
     <?php
     $options = [''=>'', '1'=>'需要','2'=>'不需要'];
     echo HTML::dropDownList($page.'[card]', $defaultCard, $options, ['id' => 'cardSelect', 'class' => 'form-control']);
-
     ?>
   </div>
 </div>

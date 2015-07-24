@@ -12,9 +12,8 @@ $users = User::find()
 ?>
 
 
-
-
-<form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get">
+<form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get"
+      xmlns="http://www.w3.org/1999/html">
 <input type="hidden" name="r" value="income/search" />
 
 
@@ -50,21 +49,16 @@ echo $this->render('@common/views/form/cardSelect', ['page' => 's', 'defaultCard
 ?>
 
 <?php
-
 $defaultMoney = isset($defaultValue['money']) ? $defaultValue['money'] : '';
 echo $this->render('@common/views/form/moneySelect', ['page' => 's', 'defaultMoney' => $defaultMoney,'label'=>'是否应收账款']);
 ?>
 
 
 
-
-
-
-
 <div class="form-group" style="padding-top:10px">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
-    <input type="submit" id="singlebutton" class="btn btn-primary" value="搜索" />
+    <input type="submit" id="singlebutton" class="btn btn-primary" value="搜索"/>
   </div>
 </div>
 
