@@ -27,6 +27,7 @@ class IncomeController extends \yii\web\Controller
         if ($searchKeyWord)
         {
             $model = Income::find();
+
             if ($searchKeyWord['date_start']){
                 $model->andWhere(['>=', 'income_date', $searchKeyWord['date_start']]);
    			 }
@@ -63,6 +64,12 @@ class IncomeController extends \yii\web\Controller
             		$model->andWhere(['income_date' => null])->andWhere(['card' => 1]);
             	}
             }
+
+            if(Isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
+            {
+                $model->andwhere(array('LIKE','income.comment',$searchKeyWord['comment']));
+            }
+
 
             $incomes = $model
             ->joinWith('project', true, 'LEFT JOIN')

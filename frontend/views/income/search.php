@@ -53,6 +53,10 @@ $defaultMoney = isset($defaultValue['money']) ? $defaultValue['money'] : '';
 echo $this->render('@common/views/form/moneySelect', ['page' => 's', 'defaultMoney' => $defaultMoney,'label'=>'是否应收账款']);
 ?>
 
+<?php
+$defaultComment = isset($defaultValue['comment']) ? $defaultValue['comment'] : '';
+echo $this->render('@common/views/form/commentTextarea', ['page' => 's', 'defaultComment' => $defaultComment]);
+?>
 
 
 <div class="form-group" style="padding-top:10px">
