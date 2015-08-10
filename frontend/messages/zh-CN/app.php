@@ -1,6 +1,8 @@
 <?php
 //return [];
 return [
+    'Login' => '登录',
+    'Signup' => '注册',
     'Client Name' => '客户名称',
     'Project Name' => '项目名称',
     'Payment Date' => '到账时间',

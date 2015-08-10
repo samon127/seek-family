@@ -40,16 +40,16 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 //                 ['label' => 'About', 'url' => ['/site/about']],
 //                 ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-//             if (Yii::$app->user->isGuest) {
-//                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-//                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-//             } else {
-//                 $menuItems[] = [
-//                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-//                     'url' => ['/site/logout'],
-//                     'linkOptions' => ['data-method' => 'post']
-//                 ];
-//             }
+             if (Yii::$app->user->isGuest) {
+                 $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
+                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+             } else {
+                 $menuItems[] = [
+                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                     'url' => ['/site/logout'],
+                     'linkOptions' => ['data-method' => 'post']
+                 ];
+             }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,

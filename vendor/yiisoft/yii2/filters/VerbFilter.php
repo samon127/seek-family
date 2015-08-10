@@ -19,7 +19,7 @@ use yii\web\MethodNotAllowedHttpException;
  * It allows to define allowed HTTP request methods for each action and will throw
  * an HTTP 405 error when the method is not allowed.
  *
- * To use VerbFilter, declare it in the `behaviors()` method of your controller class.
+ * To use VerbFilter, declare it in the `behaviors()` method of your controllers class.
  * For example, the following declarations will define a typical set of allowed
  * request methods for REST CRUD actions.
  *

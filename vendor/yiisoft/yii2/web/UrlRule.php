@@ -53,7 +53,7 @@ class UrlRule extends Object implements UrlRuleInterface
      */
     public $host;
     /**
-     * @var string the route to the controller action
+     * @var string the route to the controllers action
      */
     public $route;
     /**

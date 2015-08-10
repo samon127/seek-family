@@ -38,7 +38,7 @@ use yii\i18n\GettextPoFile;
 class MessageController extends Controller
 {
     /**
-     * @var string controller default action ID.
+     * @var string controllers default action ID.
      */
     public $defaultAction = 'extract';
 

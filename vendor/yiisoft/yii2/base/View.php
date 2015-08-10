@@ -173,7 +173,7 @@ class View extends Component
             if (Yii::$app->controller !== null) {
                 $file = Yii::$app->controller->module->getViewPath() . DIRECTORY_SEPARATOR . ltrim($view, '/');
             } else {
-                throw new InvalidCallException("Unable to locate view file for view '$view': no active controller.");
+                throw new InvalidCallException("Unable to locate view file for view '$view': no active controllers.");
             }
         } elseif ($context instanceof ViewContextInterface) {
             $file = $context->getViewPath() . DIRECTORY_SEPARATOR . $view;

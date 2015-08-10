@@ -16,7 +16,7 @@ class PHPT_Reporter_SimpleTest implements PHPT_Reporter
     }
 
     // TODO: Figure out what the proper calls should be, since we've given
-    // each Suite its own UnitTestCase controller
+    // each Suite its own UnitTestCase controllers
 
     /**
      * Called when the Reporter is started from a PHPT_Suite

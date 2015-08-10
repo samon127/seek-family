@@ -44,7 +44,7 @@ class FixtureController extends Controller
     use FixtureTrait;
 
     /**
-     * @var string controller default action ID.
+     * @var string controllers default action ID.
      */
     public $defaultAction = 'load';
     /**

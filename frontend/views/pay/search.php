@@ -38,7 +38,10 @@ use common\tool\Family;
     $defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
     echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
     ?>
-
+    <?php
+    $defaultComment = isset($defaultValue['comment']) ? $defaultValue['comment'] : '';
+    echo $this->render('@common/views/form/commentTextarea', ['page' => 's', 'defaultComment' => $defaultComment]);
+    ?>
 
 <!-- Button -->
 <div class="form-group">

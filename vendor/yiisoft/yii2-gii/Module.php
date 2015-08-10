@@ -88,7 +88,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
             $app->getUrlManager()->addRules([
                 $this->id => $this->id . '/default/index',
                 $this->id . '/<id:\w+>' => $this->id . '/default/view',
-                $this->id . '/<controller:[\w\-]+>/<action:[\w\-]+>' => $this->id . '/<controller>/<action>',
+                $this->id . '/<controllers:[\w\-]+>/<action:[\w\-]+>' => $this->id . '/<controllers>/<action>',
             ], false);
         } elseif ($app instanceof \yii\console\Application) {
             $app->controllerMap[$this->id] = [
@@ -156,7 +156,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
         return [
             'model' => ['class' => 'yii\gii\generators\model\Generator'],
             'crud' => ['class' => 'yii\gii\generators\crud\Generator'],
-            'controller' => ['class' => 'yii\gii\generators\controller\Generator'],
+            'controllers' => ['class' => 'yii\gii\generators\controller\Generator'],
             'form' => ['class' => 'yii\gii\generators\form\Generator'],
             'module' => ['class' => 'yii\gii\generators\module\Generator'],
             'extension' => ['class' => 'yii\gii\generators\extension\Generator'],

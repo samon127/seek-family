@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the template for generating a controller class file.
+ * This is the template for generating a controllers class file.
  */
 
 use yii\helpers\Inflector;

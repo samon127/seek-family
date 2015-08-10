@@ -26,7 +26,7 @@ class ActionFilter extends Behavior
      * If an action ID appears in both [[only]] and [[except]], this filter will NOT apply to it.
      *
      * Note that if the filter is attached to a module, the action IDs should also include child module IDs (if any)
-     * and controller IDs.
+     * and controllers IDs.
      *
      * @see except
      */

@@ -40,7 +40,7 @@ class ActiveForm extends Widget
      * ```php
      * $form = ActiveForm::begin([
      *     'method' => 'get',
-     *     'action' => ['controller/action'],
+     *     'action' => ['controllers/action'],
      * ]);
      * ```
      */
@@ -320,7 +320,7 @@ class ActiveForm extends Widget
      * Validates one or several models and returns an error message array indexed by the attribute IDs.
      * This is a helper method that simplifies the way of writing AJAX validation code.
      *
-     * For example, you may use the following code in a controller action to respond
+     * For example, you may use the following code in a controllers action to respond
      * to an AJAX validation request:
      *
      * ~~~
@@ -375,7 +375,7 @@ class ActiveForm extends Widget
      * Validates an array of model instances and returns an error message array indexed by the attribute IDs.
      * This is a helper method that simplifies the way of writing AJAX validation code for tabular input.
      *
-     * For example, you may use the following code in a controller action to respond
+     * For example, you may use the following code in a controllers action to respond
      * to an AJAX validation request:
      *
      * ~~~

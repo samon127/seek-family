@@ -127,7 +127,7 @@ class Generator extends \yii\gii\Generator
 
         return <<<EOD
 <p>The form has been generated successfully.</p>
-<p>You may add the following code in an appropriate controller class to invoke the view:</p>
+<p>You may add the following code in an appropriate controllers class to invoke the view:</p>
 <pre>$code</pre>
 EOD;
     }

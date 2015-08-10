@@ -19,7 +19,7 @@ use yii\base\InvalidParamException;
  *
  * Users specify a view in the format of `path/to/view`, which translates to the view name
  * `ViewPrefix/path/to/view` where `ViewPrefix` is given by [[viewPrefix]]. The view will then
- * be rendered by the [[\yii\base\Controller::render()|render()]] method of the currently active controller.
+ * be rendered by the [[\yii\base\Controller::render()|render()]] method of the currently active controllers.
  *
  * Note that the user-specified view name must start with a word character and can only contain
  * word characters, forward slashes, dots and dashes.
@@ -52,7 +52,7 @@ class ViewAction extends Action
     /**
      * @var mixed the name of the layout to be applied to the requested view.
      * This will be assigned to [[\yii\base\Controller::$layout]] before the view is rendered.
-     * Defaults to null, meaning the controller's layout will be used.
+     * Defaults to null, meaning the controllers's layout will be used.
      * If false, no layout will be applied.
      */
     public $layout;

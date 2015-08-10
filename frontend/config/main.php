@@ -49,6 +49,9 @@ return [
                 ],
             ],
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManger',
+        ],
     ],
     'params' => $params,
 ];

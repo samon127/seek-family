@@ -59,6 +59,11 @@ class PayController extends \yii\web\Controller
                 $model->andWhere(['<=', 'pay_date', $searchKeyWord['date_end']]);
             }
 
+            if(Isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
+            {
+                $model->andwhere(array('LIKE','pay.comment',$searchKeyWord['comment']));
+            }
+
             $pays = $model
                 ->joinWith('type', true, 'LEFT JOIN')
                 ->joinWith('projects', true, 'LEFT JOIN')

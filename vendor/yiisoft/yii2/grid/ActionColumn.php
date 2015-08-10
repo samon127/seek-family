@@ -33,15 +33,15 @@ use yii\helpers\Url;
 class ActionColumn extends Column
 {
     /**
-     * @var string the ID of the controller that should handle the actions specified here.
-     * If not set, it will use the currently active controller. This property is mainly used by
+     * @var string the ID of the controllers that should handle the actions specified here.
+     * If not set, it will use the currently active controllers. This property is mainly used by
      * [[urlCreator]] to create URLs for different actions. The value of this property will be prefixed
      * to each action name to form the route of the action.
      */
     public $controller;
     /**
      * @var string the template used for composing each cell in the action column.
-     * Tokens enclosed within curly brackets are treated as controller action IDs (also called *button names*
+     * Tokens enclosed within curly brackets are treated as controllers action IDs (also called *button names*
      * in the context of action column). They will be replaced by the corresponding button rendering callbacks
      * specified in [[buttons]]. For example, the token `{view}` will be replaced by the result of
      * the callback `buttons['view']`. If a callback cannot be found, the token will be replaced with an empty string.
