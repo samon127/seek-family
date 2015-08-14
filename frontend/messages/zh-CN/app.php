@@ -20,6 +20,8 @@ return [
     'ningbo'=>'宁波',
     'suzhou'=>'苏州',
     'tianjin'=>'天津',
+    'shenzhen'=>'深圳',
+    'qingdao'=>'青岛',
     'headhunter-openclass'=> '猎头公开课',
     'ceoclub'=> 'CEO沙龙',
     'internalclass'=> '内训',

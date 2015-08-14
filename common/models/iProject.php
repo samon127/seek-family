@@ -30,6 +30,7 @@ class iProject extends Project
             ->joinWith('teacher', true, 'LEFT JOIN')
             ->joinWith('city', true, 'LEFT JOIN')
             ->joinWith('times', true, 'LEFT JOIN')
+            ->orderBy('date_start')
             ->all();
     }
 
