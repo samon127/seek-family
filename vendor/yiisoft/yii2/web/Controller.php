@@ -20,7 +20,7 @@ use yii\helpers\Url;
 class Controller extends \yii\base\Controller
 {
     /**
-     * @var boolean whether to enable CSRF validation for the actions in this controller.
+     * @var boolean whether to enable CSRF validation for the actions in this controllers.
      * CSRF validation is enabled only when both this property and [[Request::enableCsrfValidation]] are true.
      */
     public $enableCsrfValidation = true;

@@ -10,7 +10,7 @@ namespace yii\filters\auth;
 /**
  * HttpBasicAuth is an action filter that supports the HTTP Basic authentication method.
  *
- * You may use HttpBasicAuth by attaching it as a behavior to a controller or module, like the following:
+ * You may use HttpBasicAuth by attaching it as a behavior to a controllers or module, like the following:
  *
  * ```php
  * public function behaviors()

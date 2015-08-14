@@ -59,7 +59,7 @@ $('#dateAreaPicker').datepicker({
 <div class="form-group">
   <label class="col-md-4 control-label" for="singlebutton"></label>
   <div class="col-md-4">
-    <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
+    <input type="submit" id="singlebutton" class="btn btn-primary" value="搜索" />
     </div>
 </div>
 

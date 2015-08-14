@@ -5,14 +5,14 @@ return [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=family',
             'username' => 'root',
-            'password' => '',
+            'password' => 'roseu',
             'charset' => 'utf8',
         ],
         'gllueDB' => [
                 'class' => 'yii\db\Connection',
                 'dsn' => 'mysql:host=localhost;dbname=gllue',
                 'username' => 'root',
-                'password' => '',
+                'password' => 'roseu',
                 'charset' => 'utf8',
         ],
         'mailer' => [

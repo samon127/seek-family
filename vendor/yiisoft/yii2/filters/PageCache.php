@@ -18,9 +18,9 @@ use yii\web\Response;
 /**
  * PageCache implements server-side caching of whole pages.
  *
- * It is an action filter that can be added to a controller and handles the `beforeAction` event.
+ * It is an action filter that can be added to a controllers and handles the `beforeAction` event.
  *
- * To use PageCache, declare it in the `behaviors()` method of your controller class.
+ * To use PageCache, declare it in the `behaviors()` method of your controllers class.
  * In the following example the filter will be applied to the `index` action and
  * cache the whole page for maximum 60 seconds or until the count of entries in the post table changes.
  * It also stores different versions of the page depending on the application language.
@@ -52,7 +52,7 @@ class PageCache extends ActionFilter
 {
     /**
      * @var boolean whether the content being cached should be differentiated according to the route.
-     * A route consists of the requested controller ID and action ID. Defaults to true.
+     * A route consists of the requested controllers ID and action ID. Defaults to true.
      */
     public $varyByRoute = true;
     /**

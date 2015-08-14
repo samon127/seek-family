@@ -45,7 +45,41 @@ class PayController extends \yii\web\Controller
 
         return $this->render('edit', array('defaultValue' => $defaultValue, 'payTypes'=>$payTypes));
     }
+    public function actionSearch()
+    {
+        $searchKeyWord = Yii::$app->getRequest()->get('s');
+        if ($searchKeyWord) {
+            $model = iPay::find();
 
+            if ($searchKeyWord['date_start']) {
+                $model->andWhere(['>=', 'pay_date', $searchKeyWord['date_start']]);
+            }
+
+            if ($searchKeyWord['date_end']) {
+                $model->andWhere(['<=', 'pay_date', $searchKeyWord['date_end']]);
+            }
+
+            if(Isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
+            {
+                $model->andwhere(array('LIKE','pay.comment',$searchKeyWord['comment']));
+            }
+
+            $pays = $model
+                ->joinWith('type', true, 'LEFT JOIN')
+                ->joinWith('projects', true, 'LEFT JOIN')
+                ->joinWith('projects.type', true, 'LEFT JOIN')
+                ->joinWith('projects.teacher', true, 'LEFT JOIN')
+                ->joinWith('projects.city', true, 'LEFT JOIN')
+                ->orderBy('pay.pay_date')
+                ->all();
+        }
+        else{
+            $pays = [];
+        }
+
+        return $this->render('search', ['pays'=>$pays,'defaultValue'=>$searchKeyWord]);
+
+    }
     public function actionSubmit()
     {
 
@@ -93,10 +127,12 @@ class PayController extends \yii\web\Controller
             return $this->redirect(['pay/index', 'pid'=>$pid]);
         }
         else {
-            return $this->redirect(['revenue/pay-detail', 'date_start'=>$data['date'], 'date_end'=>$data['date']]);
+            return $this->redirect(['pay/search', 'date_start'=>$data['date'], 'date_end'=>$data['date']]);
         }
 
     }
+
+
 
     public function actionDelete()
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the template for generating a CRUD controller class file.
+ * This is the template for generating a CRUD controllers class file.
  */
 
 use yii\db\ActiveRecordInterface;

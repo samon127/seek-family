@@ -12,7 +12,7 @@ namespace yii\web;
  *
  * Use this exception when the client sends data in a format that your
  * application does not understand. For example, you would throw this exception
- * if the client POSTs XML data to an action or controller that only accepts
+ * if the client POSTs XML data to an action or controllers that only accepts
  * JSON.
  *
  * @link http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16

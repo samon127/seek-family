@@ -22,7 +22,7 @@ use yii\base\InvalidConfigException;
 abstract class BasePage extends Component
 {
     /**
-     * @var string|array the route (controller ID and action ID, e.g. `site/about`) to this page.
+     * @var string|array the route (controllers ID and action ID, e.g. `site/about`) to this page.
      * Use array to represent a route with GET parameters. The first element of the array represents
      * the route and the rest of the name-value pairs are treated as GET parameters, e.g. `array('site/page', 'name' => 'about')`.
      */

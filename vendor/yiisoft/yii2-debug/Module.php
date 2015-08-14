@@ -131,7 +131,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
 
         $app->getUrlManager()->addRules([
             $this->id => $this->id,
-            $this->id . '/<controller:[\w\-]+>/<action:[\w\-]+>' => $this->id . '/<controller>/<action>',
+            $this->id . '/<controllers:[\w\-]+>/<action:[\w\-]+>' => $this->id . '/<controllers>/<action>',
         ], false);
     }
 

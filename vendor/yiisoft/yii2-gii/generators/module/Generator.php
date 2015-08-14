@@ -15,7 +15,7 @@ use yii\helpers\StringHelper;
 /**
  * This generator will generate the skeleton code needed by a module.
  *
- * @property string $controllerNamespace The controller namespace of the module. This property is read-only.
+ * @property string $controllerNamespace The controllers namespace of the module. This property is read-only.
  * @property boolean $modulePath The directory that contains the module class. This property is read-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -113,7 +113,7 @@ EOD;
      */
     public function requiredTemplates()
     {
-        return ['module.php', 'controller.php', 'view.php'];
+        return ['module.php', 'controllers.php', 'view.php'];
     }
 
     /**
@@ -129,7 +129,7 @@ EOD;
         );
         $files[] = new CodeFile(
             $modulePath . '/controllers/DefaultController.php',
-            $this->render("controller.php")
+            $this->render("controllers.php")
         );
         $files[] = new CodeFile(
             $modulePath . '/views/default/index.php',
@@ -161,7 +161,7 @@ EOD;
     }
 
     /**
-     * @return string the controller namespace of the module.
+     * @return string the controllers namespace of the module.
      */
     public function getControllerNamespace()
     {

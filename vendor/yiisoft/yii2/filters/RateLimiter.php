@@ -16,7 +16,7 @@ use yii\web\TooManyRequestsHttpException;
 /**
  * RateLimiter implements a rate limiting algorithm based on the [leaky bucket algorithm](http://en.wikipedia.org/wiki/Leaky_bucket).
  *
- * You may use RateLimiter by attaching it as a behavior to a controller or module, like the following,
+ * You may use RateLimiter by attaching it as a behavior to a controllers or module, like the following,
  *
  * ```php
  * public function behaviors()

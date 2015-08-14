@@ -16,15 +16,15 @@ use yii\helpers\Console;
 /**
  * Controller is the base class of console command classes.
  *
- * A console controller consists of one or several actions known as sub-commands.
- * Users call a console command by specifying the corresponding route which identifies a controller action.
+ * A console controllers consists of one or several actions known as sub-commands.
+ * Users call a console command by specifying the corresponding route which identifies a controllers action.
  * The `yii` program is used when calling a console command, like the following:
  *
  * ~~~
  * yii <route> [--param1=value1 --param2 ...]
  * ~~~
  *
- * where `<route>` is a route to a controller action and the params will be populated as properties of a command.
+ * where `<route>` is a route to a controllers action and the params will be populated as properties of a command.
  * See [[options()]] for details.
  *
  * @property string $help This property is read-only.
@@ -279,7 +279,7 @@ class Controller extends \yii\base\Controller
     }
 
     /**
-     * Returns one-line short summary describing this controller.
+     * Returns one-line short summary describing this controllers.
      *
      * You may override this method to return customized summary.
      * The default implementation returns first line from the PHPDoc comment.
@@ -292,7 +292,7 @@ class Controller extends \yii\base\Controller
     }
 
     /**
-     * Returns help information for this controller.
+     * Returns help information for this controllers.
      *
      * You may override this method to return customized help.
      * The default implementation returns help information retrieved from the PHPDoc comment.

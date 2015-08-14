@@ -67,7 +67,7 @@ class ContentDecorator extends Widget
 
     /**
      * Ends recording a clip.
-     * This method stops output buffering and saves the rendering result as a named clip in the controller.
+     * This method stops output buffering and saves the rendering result as a named clip in the controllers.
      */
     public function run()
     {

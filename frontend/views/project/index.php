@@ -37,7 +37,6 @@ foreach ($projects as $project)
             <th>分类</th>
             <th>项目名称</th>
             <th>执行时间</th>
-
             <th>讲师</th>
             <th>城市</th>
             <th>客户</th>

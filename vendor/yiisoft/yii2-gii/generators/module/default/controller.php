@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the template for generating a controller class within a module.
+ * This is the template for generating a controllers class within a module.
  */
 
 /* @var $this yii\web\View */

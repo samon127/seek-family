@@ -17,7 +17,7 @@ use yii\web\Response;
  * Make sure to read carefully what CORS does and does not. CORS do not secure your API,
  * but allow the developer to grant access to third party code (ajax calls from external domain)
  *
- * You may use CORS filter by attaching it as a behavior to a controller or module, like the following,
+ * You may use CORS filter by attaching it as a behavior to a controllers or module, like the following,
  *
  * ```php
  * public function behaviors()

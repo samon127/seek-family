@@ -418,7 +418,7 @@ class Response extends \yii\base\Response
      * Sends a file to the browser.
      *
      * Note that this method only prepares the response for file sending. The file is not sent
-     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controller action.
+     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controllers action.
      *
      * @param string $filePath the path of the file to be sent.
      * @param string $attachmentName the file name shown to the user. If null, it will be determined from `$filePath`.
@@ -448,7 +448,7 @@ class Response extends \yii\base\Response
      * Sends the specified content as a file to the browser.
      *
      * Note that this method only prepares the response for file sending. The file is not sent
-     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controller action.
+     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controllers action.
      *
      * @param string $content the content to be sent. The existing [[content]] will be discarded.
      * @param string $attachmentName the file name shown to the user.
@@ -495,7 +495,7 @@ class Response extends \yii\base\Response
      * Sends the specified stream as a file to the browser.
      *
      * Note that this method only prepares the response for file sending. The file is not sent
-     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controller action.
+     * until [[send()]] is called explicitly or implicitly. The latter is done after you return from a controllers action.
      *
      * @param resource $handle the handle of the stream to be sent.
      * @param string $attachmentName the file name shown to the user.
@@ -694,7 +694,7 @@ class Response extends \yii\base\Response
      * Redirects the browser to the specified URL.
      *
      * This method adds a "Location" header to the current response. Note that it does not send out
-     * the header until [[send()]] is called. In a controller action you may use this method as follows:
+     * the header until [[send()]] is called. In a controllers action you may use this method as follows:
      *
      * ~~~
      * return Yii::$app->getResponse()->redirect($url);
@@ -730,7 +730,7 @@ class Response extends \yii\base\Response
      * - a string representing a URL (e.g. "http://example.com")
      * - a string representing a URL alias (e.g. "@example.com")
      * - an array in the format of `[$route, ...name-value pairs...]` (e.g. `['site/index', 'ref' => 1]`).
-     *   Note that the route is with respect to the whole application, instead of relative to a controller or module.
+     *   Note that the route is with respect to the whole application, instead of relative to a controllers or module.
      *   [[Url::to()]] will be used to convert the array into a URL.
      *
      * Any relative URL will be converted into an absolute one by prepending it with the host info
@@ -778,7 +778,7 @@ class Response extends \yii\base\Response
      * The effect of this method call is the same as the user pressing the refresh button of his browser
      * (without re-posting data).
      *
-     * In a controller action you may use this method like this:
+     * In a controllers action you may use this method like this:
      *
      * ~~~
      * return Yii::$app->getResponse()->refresh();

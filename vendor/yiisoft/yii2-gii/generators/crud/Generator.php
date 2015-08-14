@@ -20,11 +20,11 @@ use yii\web\Controller;
  * Generates CRUD
  *
  * @property array $columnNames Model column names. This property is read-only.
- * @property string $controllerID The controller ID (without the module ID prefix). This property is
+ * @property string $controllerID The controllers ID (without the module ID prefix). This property is
  * read-only.
  * @property array $searchAttributes Searchable attributes. This property is read-only.
  * @property boolean|\yii\db\TableSchema $tableSchema This property is read-only.
- * @property string $viewPath The controller view path. This property is read-only.
+ * @property string $viewPath The controllers view path. This property is read-only.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
@@ -52,7 +52,7 @@ class Generator extends \yii\gii\Generator
      */
     public function getDescription()
     {
-        return 'This generator generates a controller and views that implement CRUD (Create, Read, Update, Delete)
+        return 'This generator generates a controllers and views that implement CRUD (Create, Read, Update, Delete)
             operations for the specified data model.';
     }
 
@@ -102,14 +102,14 @@ class Generator extends \yii\gii\Generator
         return array_merge(parent::hints(), [
             'modelClass' => 'This is the ActiveRecord class associated with the table that CRUD will be built upon.
                 You should provide a fully qualified class name, e.g., <code>app\models\Post</code>.',
-            'controllerClass' => 'This is the name of the controller class to be generated. You should
+            'controllerClass' => 'This is the name of the controllers class to be generated. You should
                 provide a fully qualified namespaced class (e.g. <code>app\controllers\PostController</code>),
                 and class name should be in CamelCase with an uppercase first letter. Make sure the class
                 is using the same namespace as specified by your application\'s controllerNamespace property.',
-            'viewPath' => 'Specify the directory for storing the view scripts for the controller. You may use path alias here, e.g.,
+            'viewPath' => 'Specify the directory for storing the view scripts for the controllers. You may use path alias here, e.g.,
                 <code>/var/www/basic/controllers/views/post</code>, <code>@app/views/post</code>. If not set, it will default
                 to <code>@app/views/ControllerID</code>',
-            'baseControllerClass' => 'This is the class that the new CRUD controller class will extend from.
+            'baseControllerClass' => 'This is the class that the new CRUD controllers class will extend from.
                 You should provide a fully qualified class name, e.g., <code>yii\web\Controller</code>.',
             'indexWidgetType' => 'This is the widget type to be used in the index page to display list of the models.
                 You may choose either <code>GridView</code> or <code>ListView</code>',
@@ -123,7 +123,7 @@ class Generator extends \yii\gii\Generator
      */
     public function requiredTemplates()
     {
-        return ['controller.php'];
+        return ['controllers.php'];
     }
 
     /**
@@ -155,7 +155,7 @@ class Generator extends \yii\gii\Generator
         $controllerFile = Yii::getAlias('@' . str_replace('\\', '/', ltrim($this->controllerClass, '\\')) . '.php');
 
         $files = [
-            new CodeFile($controllerFile, $this->render('controller.php')),
+            new CodeFile($controllerFile, $this->render('controllers.php')),
         ];
 
         if (!empty($this->searchModelClass)) {
@@ -178,7 +178,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @return string the controller ID (without the module ID prefix)
+     * @return string the controllers ID (without the module ID prefix)
      */
     public function getControllerID()
     {
@@ -189,7 +189,7 @@ class Generator extends \yii\gii\Generator
     }
 
     /**
-     * @return string the controller view path
+     * @return string the controllers view path
      */
     public function getViewPath()
     {

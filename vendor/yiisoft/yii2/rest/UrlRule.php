@@ -20,7 +20,7 @@ use yii\web\CompositeUrlRule;
  * ```php
  * [
  *     'class' => 'yii\rest\UrlRule',
- *     'controller' => 'user',
+ *     'controllers' => 'user',
  * ]
  * ```
  *
@@ -36,20 +36,20 @@ use yii\web\CompositeUrlRule;
  *
  * You may configure [[only]] and/or [[except]] to disable some of the above rules.
  * You may configure [[patterns]] to completely redefine your own list of rules.
- * You may configure [[controller]] with multiple controller IDs to generate rules for all these controllers.
+ * You may configure [[controllers]] with multiple controllers IDs to generate rules for all these controllers.
  * For example, the following code will disable the `delete` rule and generate rules for both `user` and `post` controllers:
  *
  * ```php
  * [
  *     'class' => 'yii\rest\UrlRule',
- *     'controller' => ['user', 'post'],
+ *     'controllers' => ['user', 'post'],
  *     'except' => ['delete'],
  * ]
  * ```
  *
- * The property [[controller]] is required and should represent one or multiple controller IDs.
- * Each controller ID should be prefixed with the module ID if the controller is within a module.
- * The controller ID used in the pattern will be automatically pluralized (e.g. `user` becomes `users`
+ * The property [[controllers]] is required and should represent one or multiple controllers IDs.
+ * Each controllers ID should be prefixed with the module ID if the controllers is within a module.
+ * The controllers ID used in the pattern will be automatically pluralized (e.g. `user` becomes `users`
  * as shown in the above examples).
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -66,16 +66,16 @@ class UrlRule extends CompositeUrlRule
      */
     public $suffix;
     /**
-     * @var string|array the controller ID (e.g. `user`, `post-comment`) that the rules in this composite rule
-     * are dealing with. It should be prefixed with the module ID if the controller is within a module (e.g. `admin/user`).
+     * @var string|array the controllers ID (e.g. `user`, `post-comment`) that the rules in this composite rule
+     * are dealing with. It should be prefixed with the module ID if the controllers is within a module (e.g. `admin/user`).
      *
-     * By default, the controller ID will be pluralized automatically when it is put in the patterns of the
-     * generated rules. If you want to explicitly specify how the controller ID should appear in the patterns,
-     * you may use an array with the array key being as the controller ID in the pattern, and the array value
-     * the actual controller ID. For example, `['u' => 'user']`.
+     * By default, the controllers ID will be pluralized automatically when it is put in the patterns of the
+     * generated rules. If you want to explicitly specify how the controllers ID should appear in the patterns,
+     * you may use an array with the array key being as the controllers ID in the pattern, and the array value
+     * the actual controllers ID. For example, `['u' => 'user']`.
      *
-     * You may also pass multiple controller IDs as an array. If this is the case, this composite rule will
-     * generate applicable URL rules for EVERY specified controller. For example, `['user', 'post']`.
+     * You may also pass multiple controllers IDs as an array. If this is the case, this composite rule will
+     * generate applicable URL rules for EVERY specified controllers. For example, `['user', 'post']`.
      */
     public $controller;
     /**
@@ -109,7 +109,7 @@ class UrlRule extends CompositeUrlRule
      * The keys are the patterns and the values are the corresponding actions.
      * The format of patterns is `Verbs Pattern`, where `Verbs` stands for a list of HTTP verbs separated
      * by comma (without space). If `Verbs` is not specified, it means all verbs are allowed.
-     * `Pattern` is optional. It will be prefixed with [[prefix]]/[[controller]]/,
+     * `Pattern` is optional. It will be prefixed with [[prefix]]/[[controllers]]/,
      * and tokens in it will be replaced by [[tokens]].
      */
     public $patterns = [
@@ -129,7 +129,7 @@ class UrlRule extends CompositeUrlRule
     ];
     /**
      * @var boolean whether to automatically pluralize the URL names for controllers.
-     * If true, a controller ID will appear in plural form in URLs. For example, `user` controller
+     * If true, a controllers ID will appear in plural form in URLs. For example, `user` controllers
      * will appear as `users` in URLs.
      * @see controller
      */
@@ -142,7 +142,7 @@ class UrlRule extends CompositeUrlRule
     public function init()
     {
         if (empty($this->controller)) {
-            throw new InvalidConfigException('"controller" must be set.');
+            throw new InvalidConfigException('"controllers" must be set.');
         }
 
         $controllers = [];

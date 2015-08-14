@@ -19,10 +19,10 @@ use yii\web\ForbiddenHttpException;
  *
  * AccessControl is an action filter. It will check its [[rules]] to find
  * the first rule that matches the current context variables (such as user IP address, user role).
- * The matching rule will dictate whether to allow or deny the access to the requested controller
+ * The matching rule will dictate whether to allow or deny the access to the requested controllers
  * action. If no rule matches, the access will be denied.
  *
- * To use AccessControl, declare it in the `behaviors()` method of your controller class.
+ * To use AccessControl, declare it in the `behaviors()` method of your controllers class.
  * For example, the following declarations will allow authenticated users to access the "create"
  * and "update" actions and deny all other users from accessing these two actions.
  *

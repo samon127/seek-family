@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * Site controller
+ * Site controllers
  */
 class SiteController extends Controller
 {

@@ -27,7 +27,7 @@ class Application extends \yii\base\Application
      */
     public $defaultRoute = 'site';
     /**
-     * @var array the configuration specifying a controller action which should handle
+     * @var array the configuration specifying a controllers action which should handle
      * all user requests. This is mainly used when the application is in maintenance mode
      * and needs to handle all incoming requests via a single action.
      * The configuration is an array whose first element specifies the route of the action.
@@ -46,7 +46,7 @@ class Application extends \yii\base\Application
      */
     public $catchAll;
     /**
-     * @var Controller the currently active controller instance
+     * @var Controller the currently active controllers instance
      */
     public $controller;
 

@@ -83,8 +83,8 @@ abstract class Application extends Module
     const STATE_END = 6;
 
     /**
-     * @var string the namespace that controller classes are located in.
-     * This namespace will be used to load controller classes by prepending it to the controller class name.
+     * @var string the namespace that controllers classes are located in.
+     * This namespace will be used to load controllers classes by prepending it to the controllers class name.
      * The default namespace is `app\controllers`.
      *
      * Please refer to the [guide about class autoloading](guide:concept-autoloading.md) for more details.
@@ -116,7 +116,7 @@ abstract class Application extends Module
      */
     public $sourceLanguage = 'en-US';
     /**
-     * @var Controller the currently active controller instance
+     * @var Controller the currently active controllers instance
      */
     public $controller;
     /**

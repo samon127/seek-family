@@ -31,7 +31,7 @@ class AccessRule extends Component
      */
     public $actions;
     /**
-     * @var array list of controller IDs that this rule applies to. The comparison is case-sensitive.
+     * @var array list of controllers IDs that this rule applies to. The comparison is case-sensitive.
      * If not set or empty, it means this rule applies to all controllers.
      */
     public $controllers;
@@ -123,8 +123,8 @@ class AccessRule extends Component
     }
 
     /**
-     * @param Controller $controller the controller
-     * @return boolean whether the rule applies to the controller
+     * @param Controller $controller the controllers
+     * @return boolean whether the rule applies to the controllers
      */
     protected function matchController($controller)
     {

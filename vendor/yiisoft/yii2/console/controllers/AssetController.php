@@ -46,7 +46,7 @@ use yii\web\AssetBundle;
 class AssetController extends Controller
 {
     /**
-     * @var string controller default action ID.
+     * @var string controllers default action ID.
      */
     public $defaultAction = 'compress';
     /**

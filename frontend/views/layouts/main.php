@@ -40,16 +40,16 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 //                 ['label' => 'About', 'url' => ['/site/about']],
 //                 ['label' => 'Contact', 'url' => ['/site/contact']],
             ];
-//             if (Yii::$app->user->isGuest) {
-//                 $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-//                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-//             } else {
-//                 $menuItems[] = [
-//                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-//                     'url' => ['/site/logout'],
-//                     'linkOptions' => ['data-method' => 'post']
-//                 ];
-//             }
+             if (Yii::$app->user->isGuest) {
+                 $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
+                 $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+             } else {
+                 $menuItems[] = [
+                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                     'url' => ['/site/logout'],
+                     'linkOptions' => ['data-method' => 'post']
+                 ];
+             }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
@@ -74,11 +74,10 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">收支统计 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><?php echo Html::a('日收支核对', Url::to(['revenue/daily'])) ?></li>
-            <li><?php echo Html::a('应收账款', Url::to(['revenue/receivable'])) ?></li>
             <li><?php echo Html::a('应付账款', Url::to(['revenue/daily'])) ?></li>
             <li class="divider"></li>
             <li><?php echo Html::a('收入查询', Url::to(['income/search'])) ?></li>
-            <li><?php echo Html::a('支出明细', Url::to(['revenue/pay-detail'])) ?></li>
+            <li><?php echo Html::a('支出查询', Url::to(['pay/search'])) ?></li>
             <li class="divider"></li>
             <li><?php echo Html::a('新建收入', Url::to(['income/edit'])) ?></li>
             <li><?php echo Html::a('新建支出', Url::to(['pay/edit'])) ?></li>

@@ -94,7 +94,7 @@ class Pagination extends Object implements Linkable
      */
     public $forcePageParam = true;
     /**
-     * @var string the route of the controller action for displaying the paged contents.
+     * @var string the route of the controllers action for displaying the paged contents.
      * If not set, it means using the currently requested route.
      */
     public $route;
