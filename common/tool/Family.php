@@ -49,7 +49,7 @@ class Family
 		return $name;
 	}
 
-	public function getProjectNames($projects)
+	public static function getProjectNames($projects)
 	{
 	    $name = '';
 	    $ids = [];

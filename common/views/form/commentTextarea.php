@@ -7,7 +7,7 @@ use yii\helpers\Html;
 	<label class="col-md-4 control-label">备注</label>
 	<div class="col-md-4">
   <?php
-  		$defaultComment = isset($defaultValue['comment']) ? $defaultValue['comment'] : '';
+  $defaultComment = isset($defaultComment) ? $defaultComment : '';
 		echo HTML::input( 'string',$page . '[comment]', $defaultComment, [
 				'id' => 'commentInput',
 				'class' => 'form-control input-md' 
