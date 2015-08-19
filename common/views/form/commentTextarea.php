@@ -8,7 +8,7 @@ use yii\helpers\Html;
 	<div class="col-md-4">
   <?php
   $defaultComment = isset($defaultComment) ? $defaultComment : '';
-		echo HTML::input( 'string',$page . '[comment]', $defaultComment, [
+		echo HTML::textarea($page . '[comment]', $defaultComment, [
 				'id' => 'commentInput',
 				'class' => 'form-control input-md' 
 		] )?>

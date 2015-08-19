@@ -66,8 +66,8 @@ class IncomeController extends \yii\web\Controller
             }
 
             if(Isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
-            {
-                $model->andwhere(array('LIKE','income.comment',$searchKeyWord['comment']));
+            {   $comment = trim($searchKeyWord['comment']);
+                $model->andwhere(array('LIKE','income.comment',$comment));
             }
 
 
