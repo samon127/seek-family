@@ -14,7 +14,7 @@ $projects = Project::find()
 ->joinWith('type', true, 'LEFT JOIN')
 ->joinWith('teacher', true, 'LEFT JOIN')
 ->joinWith('city', true, 'LEFT JOIN')
-->orderBy('date_start')
+->orderBy('date_start DESC')
 ->all();
 
 $clientIds = [];
