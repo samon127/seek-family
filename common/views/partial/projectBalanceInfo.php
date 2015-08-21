@@ -8,6 +8,7 @@ use common\tool\Family;
 use common\models\Income;
 use common\models\Time;
 use common\models\iPay;
+use common\models\iUserBalance;
 
 $pid = $currentProject->id;
 
@@ -155,7 +156,7 @@ $(document).ready( function () {
             <?php else: ?>
                 <td><?php echo $percentNumber = $time->percent ?>%</td>
             <?php endif; ?>
-            <td style="text-align:right"><?php echo number_format($percentNumber*$time->user->balance_base/100, 2) ?></td>
+            <td style="text-align:right"><?php echo number_format($percentNumber*iUserBalance::getUserBalance($time->user_id, $time->month)/100, 2) ?></td>
             <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['pay/edit', 'id' => $time->id])) ?></td>
         </tr>
         <?php endforeach; ?>
@@ -238,7 +239,7 @@ foreach ($times as $time)
     {
         $percentNumber = $time->percent;
     }
-    $timeValue += $percentNumber*$time->user->balance_base/100;
+    $timeValue += $percentNumber*iUserBalance::getUserBalance($time->user_id, $time->month)/100;
 }
 
 $totalProfit = $allIncome-$allInvoice-$allPay-$timeValue;
