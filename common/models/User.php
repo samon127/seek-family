@@ -1,5 +1,4 @@
 <?php
-
 namespace common\models;
 
 use Yii;
@@ -9,22 +8,26 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "user".
+ * User model
  *
  * @property integer $id
- * @property string $key
- * @property string $name
- * @property string $english
- * @property double $balance_base
- *
- * @property ProjectOwner[] $projectOwners
- * @property ProjectTarget[] $projectTargets
- * @property Time[] $times
+ * @property string $username
+ * @property string $password_hash
+ * @property string $password_reset_token
+ * @property string $email
+ * @property string $auth_key
+ * @property integer $status
+ * @property integer $created_at
+ * @property integer $updated_at
+ * @property string $password write-only password
  */
-class User extends \yii\db\ActiveRecord
+class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const ROLE_USER = 10;
+    const ROLE_ADMIN = 20;
+
     /**
      * @inheritdoc
      */
@@ -36,22 +39,19 @@ class User extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
-            [['key', 'name', 'english', 'email', 'balance_base'], 'required'],
+            [['key', 'name', 'english', 'balance_base', 'username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'status', 'created_at', 'updated_at'], 'required'],
             [['balance_base'], 'number'],
-            [['email'],'email'],
-            [['key', 'name', 'english'], 'string', 'max' => 255],
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-        ];
-    }
-
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
+            [['status', 'role', 'created_at', 'updated_at'], 'integer'],
+            [['key', 'name', 'english', 'username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['email'], 'string', 'max' => 100]
         ];
     }
 
@@ -66,35 +66,29 @@ class User extends \yii\db\ActiveRecord
             'name' => 'Name',
             'english' => 'English',
             'balance_base' => 'Balance Base',
+            'username' => 'Username',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-
+            'status' => 'Status',
+            'role' => 'Role',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
-	
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProjectOwners()
-    {
-        return $this->hasMany(ProjectOwner::className(), ['user_id' => 'id']);
-    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProjectTargets()
+    public function behaviors()
     {
-        return $this->hasMany(ProjectTarget::className(), ['user_id' => 'id']);
+        return [
+            TimestampBehavior::className(),
+        ];
     }
+    /**
+     * @inheritdoc
+     */
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTimes()
-    {
-        return $this->hasMany(Time::className(), ['user_id' => 'id']);
-    }
+
 
     public static function findIdentity($id)
     {
@@ -222,6 +216,43 @@ class User extends \yii\db\ActiveRecord
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+    public function getProjectOwners()
+    {
+        return $this->hasMany(ProjectOwner::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectTargets()
+    {
+        return $this->hasMany(ProjectTarget::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTimes()
+    {
+        return $this->hasMany(Time::className(), ['user_id' => 'id']);
+    }
+    /* judge is user or admin*/
+    public static function isUserAdmin($username)
+    {
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])){
+
+            return true;
+        } else {
+
+            return false;
+        }
+
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
     }
 
 }

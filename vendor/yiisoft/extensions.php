@@ -57,4 +57,22 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'mdmsoft/yii2-admin' => 
+  array (
+    'name' => 'mdmsoft/yii2-admin',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@mdm/admin' => $vendorDir . '/mdmsoft/yii2-admin',
+    ),
+  ),
+  'robregonm/yii2-auth' => 
+  array (
+    'name' => 'robregonm/yii2-auth',
+    'version' => '0.6.2.0',
+    'alias' => 
+    array (
+      '@auth' => $vendorDir . '/robregonm/yii2-auth',
+    ),
+  ),
 );
