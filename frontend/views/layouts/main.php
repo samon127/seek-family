@@ -57,7 +57,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
             ]);
 
             ?>
-
+        <?php if (!Yii::$app->user->isGuest) { ?>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目设置 <span class="caret"></span></a>
@@ -86,13 +86,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
           </ul>
         </li>
       </ul>
-
-        <?php
-        $user = new User();
-        $name = $user->getUsername();
-        if(User::isUserAdmin($name))
-        {
-        ?>
+        <?php if(User::isUserAdmin(Yii::$app->user->identity->username)){ ?>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">时间分配 <span class="caret"></span></a>
@@ -107,9 +101,9 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
           </ul>
         </li>
       </ul>
-        <?php } ?>
 
 
+        <?php  } } ?>
             <?php
             NavBar::end();
             ?>

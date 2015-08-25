@@ -33,25 +33,20 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return 'user';
+        return '{{%user}}';
     }
 
     /**
      * @inheritdoc
      */
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [['key', 'name', 'english', 'balance_base', 'username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'status', 'created_at', 'updated_at'], 'required'],
-            [['balance_base'], 'number'],
-            [['status', 'role', 'created_at', 'updated_at'], 'integer'],
-            [['key', 'name', 'english', 'username', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
-            [['email'], 'string', 'max' => 100]
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['role', 'default', 'value' => self::ROLE_USER],
+            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN]],
         ];
     }
 
@@ -84,12 +79,10 @@ class User extends ActiveRecord implements IdentityInterface
             TimestampBehavior::className(),
         ];
     }
+
     /**
      * @inheritdoc
      */
-
-
-
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
@@ -217,27 +210,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-    public function getProjectOwners()
-    {
-        return $this->hasMany(ProjectOwner::className(), ['user_id' => 'id']);
-    }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProjectTargets()
-    {
-        return $this->hasMany(ProjectTarget::className(), ['user_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTimes()
-    {
-        return $this->hasMany(Time::className(), ['user_id' => 'id']);
-    }
-    /* judge is user or admin*/
     public static function isUserAdmin($username)
     {
         if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])){
@@ -248,11 +221,6 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
     }
 
 }
