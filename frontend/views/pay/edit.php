@@ -121,7 +121,7 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'pay', 'defaultDat
 
 <?php
 $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
-echo $this->render('@common/views/form/commentTextarea', ['page' => 'pay', 'defaultValue' => $defaultComment]);
+echo $this->render('@common/views/form/commentTextarea', ['page' => 'pay', 'defaultComment' => $defaultComment]);
 ?>
 
 <!-- Button -->

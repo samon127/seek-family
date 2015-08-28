@@ -7,6 +7,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
 use yii\web\View;
+use common\models\User;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -56,7 +57,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
             ]);
 
             ?>
-<ul class="nav navbar-nav navbar-right">
+        <?php if (!Yii::$app->user->isGuest) { ?>
+        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目设置 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -84,19 +86,27 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
           </ul>
         </li>
       </ul>
-
-<ul class="nav navbar-nav navbar-right">
+        <?php if(User::isUserAdmin(Yii::$app->user->identity->username)){ ?>
+        <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">时间分配 <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><?php echo Html::a('时间分配设置', Url::to(['time/edit'])) ?></li>
+            <li>
+                   <?php
+                   echo Html::a('时间分配设置', Url::to(['time/edit']));
+
+                   ?>
+
+            </li>
           </ul>
         </li>
       </ul>
 
+
+        <?php  } } ?>
             <?php
             NavBar::end();
-        ?>
+            ?>
 
 
 
