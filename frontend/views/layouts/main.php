@@ -103,7 +103,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
       </ul>
 
 
-        <?php  } } ?>
+        <?php  error_reporting(E_ALL); } } ?>
             <?php
             NavBar::end();
             ?>
