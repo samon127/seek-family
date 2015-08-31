@@ -18,17 +18,14 @@ class iUserBalance extends UserBalance
     public static function getUserBalance($userId, $month)
     {
         $allBalance = UserBalance::find()
-        ->where(['user_id' => $userId])
-        ->andWhere(['<=', 'month', $month])
-        ->orderBy('month DESC')
-        ->all();
+            ->where(['user_id' => $userId])
+            ->andWhere(['<=', 'month', $month])
+            ->orderBy('month DESC')
+            ->all();
 
-        if (!$allBalance)
-        {
+        if (!$allBalance) {
             return 0;
-        }
-        else
-        {
+        } else {
             return $allBalance[0]->balance;
         }
     }
