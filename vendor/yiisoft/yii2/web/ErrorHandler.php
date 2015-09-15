@@ -37,7 +37,7 @@ class ErrorHandler extends \yii\base\ErrorHandler
      */
     public $maxTraceSourceLines = 13;
     /**
-     * @var string the route (e.g. 'site/error') to the controllers action that will be used
+     * @var string the route (e.g. 'site/error') to the controller action that will be used
      * to display external errors. Inside the action, it can retrieve the error information
      * using `Yii::$app->errorHandler->exception. This property defaults to null, meaning ErrorHandler
      * will handle the error display.
@@ -69,7 +69,12 @@ class ErrorHandler extends \yii\base\ErrorHandler
     {
         if (Yii::$app->has('response')) {
             $response = Yii::$app->getResponse();
+            // reset parameters of response to avoid interference with partially created response data
+            // in case the error occurred while sending the response.
             $response->isSent = false;
+            $response->stream = null;
+            $response->data = null;
+            $response->content = null;
         } else {
             $response = new Response();
         }
@@ -261,11 +266,11 @@ class ErrorHandler extends \yii\base\ErrorHandler
         if ($file !== null && $line !== null) {
             $line--; // adjust line number from one-based to zero-based
             $lines = @file($file);
-            if ($line < 0 || $lines === false || ($lineCount = count($lines)) < $line + 1) {
+            if ($line < 0 || $lines === false || ($lineCount = count($lines)) < $line) {
                 return '';
             }
 
-            $half = (int) (($index == 1 ? $this->maxSourceLines : $this->maxTraceSourceLines) / 2);
+            $half = (int) (($index === 1 ? $this->maxSourceLines : $this->maxTraceSourceLines) / 2);
             $begin = $line - $half > 0 ? $line - $half : 0;
             $end = $line + $half < $lineCount ? $line + $half : $lineCount - 1;
         }

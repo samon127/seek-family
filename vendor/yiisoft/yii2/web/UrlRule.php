@@ -53,7 +53,7 @@ class UrlRule extends Object implements UrlRuleInterface
      */
     public $host;
     /**
-     * @var string the route to the controllers action
+     * @var string the route to the controller action
      */
     public $route;
     /**
@@ -340,5 +340,16 @@ class UrlRule extends Object implements UrlRuleInterface
         }
 
         return $url;
+    }
+
+    /**
+     * Returns list of regex for matching parameter.
+     * @return array parameter keys and regexp rules.
+     *
+     * @since 2.0.6
+     */
+    protected function getParamRules()
+    {
+        return $this->_paramRules;
     }
 }

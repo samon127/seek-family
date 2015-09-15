@@ -10,13 +10,13 @@ namespace yii\base;
 use Yii;
 
 /**
- * Action is the base class for all controllers action classes.
+ * Action is the base class for all controller action classes.
  *
- * Action provides a way to divide a complex controllers into
- * smaller actions in separate class files.
+ * Action provides a way to reuse action method code. An action method in an Action
+ * class can be used in multiple controllers or in different projects.
  *
  * Derived classes must implement a method named `run()`. This method
- * will be invoked by the controllers when the action is requested.
+ * will be invoked by the controller when the action is requested.
  * The `run()` method can have parameters which will be filled up
  * with user input values automatically according to their names.
  * For example, if the `run()` method is declared as follows:
@@ -41,7 +41,7 @@ class Action extends Component
      */
     public $id;
     /**
-     * @var Controller|\yii\web\Controller the controllers that owns this action
+     * @var Controller|\yii\web\Controller the controller that owns this action
      */
     public $controller;
 
@@ -50,7 +50,7 @@ class Action extends Component
      * Constructor.
      *
      * @param string $id the ID of this action
-     * @param Controller $controller the controllers that owns this action
+     * @param Controller $controller the controller that owns this action
      * @param array $config name-value pairs that will be used to initialize the object properties
      */
     public function __construct($id, $controller, $config = [])
@@ -72,7 +72,7 @@ class Action extends Component
 
     /**
      * Runs this action with the specified parameters.
-     * This method is mainly invoked by the controllers.
+     * This method is mainly invoked by the controller.
      *
      * @param array $params the parameters to be bound to the action's run() method.
      * @return mixed the result of the action

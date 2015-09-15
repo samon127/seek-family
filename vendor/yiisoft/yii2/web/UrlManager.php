@@ -77,18 +77,18 @@ class UrlManager extends Component
      * Note that [[UrlRule::mode|mode]] will be set to PARSING_ONLY when specifying verb in this way
      * so you normally would not specify a verb for normal GET request.
      *
-     * Here is an example configuration for RESTful CRUD controllers:
+     * Here is an example configuration for RESTful CRUD controller:
      *
      * ~~~php
      * [
      *     'dashboard' => 'site/index',
      *
-     *     'POST <controllers:\w+>s' => '<controllers>/create',
-     *     '<controllers:\w+>s' => '<controllers>/index',
+     *     'POST <controller:\w+>s' => '<controller>/create',
+     *     '<controller:\w+>s' => '<controller>/index',
      *
-     *     'PUT <controllers:\w+>/<id:\d+>'    => '<controllers>/update',
-     *     'DELETE <controllers:\w+>/<id:\d+>' => '<controllers>/delete',
-     *     '<controllers:\w+>/<id:\d+>'        => '<controllers>/view',
+     *     'PUT <controller:\w+>/<id:\d+>'    => '<controller>/update',
+     *     'DELETE <controller:\w+>/<id:\d+>' => '<controller>/delete',
+     *     '<controller:\w+>/<id:\d+>'        => '<controller>/view',
      * ];
      * ~~~
      *
@@ -325,9 +325,16 @@ class UrlManager extends Component
             }
 
             if ($url === false) {
+                $cacheable = true;
                 foreach ($this->rules as $rule) {
+                    if (!empty($rule->defaults) && $rule->mode !== UrlRule::PARSING_ONLY) {
+                        // if there is a rule with default values involved, the matching result may not be cached
+                        $cacheable = false;
+                    }
                     if (($url = $rule->createUrl($this, $route, $params)) !== false) {
-                        $this->_ruleCache[$cacheKey][] = $rule;
+                        if ($cacheable) {
+                            $this->_ruleCache[$cacheKey][] = $rule;
+                        }
                         break;
                     }
                 }

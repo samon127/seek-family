@@ -13,7 +13,7 @@ use yii\web\NotFoundHttpException;
 use yii\debug\models\search\Debug;
 
 /**
- * Debugger controllers
+ * Debugger controller
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0

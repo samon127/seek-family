@@ -14,9 +14,9 @@ use yii\base\Action;
 /**
  * HttpCache implements client-side caching by utilizing the `Last-Modified` and `Etag` HTTP headers.
  *
- * It is an action filter that can be added to a controllers and handles the `beforeAction` event.
+ * It is an action filter that can be added to a controller and handles the `beforeAction` event.
  *
- * To use HttpCache, declare it in the `behaviors()` method of your controllers class.
+ * To use HttpCache, declare it in the `behaviors()` method of your controller class.
  * In the following example the filter will be applied to the `list`-action and
  * the Last-Modified header will contain the date of the last update to the user table in the database.
  *

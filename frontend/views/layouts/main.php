@@ -101,18 +101,12 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
             </ul>
 
 
-<<<<<<< HEAD
-        <?php  error_reporting(E_ALL); } } ?>
-            <?php
-            NavBar::end();
-            ?>
-=======
+
         <?php }
     } ?>
     <?php
     NavBar::end();
     ?>
->>>>>>> ff8d56c4dc204e457ffdcee6ef246a0cb26c9085
 
 
     <div class="container container-page">

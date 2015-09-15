@@ -103,8 +103,8 @@ class HelpController extends Controller
     }
 
     /**
-     * Returns all available actions of the specified controllers.
-     * @param Controller $controller the controllers instance
+     * Returns all available actions of the specified controller.
+     * @param Controller $controller the controller instance
      * @return array all available action IDs.
      */
     public function getActions($controller)
@@ -162,7 +162,7 @@ class HelpController extends Controller
     }
 
     /**
-     * Validates if the given class is a valid console controllers class.
+     * Validates if the given class is a valid console controller class.
      * @param string $controllerClass
      * @return bool
      */
@@ -249,7 +249,7 @@ class HelpController extends Controller
 
     /**
      * Displays the overall information of the command.
-     * @param Controller $controller the controllers instance
+     * @param Controller $controller the controller instance
      */
     protected function getCommandHelp($controller)
     {
@@ -295,7 +295,7 @@ class HelpController extends Controller
 
     /**
      * Displays the detailed information of a command action.
-     * @param Controller $controller the controllers instance
+     * @param Controller $controller the controller instance
      * @param string $actionID action ID
      * @throws Exception if the action does not exist
      */

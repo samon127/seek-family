@@ -18,7 +18,7 @@ use yii\base\UserException;
  * To use ErrorAction, you need to do the following steps:
  *
  * First, declare an action of ErrorAction type in the `actions()` method of your `SiteController`
- * class (or whatever controllers you prefer), like the following:
+ * class (or whatever controller you prefer), like the following:
  *
  * ```php
  * public function actions()
@@ -75,7 +75,8 @@ class ErrorAction extends Action
     public function run()
     {
         if (($exception = Yii::$app->getErrorHandler()->exception) === null) {
-            return '';
+            // action has been invoked not from error handler, but by direct route, so we display '404 Not Found'
+            $exception = new HttpException(404, Yii::t('yii', 'Page not found.'));
         }
 
         if ($exception instanceof HttpException) {
