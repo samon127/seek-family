@@ -22,7 +22,7 @@ class RevenueController extends \yii\web\Controller
         if (!$date_start && !$date_end)
         {
             $date_end = date('Y-m-d 00:00:00', time() + 60*60*24*30*2); // 2个月内
-            $date_start = date('Y-m-d 00:00:00', time() - 60*60*24*30*4); // 4个月前
+            $date_start = date('Y-m-d 00:00:00', time() - 60*60*24*30*5); // 4个月前
         }
 
         $incomes = iIncome::find()

@@ -6,11 +6,9 @@ use common\models\Income;
 use common\models\User;
 use common\models\Project;
 
-
 $users = User::find()
 ->all();
 ?>
-
 
 <form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get"
       xmlns="http://www.w3.org/1999/html">
@@ -23,14 +21,20 @@ $users = User::find()
 <legend>收入查询</legend>
 
 <?php
-$defaultProjects = isset($defaultValue['project']) ? $defaultValue['project'] : '';
+$defaultProjects = isset($defaultValue['project_id']) ? $defaultValue['project_id'] : '';
 echo $this->render('@common/views/form/multipleProjectSelect', ['page' => 's', 'defaultProjects'=>$defaultProjects, 'label'=>'项目']);
 ?>
 
 <?php
-$defaultDates['date_start'] = isset($defaultValue['date_start']) ? $defaultValue['date_start'] : '';
-$defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
-echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
+$defaultDates['date_start'] = isset($defaultValue['income']['date_start']) ? $defaultValue['income']['date_start'] : '';
+$defaultDates['date_end'] = isset($defaultValue['income']['date_end']) ? $defaultValue['income']['date_end'] : '';
+echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[income]', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
+?>
+
+<?php
+$defaultDates2['date_start'] = isset($defaultValue['project']['date_start']) ? $defaultValue['project']['date_start'] : '';
+$defaultDates2['date_end'] = isset($defaultValue['project']['date_end']) ? $defaultValue['project']['date_end'] : '';
+echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[project]', 'defaultDates' => $defaultDates2, 'label'=>'项目时间']);
 ?>
 
 <?php

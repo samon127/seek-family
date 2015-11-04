@@ -19,44 +19,53 @@ class IncomeController extends \yii\web\Controller
     {
         return $this->render('index');
     }
-	
-	
+
+
     public function actionSearch()
-    {	
+    {
         $searchKeyWord = Yii::$app->getRequest()->get('s');
         if ($searchKeyWord)
         {
             $model = Income::find();
 
-            if ($searchKeyWord['date_start']){
-                $model->andWhere(['>=', 'income_date', $searchKeyWord['date_start']]);
+            if ($searchKeyWord['income']['date_start']){
+                $model->andWhere(['>=', 'income_date', $searchKeyWord['income']['date_start']]);
    			 }
-			
-            if ($searchKeyWord['date_end'])
+
+            if ($searchKeyWord['income']['date_end'])
             {
-                $model->andWhere(['<=', 'income_date', $searchKeyWord['date_end']]);
+                $model->andWhere(['<=', 'income_date', $searchKeyWord['income']['date_end']]);
             }
-			
+
+            if ($searchKeyWord['project']['date_start']){
+                $model->andWhere(['>=', 'project.date_start', $searchKeyWord['project']['date_start']]);
+            }
+
+            if ($searchKeyWord['project']['date_end'])
+            {
+                $model->andWhere(['<=', 'project.date_end', $searchKeyWord['project']['date_end']]);
+            }
+
             if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
             {
                 $model->andWhere(['income.client_id' => $searchKeyWord['client']]);
             }
-			
-            if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
+
+            if (isset($searchKeyWord['project_id']) && $searchKeyWord['project_id'])
             {
-                $model->andWhere(['project_id' => $searchKeyWord['project']]);
+                $model->andWhere(['project_id' => $searchKeyWord['project_id']]);
             }
 
             if(Isset ($searchKeyWord['invoice']) && $searchKeyWord['invoice'])
             {
             	$model->andWhere(['invoice' => $searchKeyWord['invoice']]);
             }
-			
+
             if(Isset ($searchKeyWord['card']) && $searchKeyWord['card'])
             {
             	$model->andWhere(['card' => $searchKeyWord['card']]);
             }
-            
+
             if(Isset ($searchKeyWord['money']) && $searchKeyWord['money'])
             {
             	if( $searchKeyWord['money'] == 1) {
@@ -76,11 +85,11 @@ class IncomeController extends \yii\web\Controller
             ->joinWith('project.type', true, 'LEFT JOIN')
             ->joinWith('project.teacher', true, 'LEFT JOIN')
             ->joinWith('project.city', true, 'LEFT JOIN')
-            ->orderBy('income.income_date')
+            ->orderBy('project.date_start DESC')
             ->all();
         }
         else
-       {
+        {
             $incomes = [];
         }
 

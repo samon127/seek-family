@@ -134,6 +134,18 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
 </div>
 
 
+<script>
+
+
+triggerInvoiceInput = function(dom)
+{
+	if ($(dom).value == 1)
+	{
+	    alert(1);
+	}
+}
+</script>
+
 <?php
 $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
 echo $this->render('@common/views/form/commentTextarea', ['page' => 'income', 'defaultValue' => $defaultComment]);

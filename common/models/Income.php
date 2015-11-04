@@ -15,6 +15,7 @@ use Yii;
  * @property integer $card
  * @property string $income_date
  * @property integer $invoice
+ * @property string $invoice_code
  * @property string $comment
  *
  * @property Project $project
@@ -39,7 +40,8 @@ class Income extends \yii\db\ActiveRecord
             [['type', 'project_id', 'client_id', 'card', 'invoice'], 'integer'],
             [['number'], 'number'],
             [['income_date'], 'safe'],
-            [['comment'], 'string']
+            [['comment'], 'string'],
+            [['invoice_code'], 'string', 'max' => 255]
         ];
     }
 
@@ -57,6 +59,7 @@ class Income extends \yii\db\ActiveRecord
             'card' => 'Card',
             'income_date' => 'Income Date',
             'invoice' => 'Invoice',
+            'invoice_code' => 'Invoice Code',
             'comment' => 'Comment',
         ];
     }
@@ -68,5 +71,4 @@ class Income extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Project::className(), ['id' => 'project_id']);
     }
-    
 }

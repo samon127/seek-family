@@ -85,6 +85,9 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li class="divider"></li>
                     <li><?php echo Html::a('新建收入', Url::to(['income/edit'])) ?></li>
                     <li><?php echo Html::a('新建支出', Url::to(['pay/edit'])) ?></li>
+                    <li class="divider"></li>
+                    <li><?php echo Html::a('提成管理', Url::to(['bonus/list'])) ?></li>
+
                 </ul>
             </li>
         </ul>
@@ -103,6 +106,17 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 
         <?php }
     } ?>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">数据统计
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><?php echo Html::a('业务数据', Url::to(['data/sales'])) ?></li>
+
+                </ul>
+            </li>
+        </ul>
     <?php
     NavBar::end();
     ?>

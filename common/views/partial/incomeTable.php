@@ -35,6 +35,8 @@ foreach ($incomes as $income)
 
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerCssFile("/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
@@ -97,6 +99,12 @@ foreach ($incomes as $income)
 <script>
 $(document).ready( function () {
     $('#income_table<?php echo $random ?>').DataTable({
+    	"dom": 'C&gt;"clear"&lt;lfrtip',
+    	"columnDefs": [
+//                { "visible": false, "targets": 2 },
+//                { "visible": false, "targets": 3 },
+//                { "visible": false, "targets": 4 }
+           ],
     	paging: false,
     	"info": false,
     	"searching": false,

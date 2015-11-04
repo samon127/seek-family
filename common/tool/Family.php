@@ -15,9 +15,11 @@ class Family
     public static function getProjectName($project, $clientIds)
     {
 
-        if ($project->name) {
+        if ($project->style == 2)
+        {
             return $project->name;
         }
+
 
         $name = '';
 
@@ -35,10 +37,17 @@ class Family
             $name .= $clientName . '-';
         }
 
-        $name .= Yii::t('app', $project->type->key);
+        if (isset($project->type->name))
+        {
+            $name .= $project->type->name;
+        }
 
         if ($project->parent_id) {
             $name .= '（' . $project->parent->name . '）';
+        }
+
+        if ($project->name) {
+            $name .= '-'.$project->name;
         }
 
         return $name;

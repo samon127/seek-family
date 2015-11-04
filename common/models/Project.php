@@ -32,6 +32,7 @@ use Yii;
  * @property ProjectType $type
  * @property Project $parent
  * @property Project[] $projects
+ * @property ProjectBonus[] $projectBonuses
  * @property ProjectOwner[] $projectOwners
  * @property ProjectTarget[] $projectTargets
  * @property Time[] $times
@@ -139,6 +140,14 @@ class Project extends \yii\db\ActiveRecord
     public function getProjects()
     {
         return $this->hasMany(Project::className(), ['parent_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectBonuses()
+    {
+        return $this->hasMany(ProjectBonus::className(), ['project_id' => 'id']);
     }
 
     /**

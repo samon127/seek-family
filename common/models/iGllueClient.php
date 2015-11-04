@@ -8,6 +8,7 @@ use Yii;
 class iGllueClient extends GllueClient
 {
 
+    public $count;
 
     /**
      * @return \yii\db\ActiveQuery

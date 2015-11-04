@@ -4,6 +4,7 @@ use common\tool\Gllue;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use common\tool\Family;
+use common\tool\FamilyFinance;
 
 use common\models\Income;
 use common\models\Time;
@@ -202,59 +203,8 @@ $(document).ready( function () {
 } );
 </script>
 
-<?php
-$incomes = Income::find()
-->where(['project_id'=>$pid])
-->all();
 
-$allIncome = 0;
-foreach ($incomes as $income)
-{
-    $allIncome += $income->number;
-}
-
-$allInvoice = 0;
-foreach ($incomes as $income)
-{
-    if ($income->invoice == 1)
-    {
-        $allInvoice += $income->number*0.0506;
-    }
-}
-
-$allPay = 0;
-foreach ($pays as $pay)
-{
-    $allPay += Family::getNumberByWeight($currentProject->id, $pay->projects, $pay->number);
-}
-
-$timeValue = 0;
-foreach ($times as $time)
-{
-    if (!$time->project->parent_id)
-    {
-        $percentNumber = Family::getTimePercentOfParent($time, $allSubProjects, $currentProject);
-    }
-    else
-    {
-        $percentNumber = $time->percent;
-    }
-    $timeValue += $percentNumber*iUserBalance::getUserBalance($time->user_id, $time->month)/100;
-}
-
-$totalProfit = $allIncome-$allInvoice-$allPay-$timeValue;
-$totalPartnerProfit = Family::getPartnerProfit($totalProfit, $currentProject);
-$totalTeamProfit = Family::getTeamProfit($totalProfit - $totalPartnerProfit, $currentProject);
-
-?>
-
-<?php
-if ($parentProject)
-{
-    //echo $this->render('@common/views/partial/parentProjectBalanceInfo', ['parentProject'=>$parentProject]);
-}
-?>
-
+<?php $finance = new FamilyFinance; ?>
 
 <table id="balance_table<?php echo $random ?>" class="display">
     <thead>
@@ -272,31 +222,31 @@ if ($parentProject)
     <tbody>
         <tr>
             <td><?php echo Yii::t('app', 'Project Income') ?></td>
-            <td><?php echo number_format($allIncome, 2) ?></td>
+            <td><?php echo number_format($finance->getProjectTotleIncomes($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Invoice Expense') ?></td>
-            <td>-<?php echo number_format($allInvoice, 2) ?></td>
+            <td>-<?php echo number_format($finance->getProjectTotleInvoice($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Project Pay') ?></td>
-            <td>-<?php echo number_format($allPay, 2) ?></td>
+            <td>-<?php echo number_format($finance->getProjectTotlePay($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Stuff Pay') ?></td>
-            <td>-<?php echo number_format($timeValue, 2) ?></td>
+            <td>-<?php echo number_format($finance->getProjectTotleStuffPays($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Project Profit') ?></td>
-            <td><?php echo number_format($totalProfit, 2) ?></td>
+            <td><?php echo number_format($finance->getProjectTotalProfit($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Cooperative Partner Profit') ?></td>
-            <td><?php echo number_format($totalPartnerProfit, 2) ?></td>
+            <td><?php echo number_format($finance->getTotalPartnerProfit($pid), 2) ?></td>
         </tr>
         <tr>
             <td><?php echo Yii::t('app', 'Team Profit') ?></td>
-            <td><?php echo number_format($totalTeamProfit, 2) ?></td>
+            <td><?php echo number_format($finance->getTotalTeamProfit($pid), 2) ?></td>
         </tr>
     </tbody>
 </table>
