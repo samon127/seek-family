@@ -30,8 +30,8 @@ use yii\helpers\Html;
  * ~~~
  * echo Menu::widget([
  *     'items' => [
- *         // Important: you need to specify url as 'controllers/action',
- *         // not just as 'controllers' even if default action is used.
+ *         // Important: you need to specify url as 'controller/action',
+ *         // not just as 'controller' even if default action is used.
  *         ['label' => 'Home', 'url' => ['site/index']],
  *         // 'Products' menu item will be selected as long as the route is 'product/index'
  *         ['label' => 'Products', 'url' => ['product/index'], 'items' => [
@@ -311,7 +311,7 @@ class Menu extends Widget
     protected function isItemActive($item)
     {
         if (isset($item['url']) && is_array($item['url']) && isset($item['url'][0])) {
-            $route = $item['url'][0];
+            $route = Yii::getAlias($item['url'][0]);
             if ($route[0] !== '/' && Yii::$app->controller) {
                 $route = Yii::$app->controller->module->getUniqueId() . '/' . $route;
             }

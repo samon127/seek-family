@@ -30,15 +30,6 @@ return array (
       '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap',
     ),
   ),
-  'yiisoft/yii2-debug' => 
-  array (
-    'name' => 'yiisoft/yii2-debug',
-    'version' => '2.0.4.0',
-    'alias' => 
-    array (
-      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
-    ),
-  ),
   'yiisoft/yii2-gii' => 
   array (
     'name' => 'yiisoft/yii2-gii',
@@ -57,22 +48,13 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
-  'mdmsoft/yii2-admin' => 
+  'yiisoft/yii2-debug' => 
   array (
-    'name' => 'mdmsoft/yii2-admin',
-    'version' => '9999999-dev',
+    'name' => 'yiisoft/yii2-debug',
+    'version' => '2.0.5.0',
     'alias' => 
     array (
-      '@mdm/admin' => $vendorDir . '/mdmsoft/yii2-admin',
-    ),
-  ),
-  'robregonm/yii2-auth' => 
-  array (
-    'name' => 'robregonm/yii2-auth',
-    'version' => '0.6.2.0',
-    'alias' => 
-    array (
-      '@auth' => $vendorDir . '/robregonm/yii2-auth',
+      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
     ),
   ),
 );

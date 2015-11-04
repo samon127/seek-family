@@ -185,7 +185,13 @@ class GridView extends BaseListView
      */
     public $columns = [];
     /**
-     * @var string the HTML display when the content of a cell is empty
+     * @var string the HTML display when the content of a cell is empty.
+     * This property is used to render cells that have no defined content,
+     * e.g. empty footer or filter cells.
+     *
+     * Note that this is not used by the [[DataColumn]] if a data item is `null`. In that case
+     * the [[\yii\i18n\Formatter::nullDisplay|nullDisplay]] property of the [[formatter]] will
+     * be used to indicate an empty data value.
      */
     public $emptyCell = '&nbsp;';
     /**
@@ -201,7 +207,7 @@ class GridView extends BaseListView
     public $filterModel;
     /**
      * @var string|array the URL for returning the filtering result. [[Url::to()]] will be called to
-     * normalize the URL. If not set, the current controllers action will be used.
+     * normalize the URL. If not set, the current controller action will be used.
      * When the user makes change to any filter input, the current filtering inputs will be appended
      * as GET parameters to this URL.
      */

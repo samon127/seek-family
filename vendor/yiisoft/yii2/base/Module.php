@@ -25,7 +25,7 @@ use yii\di\ServiceLocator;
  * with '@') and the array values are the corresponding paths or aliases. See [[setAliases()]] for an example.
  * This property is write-only.
  * @property string $basePath The root directory of the module.
- * @property string $controllerPath The directory that contains the controllers classes. This property is
+ * @property string $controllerPath The directory that contains the controller classes. This property is
  * read-only.
  * @property string $layoutPath The root directory of layout files. Defaults to "[[viewPath]]/layouts".
  * @property array $modules The modules (indexed by their IDs).
@@ -38,12 +38,12 @@ use yii\di\ServiceLocator;
 class Module extends ServiceLocator
 {
     /**
-     * @event ActionEvent an event raised before executing a controllers action.
+     * @event ActionEvent an event raised before executing a controller action.
      * You may set [[ActionEvent::isValid]] to be false to cancel the action execution.
      */
     const EVENT_BEFORE_ACTION = 'beforeAction';
     /**
-     * @event ActionEvent an event raised after executing a controllers action.
+     * @event ActionEvent an event raised after executing a controller action.
      */
     const EVENT_AFTER_ACTION = 'afterAction';
 
@@ -66,13 +66,13 @@ class Module extends ServiceLocator
      */
     public $layout;
     /**
-     * @var array mapping from controllers ID to controllers configurations.
-     * Each name-value pair specifies the configuration of a single controllers.
-     * A controllers configuration can be either a string or an array.
-     * If the former, the string should be the fully qualified class name of the controllers.
+     * @var array mapping from controller ID to controller configurations.
+     * Each name-value pair specifies the configuration of a single controller.
+     * A controller configuration can be either a string or an array.
+     * If the former, the string should be the fully qualified class name of the controller.
      * If the latter, the array must contain a 'class' element which specifies
-     * the controllers's fully qualified class name, and the rest of the name-value pairs
-     * in the array are used to initialize the corresponding controllers properties. For example,
+     * the controller's fully qualified class name, and the rest of the name-value pairs
+     * in the array are used to initialize the corresponding controller properties. For example,
      *
      * ~~~
      * [
@@ -86,13 +86,13 @@ class Module extends ServiceLocator
      */
     public $controllerMap = [];
     /**
-     * @var string the namespace that controllers classes are in.
-     * This namespace will be used to load controllers classes by prepending it to the controllers
+     * @var string the namespace that controller classes are in.
+     * This namespace will be used to load controller classes by prepending it to the controller
      * class name.
      *
      * If not set, it will use the `controllers` sub-namespace under the namespace of this module.
      * For example, if the namespace of this module is "foo\bar", then the default
-     * controllers namespace would be "foo\bar\controllers".
+     * controller namespace would be "foo\bar\controllers".
      *
      * See also the [guide section on autoloading](guide:concept-autoloading) to learn more about
      * defining namespaces and how classes are loaded.
@@ -100,7 +100,7 @@ class Module extends ServiceLocator
     public $controllerNamespace;
     /**
      * @var string the default route of this module. Defaults to 'default'.
-     * The route may consist of child module ID, controllers ID, and/or action ID.
+     * The route may consist of child module ID, controller ID, and/or action ID.
      * For example, `help`, `post/create`, `admin/post/create`.
      * If action ID is not given, it will take the default value as specified in
      * [[Controller::defaultAction]].
@@ -226,10 +226,10 @@ class Module extends ServiceLocator
     }
 
     /**
-     * Returns the directory that contains the controllers classes according to [[controllerNamespace]].
+     * Returns the directory that contains the controller classes according to [[controllerNamespace]].
      * Note that in order for this method to return a value, you must define
      * an alias for the root namespace of [[controllerNamespace]].
-     * @return string the directory that contains the controllers classes.
+     * @return string the directory that contains the controller classes.
      * @throws InvalidParamException if there is no alias defined for the root namespace of [[controllerNamespace]].
      */
     public function getControllerPath()
@@ -435,8 +435,8 @@ class Module extends ServiceLocator
     }
 
     /**
-     * Runs a controllers action specified by a route.
-     * This method parses the specified route and creates the corresponding child module(s), controllers and action
+     * Runs a controller action specified by a route.
+     * This method parses the specified route and creates the corresponding child module(s), controller and action
      * instances. It then calls [[Controller::runAction()]] to run the action with the given parameters.
      * If the route is empty, the method will use [[defaultRoute]].
      * @param string $route the route that specifies the action.
@@ -463,7 +463,7 @@ class Module extends ServiceLocator
     }
 
     /**
-     * Creates a controllers instance based on the given route.
+     * Creates a controller instance based on the given route.
      *
      * The route should be relative to this module. The method implements the following algorithm
      * to resolve the given route:
@@ -471,18 +471,18 @@ class Module extends ServiceLocator
      * 1. If the route is empty, use [[defaultRoute]];
      * 2. If the first segment of the route is a valid module ID as declared in [[modules]],
      *    call the module's `createController()` with the rest part of the route;
-     * 3. If the first segment of the route is found in [[controllerMap]], create a controllers
+     * 3. If the first segment of the route is found in [[controllerMap]], create a controller
      *    based on the corresponding configuration found in [[controllerMap]];
      * 4. The given route is in the format of `abc/def/xyz`. Try either `abc\DefController`
-     *    or `abc\def\XyzController` class within the [[controllerNamespace|controllers namespace]].
+     *    or `abc\def\XyzController` class within the [[controllerNamespace|controller namespace]].
      *
-     * If any of the above steps resolves into a controllers, it is returned together with the rest
+     * If any of the above steps resolves into a controller, it is returned together with the rest
      * part of the route which will be treated as the action ID. Otherwise, false will be returned.
      *
-     * @param string $route the route consisting of module, controllers and action IDs.
-     * @return array|boolean If the controllers is created successfully, it will be returned together
+     * @param string $route the route consisting of module, controller and action IDs.
+     * @return array|boolean If the controller is created successfully, it will be returned together
      * with the requested action ID. Otherwise false will be returned.
-     * @throws InvalidConfigException if the controllers class and its file do not match.
+     * @throws InvalidConfigException if the controller class and its file do not match.
      */
     public function createController($route)
     {
@@ -503,7 +503,7 @@ class Module extends ServiceLocator
             $route = '';
         }
 
-        // module and controllers map take precedence
+        // module and controller map take precedence
         if (isset($this->controllerMap[$id])) {
             $controller = Yii::createObject($this->controllerMap[$id], [$id, $this]);
             return [$controller, $route];
@@ -528,16 +528,16 @@ class Module extends ServiceLocator
     }
 
     /**
-     * Creates a controllers based on the given controllers ID.
+     * Creates a controller based on the given controller ID.
      *
-     * The controllers ID is relative to this module. The controllers class
+     * The controller ID is relative to this module. The controller class
      * should be namespaced under [[controllerNamespace]].
      *
      * Note that this method does not check [[modules]] or [[controllerMap]].
      *
-     * @param string $id the controllers ID
-     * @return Controller the newly created controllers instance, or null if the controllers ID is invalid.
-     * @throws InvalidConfigException if the controllers class and its file name do not match.
+     * @param string $id the controller ID
+     * @return Controller the newly created controller instance, or null if the controller ID is invalid.
+     * @throws InvalidConfigException if the controller class and its file name do not match.
      * This exception is only thrown when in debug mode.
      */
     public function createControllerByID($id)

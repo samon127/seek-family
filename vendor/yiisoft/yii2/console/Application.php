@@ -10,6 +10,12 @@ namespace yii\console;
 use Yii;
 use yii\base\InvalidRouteException;
 
+// define STDIN, STDOUT and STDERR if the PHP SAPI did not define them (e.g. creating console application in web env)
+// http://php.net/manual/en/features.commandline.io-streams.php
+defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
+defined('STDERR') or define('STDERR', fopen('php://stderr', 'w'));
+
 /**
  * Application represents a console application.
  *
@@ -32,9 +38,9 @@ use yii\base\InvalidRouteException;
  * yii <route> [--param1=value1 --param2 ...]
  * ~~~
  *
- * where `<route>` refers to a controllers route in the form of `ModuleID/ControllerID/ActionID`
+ * where `<route>` refers to a controller route in the form of `ModuleID/ControllerID/ActionID`
  * (e.g. `sitemap/create`), and `param1`, `param2` refers to a set of named parameters that
- * will be used to initialize the controllers action (e.g. `--since=0` specifies a `since` parameter
+ * will be used to initialize the controller action (e.g. `--since=0` specifies a `since` parameter
  * whose value is 0 and a corresponding `$since` parameter is passed to the action method).
  *
  * A `help` command is provided by default, which lists available commands and shows their usage.
@@ -65,7 +71,7 @@ class Application extends \yii\base\Application
      */
     public $enableCoreCommands = true;
     /**
-     * @var Controller the currently active controllers instance
+     * @var Controller the currently active controller instance
      */
     public $controller;
 
@@ -97,7 +103,7 @@ class Application extends \yii\base\Application
                     if (!empty($path) && is_file($file = Yii::getAlias($path))) {
                         return require($file);
                     } else {
-                        die("The configuration file does not exist: $path\n");
+                        exit("The configuration file does not exist: $path\n");
                     }
                 }
             }
@@ -146,8 +152,8 @@ class Application extends \yii\base\Application
     }
 
     /**
-     * Runs a controllers action specified by a route.
-     * This method parses the specified route and creates the corresponding child module(s), controllers and action
+     * Runs a controller action specified by a route.
+     * This method parses the specified route and creates the corresponding child module(s), controller and action
      * instances. It then calls [[Controller::runAction()]] to run the action with the given parameters.
      * If the route is empty, the method will use [[defaultRoute]].
      * @param string $route the route that specifies the action.
