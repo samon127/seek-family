@@ -128,7 +128,7 @@ class IncomeController extends \yii\web\Controller
         }
 
         $model->type = $data['type'];
-        $model->project_id = $data['project'];
+        $model->project_id = (isset($data['project']) && $data['project'] ) ? $data['project'] : '';
         $model->client_id = (isset($data['client']) && $data['client'] ) ? $data['client'] : '';
         $model->number = str_replace(',', '', $data['money']);
         $model->card = $data['card'];

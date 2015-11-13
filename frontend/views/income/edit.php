@@ -148,7 +148,7 @@ triggerInvoiceInput = function(dom)
 
 <?php
 $defaultComment = $defaultValue ? $defaultValue['comment'] : '';
-echo $this->render('@common/views/form/commentTextarea', ['page' => 'income', 'defaultValue' => $defaultComment]);
+echo $this->render('@common/views/form/commentTextarea', ['page' => 'income', 'defaultComment' => $defaultComment]);
 ?>
 
 <!-- Button -->

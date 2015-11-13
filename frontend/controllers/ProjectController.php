@@ -62,8 +62,6 @@ class ProjectController extends Controller
         }
 
         $model->style = $data['style'];
-        $model->area_start = $data['area_start'];
-        $model->area_end = $data['area_end'];
 
         $model->teacher_id = isset($data['teacher']) ? $data['teacher'] : '';
         $model->client_id = isset($data['client']) ? $data['client'] : '';
@@ -77,7 +75,6 @@ class ProjectController extends Controller
         $model->weight = isset($data['weight']) ? $data['weight'] : '';
         $model->partner_profit = isset($data['partner_profit']) ? $data['partner_profit'] : '';
         $model->team_profit = isset($data['team_profit']) ? $data['team_profit'] : '';
-
         $model->gllue_project_id = isset($data['gllue_project']) ? $data['gllue_project'] : '';
 
         $model->save();
@@ -91,6 +88,27 @@ class ProjectController extends Controller
             }
         }
 
+
+        return $this->redirect(['project/index']);
+    }
+
+    public function actionSubmitParent()
+    {
+        $data = Yii::$app->getRequest()->post('project');
+
+        if (isset($data['id']) && $data['id'])
+        {
+            $model = iProject::find()->where(['id' => $data['id']])->one();
+        }
+        else
+        {
+            $model = new iProject();
+        }
+
+        $model->style = 2;
+        $model->name = isset($data['parentName']) ? $data['parentName'] : '';
+
+        $model->save();
 
         return $this->redirect(['project/index']);
     }
@@ -140,19 +158,21 @@ class ProjectController extends Controller
         if ($id = Yii::$app->getRequest()->get('id'))
         {
             $defaultValue = Project::find()->with('projectOwners')->asArray()->where(['id' => $id])->one();
+            if ($defaultValue['style'] == 2)
+            {
+                $defaultValue['parentName'] = $defaultValue['name'];
+                $defaultValue['name'] = '';
+            }
+            else {
+                $defaultValue['parentName'] = '';
+            }
         }
         else
         {
             $defaultValue = [];
         }
 
-    	$projectTypes = DBList::getProjectType();
-    	$teachers = DBList::getTeacher();
-    	$city = DBList::getCity();
-    	$parentProject = DBList::getParentProject();
-    	$users = DBList::getUser();
-
-        return $this->render('edit', ['projectTypes' => $projectTypes, 'teachers' => $teachers, 'city' => $city, 'defaultValue' => $defaultValue, 'parentProject'=>$parentProject, 'users'=>$users]);
+        return $this->render('edit', ['defaultValue' => $defaultValue]);
     }
 
 
@@ -219,6 +239,24 @@ class ProjectController extends Controller
         if ($pay)
         {
             echo '需要先删除项目支出，才能删除项目';
+            exit;
+        }
+
+        $model = Project::find()->where(['id' => $pid])->one();
+        $model->delete();
+
+        return $this->redirect(['project/index']);
+
+    }
+
+    public function actionDeleteParent()
+    {
+        $pid = Yii::$app->getRequest()->get('id');
+
+        $project = iProject::find()->where(['parent_id' => $pid])->one();
+        if ($project)
+        {
+            echo '需要先删除所有子项目，才能删除此项目';
             exit;
         }
 

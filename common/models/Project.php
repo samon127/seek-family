@@ -53,7 +53,7 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['style', 'area_start', 'area_end'], 'required'],
+            [['style'], 'required'],
             [['style', 'city_id', 'teacher_id', 'type_id', 'client_id', 'parent_id', 'gllue_project_id'], 'integer'],
             [['date_start', 'date_end'], 'safe'],
             [['name', 'area_start', 'area_end', 'comment', 'weight', 'partner_profit', 'team_profit'], 'string', 'max' => 255]
