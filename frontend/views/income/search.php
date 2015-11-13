@@ -32,9 +32,9 @@ echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[income]', '
 ?>
 
 <?php
-$defaultDates2['date_start'] = isset($defaultValue['project']['date_start']) ? $defaultValue['project']['date_start'] : '';
-$defaultDates2['date_end'] = isset($defaultValue['project']['date_end']) ? $defaultValue['project']['date_end'] : '';
-echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[project]', 'defaultDates' => $defaultDates2, 'label'=>'项目时间']);
+//$defaultDates2['date_start'] = isset($defaultValue['project']['date_start']) ? $defaultValue['project']['date_start'] : '';
+//$defaultDates2['date_end'] = isset($defaultValue['project']['date_end']) ? $defaultValue['project']['date_end'] : '';
+//echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[project]', 'defaultDates' => $defaultDates2, 'label'=>'项目时间']);
 ?>
 
 <?php

@@ -37,23 +37,25 @@ class IncomeController extends \yii\web\Controller
                 $model->andWhere(['<=', 'income_date', $searchKeyWord['income']['date_end']]);
             }
 
-            if ($searchKeyWord['project']['date_start']){
-                $model->andWhere(['>=', 'project.date_start', $searchKeyWord['project']['date_start']]);
-            }
+//             if ($searchKeyWord['project']['date_start']){
+//                 $model->andWhere(['>=', 'project.date_start', $searchKeyWord['project']['date_start']]);
+//             }
 
-            if ($searchKeyWord['project']['date_end'])
-            {
-                $model->andWhere(['<=', 'project.date_end', $searchKeyWord['project']['date_end']]);
-            }
+//             if ($searchKeyWord['project']['date_end'])
+//             {
+//                 $model->andWhere(['<=', 'project.date_end', $searchKeyWord['project']['date_end']]);
+//             }
 
             if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
             {
                 $model->andWhere(['income.client_id' => $searchKeyWord['client']]);
             }
 
-            if (isset($searchKeyWord['project_id']) && $searchKeyWord['project_id'])
+            //print_r($searchKeyWord);exit;
+
+            if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
             {
-                $model->andWhere(['project_id' => $searchKeyWord['project_id']]);
+                $model->andWhere(['in','project_id',$searchKeyWord['project']]);
             }
 
             if(Isset ($searchKeyWord['invoice']) && $searchKeyWord['invoice'])
