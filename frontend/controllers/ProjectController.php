@@ -218,6 +218,7 @@ class ProjectController extends Controller
         ->with('times.user')
         ->orderBy('date_start')
         ->joinWith('type', true, 'LEFT JOIN')
+        ->where(['!=', 'project.style', 2])
         ->all();
 
         return $this->render('finance', ['projects'=>$projects]);
