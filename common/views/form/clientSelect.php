@@ -52,6 +52,8 @@ function formatRepo (repo) {
   }
 
 $('#clientSelect').select2({
+	  allowClear: true,
+      placeholder: " ",
 	  ajax: {
 		    //url: "https://api.github.com/search/repositories",
 		    url: "<?php echo Url::to(['project/get-company']) ?>",
