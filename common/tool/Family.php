@@ -15,6 +15,11 @@ class Family
     public static function getProjectName($project, $clientIds)
     {
 
+        if (!$project)
+        {
+            return '';
+        }
+
         if ($project->style == 2)
         {
             return $project->name;
