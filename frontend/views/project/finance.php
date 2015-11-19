@@ -23,7 +23,7 @@ foreach ($projects as $project)
 
 <style>
 .container-page{
-  width:120%;
+  width:100%;
 }
 </style>
 
@@ -35,6 +35,61 @@ foreach ($projects as $project)
 
 <!-- DataTables -->
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
+
+<form class="form-horizontal" action="<?php echo Url::to(['project/finance']) ?>" method="get"
+      xmlns="http://www.w3.org/1999/html">
+<input type="hidden" name="r" value="project/finance" />
+
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>项目查询</legend>
+
+
+<div class="form-group" style="padding-top:10px">
+  <label class="col-md-4 control-label" for="singlebutton">项目类型</label>
+  <div class="col-md-4">
+    <?php
+    $options = ['1'=>'普通项目', '3'=>'子项目', '2'=>'母项目'];
+    echo HTML::checkboxList('s[style]', $defaultValue['style'], $options);
+    ?>
+  </div>
+</div>
+
+
+
+
+<?php
+$defaultProjects = isset($defaultValue['project']) ? $defaultValue['project'] : '';
+echo $this->render('@common/views/form/multipleProjectSelect', ['page' => 's', 'defaultProjects'=>$defaultProjects, 'label'=>'项目']);
+?>
+
+<?php
+$defaultDates['date_start'] = isset($defaultValue['date_start']) ? $defaultValue['date_start'] : '';
+$defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
+echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'项目时间']);
+?>
+
+<?php
+$defaultClient = isset($defaultValue['client']) ? $defaultValue['client'] : '';
+echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultValue' => $defaultClient]);
+?>
+
+
+
+<div class="form-group" style="padding-top:10px">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <input type="submit" id="singlebutton" class="btn btn-primary" value="搜索"/>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
 
 
 
@@ -90,6 +145,22 @@ foreach ($projects as $project)
         </tr>
         <?php endforeach; ?>
     </tbody>
+    <tfoot>
+        <tr>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right">合计：</th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+        </tr>
+    </tfoot>
 </table>
 
 
@@ -105,8 +176,8 @@ $(document).ready( function () {
        ],
     	paging: false,
     	"info": false,
-    	"searching": true,
-    	"order": [[ 0, 'asc' ]],
+    	"searching": false,
+    	"order": [],
     	"drawCallback": function ( settings ) {
             var api = this.api();
             var rows = api.rows( {page:'current'} ).nodes();
@@ -121,6 +192,30 @@ $(document).ready( function () {
                     last = group;
                 }
             } );
+        },
+        "footerCallback": function ( row, data, start, end, display ) {
+            var api = this.api(), data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function ( i ) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                        i : 0;
+            };
+
+            $([4,5,6,7,8,9,10]).each(function(i, j){
+            	pageTotal = api
+                    .column( j, { page: 'current'} )
+                    .data()
+                    .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+
+                $( api.column( j ).footer() ).html(
+                	'<span class="money">'+Math.round(pageTotal*100)/100+'</span>'
+                );
+            })
         }
     });
 
