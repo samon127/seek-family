@@ -2,12 +2,11 @@
 namespace frontend\controllers;
 
 
-use yii\web\controller;
 use common\models\Project;
 use common\models\iProject;
 use common\models\ProjectBonus;
 
-class BonusController extends Controller
+class BonusController extends \yii\web\Controller
 {
     public function actionList()
     {
