@@ -31,7 +31,7 @@ use common\tool\Family;
         </tr>
     </tfoot>
     <tbody>
-    <?php for($i=strtotime($date_start);$i<=strtotime($date_end);$i+=(60*60*24)): ?>
+    <?php for($i=strtotime($date_end);$i>=strtotime($date_start);$i-=(60*60*24)): ?>
         <?php if (Family::financeInfoExist(date('Y-m-d', $i), $incomes, $pays)) :?>
         <tr>
             <td><?php echo date('Y-m-d', $i) ?></td>
