@@ -89,7 +89,7 @@ class ProjectController extends Controller
         }
 
 
-        return $this->redirect(['project/index']);
+        return $this->redirect(['project/finance']);
     }
 
     public function actionSubmitParent()
@@ -110,7 +110,7 @@ class ProjectController extends Controller
 
         $model->save();
 
-        return $this->redirect(['project/index']);
+        return $this->redirect(['project/finance']);
     }
 
     // AJAX, used by select2
