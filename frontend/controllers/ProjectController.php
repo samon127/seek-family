@@ -242,7 +242,7 @@ class ProjectController extends Controller
 
         if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
         {
-            $searchKeyWord['date_end'] = date('Y-m-d', time());
+            $searchKeyWord['date_end'] = date('Y-m-d', time()+24*60*60*90);
         }
         $model->andWhere(['<=', 'project.date_end', $searchKeyWord['date_end']]);
 
