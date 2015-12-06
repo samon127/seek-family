@@ -31,7 +31,7 @@ class Family
         $name .= str_replace('-', '', $project->date_start) . '-';
 
         if ($project->city) {
-            $name .= Yii::t('app', $project->city->key) . '-';
+            $name .= $project->city->name . '-';
         }
         if ($project->teacher) {
             $name .= $project->teacher->name . '-';
