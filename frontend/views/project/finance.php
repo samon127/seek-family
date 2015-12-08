@@ -99,7 +99,7 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th>月份</th>
             <th>执行时间</th>
 <!--             <th>分类</th> -->
-             <th>项目名称</th>
+             <th width="400px">项目名称</th>
 <!--             <th>类型</th> -->
             <th>负责人</th>
             <th>项目收入</th>
