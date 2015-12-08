@@ -65,7 +65,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('新建项目', Url::to(['project/edit'])) ?></li>
                     <li class="divider"></li>
-                    <li><?php echo Html::a('项目信息表', Url::to(['project/index'])) ?></li>
+                    <!--   <li><?php //echo Html::a('项目信息表', Url::to(['project/index'])) ?></li> -->
                     <li><?php echo Html::a('项目财务表', Url::to(['project/finance'])) ?></li>
 
                 </ul>
@@ -78,7 +78,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('日收支核对', Url::to(['revenue/daily'])) ?></li>
-                    <li><?php echo Html::a('应付账款', Url::to(['revenue/daily'])) ?></li>
+                    <!--   <li><?php //echo Html::a('应付账款', Url::to(['revenue/daily'])) ?></li> -->
                     <li class="divider"></li>
                     <li><?php echo Html::a('收入查询', Url::to(['income/search'])) ?></li>
                     <li><?php echo Html::a('支出查询', Url::to(['pay/search'])) ?></li>
@@ -98,7 +98,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('时间分配设置', Url::to(['time/edit'])); ?></li>
-                    <li><?php echo Html::a('Balance设置', Url::to(['balance/index'])) ?></li>
+                    <!--   <li><?php //echo Html::a('Balance设置', Url::to(['balance/index'])) ?></li> -->
                 </ul>
                 </li>
             </ul>

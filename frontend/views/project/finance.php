@@ -140,7 +140,7 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <?php echo Html::a('收入', Url::to(['income/index', 'pid' => $project->id])) ?>
             <?php echo Html::a('支出', Url::to(['pay/index', 'pid' => $project->id])) ?>
             <?php echo Html::a('结算', Url::to(['project/balance', 'pid' => $project->id])) ?>
-            <?php echo Html::a('分配', Url::to(['project/share', 'pid' => $project->id])) ?>
+            <?php //echo Html::a('分配', Url::to(['project/share', 'pid' => $project->id])) ?>
             </td>
         </tr>
         <?php endforeach; ?>
