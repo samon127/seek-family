@@ -25,6 +25,7 @@ use common\tool\Family;
             <th>用户</th>
             <th>CRM中总客户</th>
             <th>CRM中已签约客户</th>
+            <th>CRM中未签约客户</th>
             <th>成交客户</th>
             <th>半年内成交客户</th>
             <th>需要升级的客户</th>
@@ -34,7 +35,7 @@ use common\tool\Family;
     </thead>
     <tfoot>
         <tr>
-            <th colspan="6" style="text-align:right"></th>
+            <th colspan="7" style="text-align:right"></th>
             <th></th>
         </tr>
     </tfoot>
@@ -45,6 +46,7 @@ use common\tool\Family;
             <td><?php echo HTML::a($user['name'], Url::to(['data/user', 'uid'=>$id])) ?></td>
             <td><?php echo @$user['allClientCount'] ?></td>
             <td><?php echo @$user['allDealClientCount'] ?></td>
+            <td><?php echo @$user['allNodealClientCount'] ?></td>
             <td><?php echo @$user['allFinanceClientCount'] ?></td>
             <td><?php echo @$user['recentFinanceClientCount'] ?></td>
             <td><?php echo @$user['upgradeClientCount'] ?></td>

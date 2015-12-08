@@ -19,6 +19,7 @@ use common\tool\Family;
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#tab1" aria-controls="home" role="tab" data-toggle="tab">所有客户（<?php echo count($data['allClient']) ?>）</a></li>
     <li role="presentation"><a href="#tab2" aria-controls="profile" role="tab" data-toggle="tab">CRM签约客户数（<?php echo count($data['allDealClient'])?>）</a></li>
+    <li role="presentation"><a href="#tab7" aria-controls="profile" role="tab" data-toggle="tab">CRM未签约客户数（<?php echo count($data['allNodealClient'])?>）</a></li>
     <li role="presentation"><a href="#tab3" aria-controls="messages" role="tab" data-toggle="tab">所有成交客户（<?php echo count($data['allFinanceClient'])?>）</a></li>
     <li role="presentation"><a href="#tab4" aria-controls="settings" role="tab" data-toggle="tab">半年内成交客户（<?php echo count($data['recentFinanceClient'])?>）</a></li>
     <li role="presentation"><a href="#tab5" aria-controls="settings" role="tab" data-toggle="tab">需要升级客户（<?php echo count($data['upgradeClient'])?>）</a></li>
@@ -32,6 +33,9 @@ use common\tool\Family;
     </div>
     <div role="tabpanel" class="tab-pane" id="tab2">
         <?php echo $this->render('_dataTable', ['model' => $data['allDealClient']]) ?>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="tab7">
+        <?php echo $this->render('_dataTable', ['model' => $data['allNodealClient']]) ?>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab3">
         <?php echo $this->render('_dataTable', ['model' => $data['allFinanceClient']]) ?>

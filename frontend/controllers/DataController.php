@@ -41,6 +41,7 @@ class DataController extends \yii\web\Controller
                     ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                     ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
                     ])
+            ->andWhere(['client.parent_id' => null])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -61,6 +62,7 @@ class DataController extends \yii\web\Controller
                     ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                     ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
             ])
+            ->andWhere(['client.parent_id' => null])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -68,6 +70,27 @@ class DataController extends \yii\web\Controller
             if (in_array($client->bd_id, $userArray))
             {
                 $data[$client->bd_id]['allDealClientCount'] = $client->count;
+            }
+        }
+
+        // CRM中未签约客户
+        $model = iGllueClient::find()
+        ->select(['COUNT(*) AS count, client.*'])
+        ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
+        ->andWhere(['!=', 'client.type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
+        ->andWhere(['client.parent_id' => null])
+        ->groupBy('bd_id')
+        ->all();
+        foreach ($model as $client)
+        {
+            if (in_array($client->bd_id, $userArray))
+            {
+                $data[$client->bd_id]['allNodealClientCount'] = $client->count;
             }
         }
 
@@ -94,6 +117,7 @@ class DataController extends \yii\web\Controller
                     ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                     ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
             ])
+            ->andWhere(['client.parent_id' => null])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -124,6 +148,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -157,6 +182,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -187,6 +213,7 @@ class DataController extends \yii\web\Controller
                         ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                         ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
                 ])
+                ->andWhere(['client.parent_id' => null])
                 ->groupBy('bd_id')
                 ->all();
         foreach ($model as $client)
@@ -220,6 +247,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -246,6 +274,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['allClient'] = $model;
 
@@ -258,8 +287,22 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['allDealClient'] = $model;
+
+        // CRM中未签约客户
+        $model = iGllueClient::find()
+        ->where(['bd_id'=>$uid])
+        ->andWhere(['!=', 'type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
+        ->andWhere(['client.parent_id' => null])
+        ->all();
+        $data['allNodealClient'] = $model;
 
         // 在财务表中找到所有有交易记录的客户数据
         $clientIds = [];
@@ -279,6 +322,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['allFinanceClient'] = $model;
 
@@ -303,6 +347,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['recentFinanceClient'] = $model;
 
@@ -326,6 +371,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['upgradeClient'] = $model;
 
@@ -351,6 +397,7 @@ class DataController extends \yii\web\Controller
                 ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
                 ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
         ])
+        ->andWhere(['client.parent_id' => null])
         ->all();
         $data['degradeClient'] = $model;
 
