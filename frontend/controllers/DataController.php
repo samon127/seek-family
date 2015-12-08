@@ -36,6 +36,11 @@ class DataController extends \yii\web\Controller
         $model = iGllueClient::find()
             ->select(['COUNT(*) AS count, client.*'])
             ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
+            ->andFilterWhere(['or',
+                    ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+                    ])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -51,6 +56,11 @@ class DataController extends \yii\web\Controller
             ->select(['COUNT(*) AS count, client.*'])
             ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
             ->andWhere(['=', 'client.type', 'client'])
+            ->andFilterWhere(['or',
+                    ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+            ])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -79,6 +89,11 @@ class DataController extends \yii\web\Controller
             ->where(['client.id'=>$clientIds])
             ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
             ->andWhere(['=', 'client.type', 'client'])
+            ->andFilterWhere(['or',
+                    ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                    ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+            ])
             ->groupBy('bd_id')
             ->all();
         foreach ($model as $client)
@@ -104,6 +119,11 @@ class DataController extends \yii\web\Controller
         ->where(['client.id'=>$clientIds])
         ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
         ->andWhere(['!=', 'client.type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -132,6 +152,11 @@ class DataController extends \yii\web\Controller
         ->where(['not in', 'client.id', $clientIds])
         ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
         ->andWhere(['=', 'client.type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -157,6 +182,11 @@ class DataController extends \yii\web\Controller
                 ->select(['COUNT(*) AS count, client.*'])
                 ->where(['client.id'=>$clientIds])
                 ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
+                ->andFilterWhere(['or',
+                        ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                        ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                        ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+                ])
                 ->groupBy('bd_id')
                 ->all();
         foreach ($model as $client)
@@ -185,6 +215,11 @@ class DataController extends \yii\web\Controller
         ->select(['COUNT(*) AS count, client.*'])
         ->where(['client.id'=>$clientIds])
         ->andWhere(['!=', 'client.bd_id', 'NULL']) // 有一个叫做“个人”的用户，bd_id是空的
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->groupBy('bd_id')
         ->all();
         foreach ($model as $client)
@@ -206,6 +241,11 @@ class DataController extends \yii\web\Controller
         // CRM中的总客户数
         $model = iGllueClient::find()
         ->where(['bd_id'=>$uid])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['allClient'] = $model;
 
@@ -213,6 +253,11 @@ class DataController extends \yii\web\Controller
         $model = iGllueClient::find()
         ->where(['bd_id'=>$uid])
         ->andWhere(['=', 'type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['allDealClient'] = $model;
 
@@ -229,6 +274,11 @@ class DataController extends \yii\web\Controller
         $model = iGllueClient::find()
         ->where(['client.id'=>$clientIds])
         ->andWhere(['bd_id'=>$uid])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['allFinanceClient'] = $model;
 
@@ -248,6 +298,11 @@ class DataController extends \yii\web\Controller
         $model = iGllueClient::find()
         ->where(['client.id'=>$clientIds])
         ->andWhere(['bd_id'=>$uid])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['recentFinanceClient'] = $model;
 
@@ -266,6 +321,11 @@ class DataController extends \yii\web\Controller
         ->where(['client.id'=>$clientIds])
         ->andWhere(['bd_id'=>$uid])
         ->andWhere(['!=', 'client.type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['upgradeClient'] = $model;
 
@@ -286,6 +346,11 @@ class DataController extends \yii\web\Controller
         ->where(['not in', 'client.id', $clientIds])
         ->andWhere(['bd_id'=>$uid])
         ->andWhere(['=', 'client.type', 'client'])
+        ->andFilterWhere(['or',
+                ['in', 'client.industry_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry1_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]],
+                ['in', 'client.industry2_id', [13,18,11,4,10,12,9,20,14,218,24,7,3,219,217]]
+        ])
         ->all();
         $data['degradeClient'] = $model;
 
