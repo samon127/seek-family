@@ -16,7 +16,7 @@ class DataController extends \yii\web\Controller
     public function actionSales()
     {
         $startDate = date('Y-m-d', time()-60*60*24*180); // 以这个时间点开始到现在的客户相关数据
-        $userArray = [2, 5, 22, 25, 34, 42, 40, 41, 30];
+        $userArray = [2, 5, 22, 25, 34, 42, 45, 40, 41, 30];
         foreach ($userArray as $userId)
         {
             $data[$userId] = [];
