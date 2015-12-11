@@ -58,9 +58,20 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 
     ?>
     <?php if (!Yii::$app->user->isGuest) { ?>
+    	<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">系统设置
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><?php echo Html::a('教师管理', Url::to(['teacher/index'])) ?></li>
+
+                </ul>
+            </li>
+        </ul>
+
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目设置
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">项目管理
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('新建项目', Url::to(['project/edit'])) ?></li>
