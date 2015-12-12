@@ -58,7 +58,7 @@ class PayTypeController extends \yii\web\Controller
 
         $model = PayType::find()->where(['id' => $id])->one();
 
-        if (Project::find()->where(['type_id' => $id])->one())
+        if (Pay::find()->where(['type_id' => $id])->one())
         {
             echo '对不起，有在使用中的支出类型数据，所以无法被删除！';
             exit;

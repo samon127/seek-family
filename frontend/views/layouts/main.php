@@ -66,6 +66,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li><?php echo Html::a('教师管理', Url::to(['teacher/index'])) ?></li>
                     <li><?php echo Html::a('城市管理', Url::to(['city/index'])) ?></li>
                     <li><?php echo Html::a('项目类型管理', Url::to(['project-type/index'])) ?></li>
+                    <li><?php echo Html::a('支出类型管理', Url::to(['pay-type/index'])) ?></li>
 
                 </ul>
             </li>
