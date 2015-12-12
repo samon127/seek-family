@@ -3,25 +3,25 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\Teacher;
 use common\models\Project;
+use common\models\ProjectType;
 
-class TeacherController extends \yii\web\Controller
+class ProjectTypeController extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
 
     public function actionIndex()
     {
-        $teachers = Teacher::find()->all();
+        $types = ProjectType::find()->all();
 
-        return $this->render('index', ['teachers'=>$teachers]);
+        return $this->render('index', ['types'=>$types]);
     }
 
     public function actionEdit()
     {
         if ($id = Yii::$app->getRequest()->get('id'))
         {
-            $defaultValue = Teacher::find()->asArray()->where(['id' => $id])->one();
+            $defaultValue = ProjectType::find()->asArray()->where(['id' => $id])->one();
         }
         else
         {
@@ -33,15 +33,15 @@ class TeacherController extends \yii\web\Controller
 
     public function actionSubmit()
     {
-        $data = Yii::$app->getRequest()->post('teacher');
+        $data = Yii::$app->getRequest()->post('type');
 
         if (isset($data['id']) && $data['id'])
         {
-            $model = Teacher::find()->where(['id' => $data['id']])->one();
+            $model = ProjectType::find()->where(['id' => $data['id']])->one();
         }
         else
         {
-            $model = new Teacher();
+            $model = new ProjectType();
         }
 
         $model->key = $data['key'];
@@ -56,11 +56,11 @@ class TeacherController extends \yii\web\Controller
     {
         $id = Yii::$app->getRequest()->get('id');
 
-        $model = Teacher::find()->where(['id' => $id])->one();
+        $model = ProjectType::find()->where(['id' => $id])->one();
 
-        if (Project::find()->where(['teacher_id' => $id])->one())
+        if (Project::find()->where(['type_id' => $id])->one())
         {
-            echo '对不起，有在使用中的老师数据，所以无法被删除！';
+            echo '对不起，有在使用中的项目类型数据，所以无法被删除！';
             exit;
         }
         else {

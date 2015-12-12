@@ -64,6 +64,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('教师管理', Url::to(['teacher/index'])) ?></li>
+                    <li><?php echo Html::a('城市管理', Url::to(['city/index'])) ?></li>
+                    <li><?php echo Html::a('项目类型管理', Url::to(['project-type/index'])) ?></li>
 
                 </ul>
             </li>

@@ -4,10 +4,10 @@ use yii\helpers\Html;
 
 ?>
 
-<form class="form-horizontal" action="<?php echo Url::to(['teacher/submit']) ?>" method="post">
+<form class="form-horizontal" action="<?php echo Url::to(['project-type/submit']) ?>" method="post">
 
 <?php if ($defaultValue) : ?>
-<input type="hidden" name="teacher[id]" value="<?php echo $defaultValue['id'] ?>" />
+<input type="hidden" name="type[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
 
 <fieldset>
@@ -18,7 +18,7 @@ use yii\helpers\Html;
   <div class="col-md-4">
   <?php
   $defaultKey = $defaultValue ? $defaultValue['key'] : '';
-  echo HTML::input('text', 'teacher[key]', $defaultKey, ['id' => 'keyInput', 'class'=>'form-control input-md'] )
+  echo HTML::input('text', 'type[key]', $defaultKey, ['id' => 'keyInput', 'class'=>'form-control input-md'] )
   ?>
   <span class="help-block"></span>
   </div>
@@ -30,7 +30,7 @@ use yii\helpers\Html;
   <div class="col-md-4">
   <?php
   $defaultName = $defaultValue ? $defaultValue['name'] : '';
-  echo HTML::input('text', 'teacher[name]', $defaultName, ['id' => 'nameInput', 'class'=>'form-control input-md'] )
+  echo HTML::input('text', 'type[name]', $defaultName, ['id' => 'nameInput', 'class'=>'form-control input-md'] )
   ?>
   <span class="help-block"></span>
   </div>
@@ -42,7 +42,7 @@ use yii\helpers\Html;
   <div class="col-md-4">
     <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
     <?php if ($defaultValue) : ?>
-    <a href="#" data-href="<?php echo Url::to(['teacher/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right" data-toggle="modal" data-target="#confirm-delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <a href="#" data-href="<?php echo Url::to(['project-type/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right" data-toggle="modal" data-target="#confirm-delete"><span class="glyphicon glyphicon-trash"></span> 删除</a>
     <?php endif; ?>
   </div>
 </div>
