@@ -155,7 +155,7 @@ class IncomeController extends \yii\web\Controller
 
         $model->save();
 
-        $from = Yii::$app->getRequest()->post('from', array('revenue/income-detail'));
+        $from = Yii::$app->getRequest()->post('from', array('income/search'));
 
         return $this->redirect($from);
     }
@@ -169,7 +169,7 @@ class IncomeController extends \yii\web\Controller
         $model = Income::find()->where(['id' => $id])->one();
         $model->delete();
 
-        $from = Yii::$app->getRequest()->post('from', array('revenue/income-detail'));
+        $from = Yii::$app->getRequest()->post('from', array('income/search'));
 
         return $this->redirect($from);
 
