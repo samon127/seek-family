@@ -57,7 +57,7 @@ class FamilyFinance
         if (isset($this->allProjectFinance[$projectId]->incomes))
         {
             foreach ($this->allProjectFinance[$projectId]->incomes as $income) {
-                if ($income->invoice == 1)
+                if ($income->invoice_code)
                 {
                     $totle += $income->number*0.0506;
                 }

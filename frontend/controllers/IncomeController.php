@@ -135,7 +135,8 @@ class IncomeController extends \yii\web\Controller
         $model->number = str_replace(',', '', $data['money']);
         $model->card = $data['card'];
         $model->income_date = $data['date'];
-        $model->invoice = $data['invoice'];
+        //$model->invoice = $data['invoice'];
+        $model->invoice_code = $data['invoice_code'];
         $model->comment = $data['comment'];
 
         $model->save();

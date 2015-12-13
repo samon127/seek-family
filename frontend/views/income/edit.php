@@ -108,43 +108,43 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
 ?>
 
 
-
-<!-- Multiple Radios (inline) -->
+<!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="radios">发票</label>
+  <label class="col-md-4 control-label" for="textinput">发票编号</label>
   <div class="col-md-4">
   <?php
-    $defaultInvoice = $defaultValue ? $defaultValue['invoice'] : 1;
-    echo HTML::radioList('income[invoice]', $defaultInvoice,
-            [ 1 => '需要', 2 => '不需要'],
-            [
-                'item' => function($index, $label, $name, $checked, $value) {
-
-                    $return = '<label class="radio-inline">';
-                    $return .= HTML::radio($name, $checked, ['value' => $value]);
-                    $return .= $label;
-                    $return .= '</label>';
-
-                    return $return;
-                }
-            ]
-        );
-    ?>
+  $defaultInvoiceCode = $defaultValue ? $defaultValue['invoice_code'] : '';
+  echo HTML::input('text', 'income[invoice_code]', $defaultInvoiceCode, ['id' => 'invoiceCodeInput', 'class'=>'form-control input-md'] )
+  ?>
+  <span class="help-block">如不填写则表示为 不开具发票</span>
   </div>
 </div>
 
 
-<script>
+<!-- Multiple Radios (inline)
+<div class="form-group">
+  <label class="col-md-4 control-label" for="radios">发票</label>
+  <div class="col-md-4">
+  <?php
+//     $defaultInvoice = $defaultValue ? $defaultValue['invoice'] : 1;
+//     echo HTML::radioList('income[invoice]', $defaultInvoice,
+//             [ 1 => '需要', 2 => '不需要'],
+//             [
+//                 'item' => function($index, $label, $name, $checked, $value) {
 
+//                     $return = '<label class="radio-inline">';
+//                     $return .= HTML::radio($name, $checked, ['value' => $value]);
+//                     $return .= $label;
+//                     $return .= '</label>';
 
-triggerInvoiceInput = function(dom)
-{
-	if ($(dom).value == 1)
-	{
-	    alert(1);
-	}
-}
-</script>
+//                     return $return;
+//                 }
+//             ]
+//         );
+    ?>
+  </div>
+</div>
+-->
 
 <?php
 $defaultComment = $defaultValue ? $defaultValue['comment'] : '';

@@ -86,7 +86,7 @@ foreach ($incomes as $income)
 
              ?></td>
             <td><?php echo $income->card == 1 ? Yii::t('app', 'No'): Yii::t('app', 'Yes') ?></td>
-            <td><?php echo $income->invoice == 2 ? Yii::t('app', 'No') : Yii::t('app', 'Yes') ?></td>
+            <td><?php echo $income->invoice_code ? $income->invoice_code : '无发票' ?></td>
             <td><?php echo Family::getBdNameById($income->client_id, $ids) ?></td>
             <td><?php echo $income->comment ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>

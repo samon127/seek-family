@@ -81,7 +81,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li class="divider"></li>
                     <!--   <li><?php //echo Html::a('项目信息表', Url::to(['project/index'])) ?></li> -->
                     <li><?php echo Html::a('项目财务表', Url::to(['project/finance'])) ?></li>
-
+					<li class="divider"></li>
+                    <li><?php echo Html::a('提成管理', Url::to(['bonus/list'])) ?></li>
                 </ul>
             </li>
         </ul>
@@ -95,12 +96,14 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <!--   <li><?php //echo Html::a('应付账款', Url::to(['revenue/daily'])) ?></li> -->
                     <li class="divider"></li>
                     <li><?php echo Html::a('收入查询', Url::to(['income/search'])) ?></li>
-                    <li><?php echo Html::a('支出查询', Url::to(['pay/search'])) ?></li>
+                    <li><?php echo Html::a('收入新建', Url::to(['income/edit'])) ?></li>
+
                     <li class="divider"></li>
-                    <li><?php echo Html::a('新建收入', Url::to(['income/edit'])) ?></li>
-                    <li><?php echo Html::a('新建支出', Url::to(['pay/edit'])) ?></li>
+					<li><?php echo Html::a('支出查询', Url::to(['pay/search'])) ?></li>
+                    <li><?php echo Html::a('支出新建', Url::to(['pay/edit'])) ?></li>
                     <li class="divider"></li>
-                    <li><?php echo Html::a('提成管理', Url::to(['bonus/list'])) ?></li>
+                    <li><?php echo Html::a('发票管理', Url::to(['invoice/index'])) ?></li>
+
 
                 </ul>
             </li>
