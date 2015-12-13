@@ -24,6 +24,7 @@ class InvoiceController extends \yii\web\Controller
                 $model->andWhere(['>=','invoice_code',$searchKeyWord['start_number']]);
                 $model->andWhere(['<=','invoice_code',$searchKeyWord['end_number']]);
                 $incomes = $model
+                    ->joinWith('bd', true, 'LEFT JOIN')
                     ->joinWith('project', true, 'LEFT JOIN')
                     ->joinWith('project.type', true, 'LEFT JOIN')
                     ->joinWith('project.teacher', true, 'LEFT JOIN')

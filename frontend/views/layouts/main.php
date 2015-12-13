@@ -130,7 +130,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">数据统计
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><?php echo Html::a('业务数据', Url::to(['data/sales'])) ?></li>
+                    <li><?php echo Html::a('客户数据', Url::to(['data/sales'])) ?></li>
+
 
                 </ul>
             </li>

@@ -57,6 +57,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
+            'gllue_id' => 'Gllue ID',
             'key' => 'Key',
             'name' => 'Name',
             'english' => 'English',

@@ -11,14 +11,16 @@ use Yii;
  * @property integer $type
  * @property integer $project_id
  * @property integer $client_id
+ * @property integer $bd_id
  * @property double $number
  * @property integer $card
  * @property string $income_date
  * @property integer $invoice
- * @property string $invoice_code
+ * @property integer $invoice_code
  * @property string $comment
  *
  * @property Project $project
+ * @property User $bd
  */
 class Income extends \yii\db\ActiveRecord
 {
@@ -36,12 +38,11 @@ class Income extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'number', 'card', 'invoice'], 'required'],
-            [['type', 'project_id', 'client_id', 'card', 'invoice'], 'integer'],
+            [['type', 'number', 'card'], 'required'],
+            [['type', 'project_id', 'client_id', 'bd_id', 'card', 'invoice', 'invoice_code'], 'integer'],
             [['number'], 'number'],
             [['income_date'], 'safe'],
-            [['comment'], 'string'],
-            [['invoice_code'], 'string', 'max' => 255]
+            [['comment'], 'string']
         ];
     }
 
@@ -55,6 +56,7 @@ class Income extends \yii\db\ActiveRecord
             'type' => 'Type',
             'project_id' => 'Project ID',
             'client_id' => 'Client ID',
+            'bd_id' => 'Bd ID',
             'number' => 'Number',
             'card' => 'Card',
             'income_date' => 'Income Date',
@@ -70,5 +72,13 @@ class Income extends \yii\db\ActiveRecord
     public function getProject()
     {
         return $this->hasOne(Project::className(), ['id' => 'project_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBd()
+    {
+        return $this->hasOne(User::className(), ['id' => 'bd_id']);
     }
 }

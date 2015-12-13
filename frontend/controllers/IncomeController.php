@@ -83,6 +83,7 @@ class IncomeController extends \yii\web\Controller
 
 
             $incomes = $model
+            ->joinWith('bd', true, 'LEFT JOIN')
             ->joinWith('project', true, 'LEFT JOIN')
             ->joinWith('project.type', true, 'LEFT JOIN')
             ->joinWith('project.teacher', true, 'LEFT JOIN')
@@ -132,6 +133,19 @@ class IncomeController extends \yii\web\Controller
         $model->type = $data['type'];
         $model->project_id = (isset($data['project']) && $data['project'] ) ? $data['project'] : '';
         $model->client_id = (isset($data['client']) && $data['client'] ) ? $data['client'] : '';
+
+        // 需要通过Gllue的系统去查询得到这个客户当前的bd归属人，然后查询user表得到值
+        if (isset($data['client']) && $data['client'])
+        {
+            $bdModel = iGllueClient::find()->where(['=', 'id', $data['client']])->one();
+
+            if ($bdModel->bd_id)
+            {
+                $userModel = User::find()->where(['=','gllue_id', $bdModel->bd_id])->one();
+                $model->bd_id = $userModel->id;
+            }
+        }
+
         $model->number = str_replace(',', '', $data['money']);
         $model->card = $data['card'];
         $model->income_date = $data['date'];
