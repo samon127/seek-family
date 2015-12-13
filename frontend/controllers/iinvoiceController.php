@@ -6,7 +6,7 @@ use Yii;
 use common\models\Income;
 
 
-class InvoiceController extends \yii\web\Controller
+class iinvoiceController extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
 
