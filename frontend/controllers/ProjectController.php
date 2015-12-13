@@ -221,35 +221,41 @@ class ProjectController extends Controller
         ->orderBy('date_start DESC')
         ->joinWith('type', true, 'LEFT JOIN');
 
-        //print_r($searchKeyWord);exit;
-
-        if (!isset($searchKeyWord['style']) || !$searchKeyWord['style'])
+        if (isset($searchKeyWord['style']) && $searchKeyWord['style'][0] == 2)
         {
-            $searchKeyWord['style'] = [1, 3];
+            $model->andWhere(['in','project.style',$searchKeyWord['style']]);
         }
-        $model->andWhere(['in','project.style',$searchKeyWord['style']]);
-
-        if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
+        else
         {
-            $model->andWhere(['in','project.id',$searchKeyWord['project']]);
+            if (!isset($searchKeyWord['style']) || !$searchKeyWord['style'])
+            {
+                $searchKeyWord['style'] = [1, 3];
+            }
+            $model->andWhere(['in','project.style',$searchKeyWord['style']]);
+
+            if (isset($searchKeyWord['project']) && $searchKeyWord['project'])
+            {
+                $model->andWhere(['in','project.id',$searchKeyWord['project']]);
+            }
+
+            if (!isset($searchKeyWord['date_start']) || !$searchKeyWord['date_start'])
+            {
+                //$searchKeyWord['date_start'] = date('Y-m-d', time()-60*60*24*90);
+            }
+            $model->andWhere(['>=', 'project.date_start', date('Y-m-d', time()-60*60*24*90)]);
+
+            if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
+            {
+                //$searchKeyWord['date_end'] = date('Y-m-d', time()+24*60*60*90);
+            }
+            $model->andWhere(['<=', 'project.date_end', date('Y-m-d', time()+24*60*60*90)]);
+
+            if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
+            {
+                $model->andWhere(['project.client_id' => $searchKeyWord['client']]);
+            }
         }
 
-        if (!isset($searchKeyWord['date_start']) || !$searchKeyWord['date_start'])
-        {
-            //$searchKeyWord['date_start'] = date('Y-m-d', time()-60*60*24*90);
-        }
-        $model->andWhere(['>=', 'project.date_start', date('Y-m-d', time()-60*60*24*90)]);
-
-        if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
-        {
-            //$searchKeyWord['date_end'] = date('Y-m-d', time()+24*60*60*90);
-        }
-        $model->andWhere(['<=', 'project.date_end', date('Y-m-d', time()+24*60*60*90)]);
-
-        if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
-        {
-            $model->andWhere(['project.client_id' => $searchKeyWord['client']]);
-        }
         $projects = $model->all();
 
         return $this->render('finance', ['projects'=>$projects, 'defaultValue'=>$searchKeyWord]);
