@@ -155,7 +155,6 @@ $(document).ready( function () {
     	paging: false,
     	"info": false,
     	"searching": false,
-    	"order": [2],
     	"footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
 

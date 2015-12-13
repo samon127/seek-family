@@ -28,7 +28,7 @@ class InvoiceController extends \yii\web\Controller
                     ->joinWith('project.type', true, 'LEFT JOIN')
                     ->joinWith('project.teacher', true, 'LEFT JOIN')
                     ->joinWith('project.city', true, 'LEFT JOIN')
-                    ->orderBy('project.date_start DESC')
+                    ->orderBy('income.invoice_code')
                     ->all();
             }
         }
