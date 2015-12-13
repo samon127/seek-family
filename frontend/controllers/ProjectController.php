@@ -236,15 +236,15 @@ class ProjectController extends Controller
 
         if (!isset($searchKeyWord['date_start']) || !$searchKeyWord['date_start'])
         {
-            $searchKeyWord['date_start'] = date('Y-m-d', time()-60*60*24*90);
+            //$searchKeyWord['date_start'] = date('Y-m-d', time()-60*60*24*90);
         }
-        $model->andWhere(['>=', 'project.date_start', $searchKeyWord['date_start']]);
+        $model->andWhere(['>=', 'project.date_start', date('Y-m-d', time()-60*60*24*90)]);
 
         if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
         {
-            $searchKeyWord['date_end'] = date('Y-m-d', time()+24*60*60*90);
+            //$searchKeyWord['date_end'] = date('Y-m-d', time()+24*60*60*90);
         }
-        $model->andWhere(['<=', 'project.date_end', $searchKeyWord['date_end']]);
+        $model->andWhere(['<=', 'project.date_end', date('Y-m-d', time()+24*60*60*90)]);
 
         if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
         {
