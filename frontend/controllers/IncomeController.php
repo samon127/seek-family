@@ -37,6 +37,11 @@ class IncomeController extends \yii\web\Controller
                 $model->andWhere(['<=', 'income_date', $searchKeyWord['income']['date_end']]);
             }
 
+            if ($searchKeyWord['user_id'])
+            {
+                $model->andWhere(['=', 'bd_id', $searchKeyWord['user_id']]);
+            }
+
 //             if ($searchKeyWord['project']['date_start']){
 //                 $model->andWhere(['>=', 'project.date_start', $searchKeyWord['project']['date_start']]);
 //             }

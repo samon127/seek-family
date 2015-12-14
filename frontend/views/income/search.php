@@ -6,8 +6,7 @@ use common\models\Income;
 use common\models\User;
 use common\models\Project;
 
-$users = User::find()
-->all();
+
 ?>
 
 <form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get"
@@ -40,6 +39,11 @@ echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[income]', '
 <?php
 $defaultClient = isset($defaultValue['client']) ? $defaultValue['client'] : '';
 echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultValue' => $defaultClient]);
+?>
+
+<?php
+$defaultUser = isset($defaultValue['user_id']) ? $defaultValue['user_id'] : '';
+echo $this->render('@common/views/form/userSelect', ['page' => 's', 'defaultValue' => $defaultUser]);
 ?>
 
 <?php
