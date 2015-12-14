@@ -10,7 +10,7 @@ foreach ($users as $id => $user )
 {
     if ($user['english'])
     {
-        $options[$id] = $user->english;
+        $options[$user->id] = $user->english;
     }
 }
 
