@@ -30,7 +30,7 @@ class IncomeController extends \yii\web\Controller
 
             if ($searchKeyWord['income']['date_start']){
                 $model->andWhere(['>=', 'income_date', $searchKeyWord['income']['date_start']]);
-   			 }
+   			}
 
             if ($searchKeyWord['income']['date_end'])
             {
