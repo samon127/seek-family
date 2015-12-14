@@ -2,7 +2,7 @@
 use common\models\User;
 use yii\helpers\Html;
 
-$options = [];
+$options = [''=>''];
 
 $users = User::find()->all();
 
