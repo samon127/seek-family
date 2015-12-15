@@ -132,6 +132,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 <ul class="dropdown-menu" role="menu">
                     <li><?php echo Html::a('客户量数据', Url::to(['data/sales'])) ?></li>
                     <li><?php echo Html::a('新客户录入数据', Url::to(['data2/clients'])) ?></li>
+                    <li><?php echo Html::a('项目数据', Url::to(['data3/projects'])) ?></li>
 
 
                 </ul>

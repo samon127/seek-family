@@ -8,12 +8,20 @@ use common\models\Income;
 use common\models\iGllueClient;
 use common\models\GllueUser;
 use common\tool\DBList;
+use common\models\GllueJoborder;
+use common\models\GllueJobsubmission;
+use common\models\GllueCandidate;
 
-class Data2Controller extends \yii\web\Controller
+class Data3Controller extends \yii\web\Controller
 {
     public $enableCsrfValidation = false;
 
-    public function actionClients()
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    public function actionProjects()
     {
         $dateStart = date('Y-m-d', time()-60*60*24*90); // 以这个时间点开始到现在的客户相关数据
         $dateEnd = date('Y-m-d', time()+60*60*24);
@@ -23,7 +31,7 @@ class Data2Controller extends \yii\web\Controller
             $temp[$userId] = '';
         }
 
-//         $searchKeyWord = Yii::$app->getRequest()->get('s');
+         $searchKeyWord = Yii::$app->getRequest()->get('s');
 
 //         if ($searchKeyWord['income']['date_start'])
 //         {
@@ -42,15 +50,17 @@ class Data2Controller extends \yii\web\Controller
             $data['date'][date('Y-m-d', $i)] = $temp;
         }
 
-        $models = iGllueClient::find()
-        ->where(['in', 'addedBy_id', $userArray])
-        ->andWhere(['>=', 'dateAdded', $dateStart])
-        ->andWhere(['<=', 'dateAdded', $dateEnd])
+        $models = GllueJobsubmission::find()
+        ->joinWith('candidate', true, 'LEFT JOIN')
+        ->where(['=', 'joborder_id', $searchKeyWord['gllue_project']])
+        ->andWhere(['in', 'candidate.owner_id', $userArray])
+        ->andWhere(['>=', 'jobsubmission.dateAdded', $dateStart])
+        ->andWhere(['<=', 'jobsubmission.dateAdded', $dateEnd])
         ->all();
 
         foreach ($models as $model)
         {
-            $data['date'][substr($model->dateAdded, 0, 10)][$model->addedBy_id] += 1;
+            $data['date'][substr($model->dateAdded, 0, 10)][$model->candidate->owner_id] += 1;
         }
 
         //print_r($data);exit;

@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 <!-- Select Basic -->
 <div class="form-group" style="display:1none" id="gllueProjectSelectDiv">
-  <label class="col-md-4 control-label" for="gllueProjectSelect">客户</label>
+  <label class="col-md-4 control-label" for="gllueProjectSelect"><?php echo $label ?></label>
   <div class="col-md-4">
 
 <?php
