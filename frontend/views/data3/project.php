@@ -19,9 +19,14 @@ use common\tool\Family;
 </style>
 
 
-<form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get"
+<form class="form-horizontal" action="<?php echo Url::to(['data3/project']) ?>" method="get"
       xmlns="http://www.w3.org/1999/html">
-<input type="hidden" name="r" value="data2/clients" />
+<input type="hidden" name="r" value="data3/project" />
+
+<?php
+$defaultProject = isset($defaultValue['gllue_project']) ? $defaultValue['gllue_project'] : '';
+echo $this->render('@common/views/form/gllueProjectSelect', ['page' => 's', 'defaultValue' => $defaultProject, 'label'=>'项目选择']);
+?>
 
 <?php
 $defaultDates['date_start'] = isset($defaultValue['income']['date_start']) ? $defaultValue['income']['date_start'] : '';

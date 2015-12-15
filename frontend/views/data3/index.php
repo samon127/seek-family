@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\web\View;
 ?>
 
-<form class="form-horizontal" action="<?php echo Url::to(['income/search']) ?>" method="get"
+<form class="form-horizontal" action="<?php echo Url::to(['data3/projects']) ?>" method="get"
       xmlns="http://www.w3.org/1999/html">
 <input type="hidden" name="r" value="data3/project" />
 

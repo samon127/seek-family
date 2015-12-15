@@ -21,7 +21,7 @@ class Data3Controller extends \yii\web\Controller
         return $this->render('index');
     }
 
-    public function actionProjects()
+    public function actionProject()
     {
         $dateStart = date('Y-m-d', time()-60*60*24*90); // 以这个时间点开始到现在的客户相关数据
         $dateEnd = date('Y-m-d', time()+60*60*24);
@@ -75,7 +75,7 @@ class Data3Controller extends \yii\web\Controller
             }
         }
 
-        return $this->render('clients', ['data'=>$data]);
+        return $this->render('project', ['data'=>$data, 'defaultValue'=>$searchKeyWord]);
     }
 
 }
