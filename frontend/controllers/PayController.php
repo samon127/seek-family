@@ -127,7 +127,7 @@ class PayController extends \yii\web\Controller
             return $this->redirect(['pay/index', 'pid'=>$pid]);
         }
         else {
-            return $this->redirect(['pay/search', 'date_start'=>$data['date'], 'date_end'=>$data['date']]);
+            return $this->redirect(['pay/edit']);
         }
 
     }

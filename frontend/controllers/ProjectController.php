@@ -138,7 +138,10 @@ class ProjectController extends Controller
     {
         $keyWorld = Yii::$app->getRequest()->get('q');
 
-        $all = GllueJoborder::find()->asArray()->indexBy('id')->where(['like', 'jobTitle', $keyWorld])->all();
+        $all = GllueJoborder::find()->asArray()->indexBy('id')
+            ->where(['like', 'jobTitle', $keyWorld])
+            ->orderby('dateAdded DESC')
+            ->all();
 
 
         $items = [];

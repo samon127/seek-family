@@ -29,8 +29,8 @@ echo $this->render('@common/views/form/gllueProjectSelect', ['page' => 's', 'def
 ?>
 
 <?php
-$defaultDates['date_start'] = isset($defaultValue['income']['date_start']) ? $defaultValue['income']['date_start'] : '';
-$defaultDates['date_end'] = isset($defaultValue['income']['date_end']) ? $defaultValue['income']['date_end'] : '';
+$defaultDates['date_start'] = isset($defaultValue['date_start']) ? $defaultValue['date_start'] : '';
+$defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
 echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'时间区间']);
 ?>
 

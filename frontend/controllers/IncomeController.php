@@ -160,7 +160,7 @@ class IncomeController extends \yii\web\Controller
 
         $model->save();
 
-        $from = Yii::$app->getRequest()->post('from', array('income/search'));
+        $from = Yii::$app->getRequest()->post('from', array('income/edit'));
 
         return $this->redirect($from);
     }

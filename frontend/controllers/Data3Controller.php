@@ -33,17 +33,17 @@ class Data3Controller extends \yii\web\Controller
 
          $searchKeyWord = Yii::$app->getRequest()->get('s');
 
-//         if ($searchKeyWord['income']['date_start'])
-//         {
-//             $dateStart = $searchKeyWord['income']['date_start'];
-//             $model->andWhere(['>=', 'income_date', $searchKeyWord['income']['date_start']]);
-//         }
+        if ($searchKeyWord['date_start'])
+        {
+            $dateStart = $searchKeyWord['date_start'];
+            //$model->andWhere(['>=', 'income_date', $searchKeyWord['income']['date_start']]);
+        }
 
-//         if ($searchKeyWord['income']['date_end'])
-//         {
-//             $dateEnd = $searchKeyWord['income']['date_end'];
-//             $model->andWhere(['<=', 'income_date', $searchKeyWord['income']['date_end']]);
-//         }
+        if ($searchKeyWord['date_end'])
+        {
+            $dateEnd = $searchKeyWord['date_end'];
+            //$model->andWhere(['<=', 'income_date', $searchKeyWord['income']['date_end']]);
+        }
 
         for ($i=strtotime($dateEnd)-60*60*24;$i>=strtotime($dateStart);$i-=60*60*24)
         {
