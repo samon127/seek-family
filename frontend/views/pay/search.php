@@ -11,7 +11,7 @@ use common\tool\Family;
 
 <style>
 .container-page{
-  width:95%;
+  width:100%;
 }
 </style>
 
@@ -60,10 +60,10 @@ use common\tool\Family;
     <thead>
         <tr>
             <th>项目编号</th>
-            <th>项目名称</th>
+            <th width="400px">项目名称</th>
             <th>分类</th>
             <th>支出时间</th>
-            <th>备注</th>
+            <th width="400px">备注</th>
             <th style="text-align:right">支出</th>
             <th>操作</th>
         </tr>
