@@ -17,7 +17,7 @@ class Data2Controller extends \yii\web\Controller
     {
         $dateStart = date('Y-m-d', time()-60*60*24*90); // 以这个时间点开始到现在的客户相关数据
         $dateEnd = date('Y-m-d', time()+60*60*24);
-        $userArray = [22, 34, 42, 45];
+        $userArray = [42, 45, 22, 34];
         foreach ($userArray as $userId)
         {
             $temp[$userId] = '';

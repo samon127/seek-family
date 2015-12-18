@@ -60,6 +60,17 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
     <?php if (!Yii::$app->user->isGuest) { ?>
     	<ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">系统功能
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><?php echo Html::a('短信发送', Url::to(['message/index'])) ?></li>
+
+                </ul>
+            </li>
+        </ul>
+
+    	<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">系统设置
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -123,8 +134,8 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 
 
         <?php }
-    } ?>
 
+        ?>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">数据统计
@@ -138,6 +149,13 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 </ul>
             </li>
         </ul>
+
+        <?php
+
+
+    } ?>
+
+
     <?php
     NavBar::end();
     ?>
