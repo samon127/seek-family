@@ -25,6 +25,8 @@ class BonusController extends \yii\web\Controller
             6=> 'Lynn',
             9=> 'Dyson',
             10=> 'Aaron',
+            11=> 'Jamie',
+            12=> 'Chris',
         );
 
         return $this->render('list', ['projects'=>$projects, 'users'=>$users]);
