@@ -6,6 +6,10 @@ use yii\helpers\Html;
 use common\tool\Family;
 use common\tool\FamilyFinance;
 
+use common\tool\DBList;
+
+$projectTypes = DBList::getProjectType();
+
 
 
 $clientIds = [];
@@ -77,6 +81,24 @@ echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultD
 $defaultClient = isset($defaultValue['client']) ? $defaultValue['client'] : '';
 echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultValue' => $defaultClient]);
 ?>
+
+<!-- Select Basic -->
+<div class="form-group" id="typeSelectDiv">
+  <label class="col-md-4 control-label" for="typeSelect">项目类型</label>
+  <div class="col-md-4">
+    <?php
+    $options = $attrs = [];
+    $options[''] = '';
+    foreach ($projectTypes as $id => $type)
+    {
+        $options[$id] = $type['name'];
+        $attrs[$id] = ['key' => $type['key']];
+    }
+    $defaultType = isset($defaultValue['type_id']) ? $defaultValue['type_id'] : '';
+    echo HTML::dropDownList('s[type_id]', $defaultType, $options, ['options' => $attrs, 'id' => 'typeSelect', 'class' => 'form-control']);
+    ?>
+  </div>
+</div>
 
 
 

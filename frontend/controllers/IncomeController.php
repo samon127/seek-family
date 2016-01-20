@@ -125,7 +125,7 @@ class IncomeController extends \yii\web\Controller
 
         $data = Yii::$app->getRequest()->post('income');
         $pid = Yii::$app->getRequest()->post('pid');
-  //print_r($data);exit;
+
         if (isset($data['id']) && $data['id'])
         {
             $model = Income::find()->where(['id' => $data['id']])->one();
@@ -153,6 +153,7 @@ class IncomeController extends \yii\web\Controller
 
         $model->number = str_replace(',', '', $data['money']);
         $model->card = $data['card'];
+        $model->account_id = $data['account_id'];
         $model->income_date = $data['date'];
         //$model->invoice = $data['invoice'];
         $model->invoice_code = $data['invoice_code'];

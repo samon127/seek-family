@@ -264,6 +264,11 @@ class ProjectController extends Controller
             {
                 $model->andWhere(['project.client_id' => $searchKeyWord['client']]);
             }
+
+            if (isset($searchKeyWord['type_id']) && $searchKeyWord['type_id'])
+            {
+                $model->andWhere(['project.type_id' => $searchKeyWord['type_id']]);
+            }
         }
 
         $projects = $model->all();

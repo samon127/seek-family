@@ -18,6 +18,7 @@ class MailController extends \yii\web\Controller
 
     public function actionIndex()
     {
+
         exit;
         $ch = curl_init();
 
@@ -29,12 +30,12 @@ class MailController extends \yii\web\Controller
             'apiUser' => 'marvin',
             'apiKey' => '2ZlvbaUOXDbEqUU6',
             'from' => 'marvin.ma@www.seek-training.com',
-            'subject' => '【斯程国际】2016中国猎头行业年度论坛【上海场2016年1月10日】前1500人免费抢票',
+            'subject' => '【斯程国际】2016年度猎头峰会，硅谷猎头行，2015年中国猎头行业分析报告',
             'html' => file_get_contents('../views/test/test.php'),
             'fromName' => '斯程国际',
             'replyTo' => 'marvin.ma@seek-training.com',
             'useAddressList' => 'true',
-            'to' => 'ls-list1@maillist.sendcloud.org',
+            'to' => 'ls-list4-1@maillist.sendcloud.org',
             //'xsmtpapi'=> json_encode(array('to'=>array('')))
         ]));
 
@@ -44,7 +45,7 @@ class MailController extends \yii\web\Controller
 
         // close cURL resource, and free up system resources
         curl_close($ch);
-
+        exit;
 
 
         return $this->render('index');

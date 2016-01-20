@@ -108,6 +108,31 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
 ?>
 
 
+<?php
+use common\models\IncomeAccount;
+
+$options = [''=>''];
+
+$incomeAccounts = IncomeAccount::find()->all();
+
+foreach ($incomeAccounts as $account )
+{
+    $options[$account->id] = $account->name;
+}
+
+?>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton">收入来源</label>
+  <div class="col-md-4">
+    <?php
+        $defaultAccount = $defaultValue ? $defaultValue['account_id'] : '';
+        echo HTML::dropDownList('income[account_id]', $defaultAccount, $options, ['id' => 'accountSelect', 'class' => 'form-control']);
+    ?>
+  </div>
+</div>
+
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">发票编号</label>

@@ -78,7 +78,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li><?php echo Html::a('城市管理', Url::to(['city/index'])) ?></li>
                     <li><?php echo Html::a('项目类型管理', Url::to(['project-type/index'])) ?></li>
                     <li><?php echo Html::a('支出类型管理', Url::to(['pay-type/index'])) ?></li>
-
+					<li><?php echo Html::a('收入来源管理', Url::to(['income-account/index'])) ?></li>
                 </ul>
             </li>
         </ul>
@@ -144,7 +144,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li><?php echo Html::a('客户量数据', Url::to(['data/sales'])) ?></li>
                     <li><?php echo Html::a('新客户录入数据', Url::to(['data2/clients'])) ?></li>
                     <li><?php echo Html::a('项目数据', Url::to(['data3/index'])) ?></li>
-
+					<li><?php echo Html::a('收入数据', Url::to(['data4/index'])) ?></li>
 
                 </ul>
             </li>
