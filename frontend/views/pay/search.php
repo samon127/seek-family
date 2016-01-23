@@ -19,9 +19,14 @@ use common\tool\Family;
 <?php $this->registerJsFile('vendor/bootstrap-datepicker/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
-
 <?php $this->registerCssFile("/vendor/dataTables/css/jquery.dataTables.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/buttons.html5.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/dataTables.buttons.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/jszip.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerCssFile("/vendor/dataTables/extensions/buttons/css/buttons.dataTables.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 
 
 
@@ -99,6 +104,11 @@ use common\tool\Family;
 $(document).ready( function () {
     $('#table_id').DataTable({
     	paging: false,
+    	dom: 'Bfrtip',
+    	buttons: [{
+			extend: 'excelHtml5',
+			text: '保存为Excel',
+    	}],
     	"info": false,
     	"searching": false,
     	"order": [],
