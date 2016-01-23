@@ -16,15 +16,13 @@ foreach ($incomes as $income)
 $random = rand(1,1000000);
 
 
-$totalIncome = $totalCashIncome = 0;
+$totalIncome = $totalIncomeCount = 0;
 foreach ($incomes as $income)
 {
     $totalIncome += $income->number;
-    if ($income->card == 1)
-    {
-        $totalCashIncome += $income->number;
-    }
 }
+
+$totalIncomeCount = count($incomes);
 ?>
 
 <style>
@@ -130,7 +128,7 @@ $(document).ready( function () {
 
             // Update footer
             $( api.column( 7 ).footer() ).html(
-            	'总收入：<span class="number">'+<?php echo $totalIncome ?>+'</span>&nbsp;&nbsp;&nbsp;现金流收入：<span class="number">'+<?php echo $totalCashIncome ?>+'</span>'
+            	'总收入：<span class="number">'+<?php echo $totalIncome ?>+'</span>&nbsp;&nbsp;&nbsp;收入笔数：<span>'+<?php echo $totalIncomeCount ?>+'</span>'
             );
 
             $('.number').autoNumeric('init');
