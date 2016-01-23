@@ -56,7 +56,7 @@ class FamilyFinance
         if (isset($this->allProjectFinance[$projectId]->incomes))
         {
             foreach ($this->allProjectFinance[$projectId]->incomes as $income) {
-                if (!$income->income_date)
+                if (!$income->income_date && $income->card == 1)
                 {
                     $totle += $income->number;
                 }
