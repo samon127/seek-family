@@ -121,11 +121,12 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th>月份</th>
             <th>执行时间</th>
 <!--             <th>分类</th> -->
-             <th width="400px">项目名称</th>
+             <th width="300px">项目名称</th>
 <!--             <th>类型</th> -->
             <th>负责人</th>
             <th>项目收入</th>
             <th>未到账</th>
+            <th>年卡收入</th>
             <th>项目支出</th>
             <th>发票支出</th>
             <th>人员支出</th>
@@ -150,6 +151,7 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <td><?php echo Family::getUserNames($project->users) ?></td>
             <td class="money"><?php echo $finance->getProjectTotleIncomes($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectIncomesNeed($project->id); ?></td>
+            <td class="money"><?php echo $finance->getProjectIncomesCard($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectTotlePay($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectTotleInvoice($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectTotleStuffPays($project->id); ?></td>
@@ -174,6 +176,8 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right">合计：</th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
@@ -228,7 +232,7 @@ $(document).ready( function () {
                         i : 0;
             };
 
-            $([4,5,6,7,8,9,10,11]).each(function(i, j){
+            $([4,5,6,7,8,9,10,11,12]).each(function(i, j){
             	pageTotal = api
                     .column( j, { page: 'current'} )
                     .data()

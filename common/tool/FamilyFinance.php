@@ -48,6 +48,7 @@ class FamilyFinance
         return $totle;
     }
 
+    // 未到账收入
     public function getProjectIncomesNeed($projectId)
     {
         $this->initProject($projectId);
@@ -57,6 +58,25 @@ class FamilyFinance
         {
             foreach ($this->allProjectFinance[$projectId]->incomes as $income) {
                 if (!$income->income_date && $income->card == 1)
+                {
+                    $totle += $income->number;
+                }
+            }
+        }
+
+        return $totle;
+    }
+
+    // 年卡收入
+    public function getProjectIncomesCard($projectId)
+    {
+        $this->initProject($projectId);
+        $totle = 0;
+
+        if (isset($this->allProjectFinance[$projectId]->incomes))
+        {
+            foreach ($this->allProjectFinance[$projectId]->incomes as $income) {
+                if (!$income->income_date && $income->card == 2)
                 {
                     $totle += $income->number;
                 }
