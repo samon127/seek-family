@@ -48,6 +48,24 @@ class FamilyFinance
         return $totle;
     }
 
+    public function getProjectIncomesNeed($projectId)
+    {
+        $this->initProject($projectId);
+        $totle = 0;
+
+        if (isset($this->allProjectFinance[$projectId]->incomes))
+        {
+            foreach ($this->allProjectFinance[$projectId]->incomes as $income) {
+                if (!$income->income_date)
+                {
+                    $totle += $income->number;
+                }
+            }
+        }
+
+        return $totle;
+    }
+
     // 发票支出
     public function getProjectTotleInvoice($projectId)
     {

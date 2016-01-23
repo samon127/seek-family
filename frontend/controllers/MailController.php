@@ -35,7 +35,7 @@ class MailController extends \yii\web\Controller
             'fromName' => '斯程国际',
             'replyTo' => 'marvin.ma@seek-training.com',
             'useAddressList' => 'true',
-            'to' => 'ls-list4-1@maillist.sendcloud.org',
+            'to' => 'ls-list4-2@maillist.sendcloud.org',
             //'xsmtpapi'=> json_encode(array('to'=>array('')))
         ]));
 
