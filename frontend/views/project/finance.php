@@ -10,8 +10,6 @@ use common\tool\DBList;
 
 $projectTypes = DBList::getProjectType();
 
-
-
 $clientIds = [];
 foreach ($projects as $project)
 {
@@ -21,10 +19,7 @@ foreach ($projects as $project)
     }
 }
 
-
-
 ?>
-
 <style>
 .container-page{
   width:100%;
@@ -35,6 +30,13 @@ foreach ($projects as $project)
 <?php $this->registerJsFile('/vendor/dataTables/js/jquery.dataTables.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 <?php $this->registerCssFile("/vendor/dataTables/extensions/ColVis/css/dataTables.colVis.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/dataTables/extensions/ColVis/js/dataTables.colVis.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+
+
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/buttons.html5.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/dataTables.buttons.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/jszip.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerCssFile("/vendor/dataTables/extensions/buttons/css/buttons.dataTables.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+
 
 
 <!-- DataTables -->
@@ -196,13 +198,17 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
 <script>
 $(document).ready( function () {
     $('#table_id').DataTable({
-    	"dom": 'C&gt;"clear"&lt;lfrtip',
+    	"dom": 'BC&gt;"clear"&lt;lfrtip',
     	"columnDefs": [
            { "visible": false, "targets": 0 },
            { "visible": false, "targets": 1 },
            { "visible": false, "targets": 3 }
        ],
     	paging: false,
+    	buttons: [{
+			extend: 'excelHtml5',
+			text: '保存为Excel',
+    	}],
     	"info": false,
     	"searching": false,
     	"order": [],

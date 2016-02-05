@@ -44,10 +44,6 @@ $totalIncomeCount = count($incomes);
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
-
-
-
-
 <table id="income_table<?php echo $random ?>" class="display">
     <thead>
         <tr>

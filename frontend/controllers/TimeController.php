@@ -71,3 +71,11 @@ class TimeController extends \yii\web\Controller
     	return $this->redirect(['time/edit', 'user_id'=>$user]);
     }
 }
+
+
+
+
+INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '2', '40');
+INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '4', '40');
+INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '11', '40');
+
