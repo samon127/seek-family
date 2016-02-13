@@ -96,20 +96,21 @@ foreach ($incomes as $income)
     <thead>
         <tr>
             <th><?php echo Yii::t('app', '发票编号') ?></th>
-            <th><?php echo Yii::t('app', 'Client Name') ?></th>
-            <th><?php echo Yii::t('app', 'Project Name') ?></th>
-            <th><?php echo Yii::t('app', 'Payment Date') ?></th>
+            <th width="300px"><?php echo Yii::t('app', 'Client Name') ?></th>
+            <th width="300px"><?php echo Yii::t('app', 'Project Name') ?></th>
+            <th width="60px"><?php echo Yii::t('app', 'Payment Date') ?></th>
             <th><?php echo Yii::t('app', 'Year Card') ?></th>
 
             <th>BD</th>
+            <th>收入来源</th>
             <th><?php echo Yii::t('app', 'Comment') ?></th>
             <th style="text-align:right"><?php echo Yii::t('app', 'Income') ?></th>
-
+			<th><?php echo '操作' ?></th>
         </tr>
     </thead>
     <tfoot>
             <tr>
-                <th colspan="7" style="text-align:right"></th>
+                <th colspan="9" style="text-align:right"></th>
                 <th></th>
             </tr>
         </tfoot>
@@ -137,9 +138,10 @@ foreach ($incomes as $income)
             <td><?php echo $income->card == 1 ? Yii::t('app', 'No'): Yii::t('app', 'Yes') ?></td>
 
             <td><?php echo isset($income->bd) ? $income->bd->english : '' //echo Family::getBdNameById($income->client_id, $ids) ?></td>
+            <th><?php echo isset($income->account) ? $income->account->name : '' ?></th>
             <td><?php echo $income->comment ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
-
+			<td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['income/edit', 'id' => $income->id, 'from' => Tool::getCurrentUrl()])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

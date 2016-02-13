@@ -47,12 +47,13 @@ $totalIncomeCount = count($incomes);
 <table id="income_table<?php echo $random ?>" class="display">
     <thead>
         <tr>
-            <th><?php echo Yii::t('app', 'Client Name') ?></th>
-            <th><?php echo Yii::t('app', 'Project Name') ?></th>
+            <th width="300px"><?php echo Yii::t('app', 'Client Name') ?></th>
+            <th width="300px"><?php echo Yii::t('app', 'Project Name') ?></th>
             <th><?php echo Yii::t('app', 'Payment Date') ?></th>
             <th><?php echo Yii::t('app', 'Year Card') ?></th>
             <th><?php echo Yii::t('app', 'Invoice') ?></th>
             <th>BD</th>
+            <th>收入来源</th>
             <th><?php echo Yii::t('app', 'Comment') ?></th>
             <th style="text-align:right"><?php echo Yii::t('app', 'Income') ?></th>
             <th><?php echo Yii::t('app', 'Operate') ?></th>
@@ -60,7 +61,7 @@ $totalIncomeCount = count($incomes);
     </thead>
     <tfoot>
             <tr>
-                <th colspan="8" style="text-align:right"></th>
+                <th colspan="9" style="text-align:right"></th>
                 <th></th>
             </tr>
         </tfoot>
@@ -87,6 +88,7 @@ $totalIncomeCount = count($incomes);
             <td><?php echo $income->card == 1 ? Yii::t('app', 'No'): Yii::t('app', 'Yes') ?></td>
             <td><?php echo $income->invoice_code ? $income->invoice_code : '无发票' ?></td>
             <td><?php echo isset($income->bd) ? $income->bd->english : '-' //Family::getBdNameById($income->client_id, $ids) ?></td>
+            <th><?php echo isset($income->account) ? $income->account->name : '' ?></th>
             <td><?php echo $income->comment ?></td>
             <td style="text-align:right"><?php echo number_format($income->number, 2) ?></td>
             <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['income/edit', 'id' => $income->id, 'from' => Tool::getCurrentUrl()])) ?></td>
