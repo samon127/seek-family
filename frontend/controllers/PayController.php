@@ -90,7 +90,7 @@ class PayController extends \yii\web\Controller
         {
             $model = iPay::find()->with('projects')->where(['id'=>$data['id']])->one(); // one的话是否会只删除第一条，有时间看看这个问题
 
-            if ($data['category'] == 2) // 项目支出
+            if ($model->category == 2 || $model->projects) // 项目支出 || 在数据错误情况下偶尔需要进入的判断条件
             {
                 $model->unlinkAll('projects', true);
             }
