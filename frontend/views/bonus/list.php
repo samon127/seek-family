@@ -106,7 +106,6 @@ $(document).ready( function () {
     $('#table_id').DataTable({
     	paging: false,
     	"info": false,
-    	"searching": true,
     });
 
     $('.money').autoNumeric('init');

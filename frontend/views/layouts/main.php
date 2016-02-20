@@ -93,7 +93,9 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <!--   <li><?php //echo Html::a('项目信息表', Url::to(['project/index'])) ?></li> -->
                     <li><?php echo Html::a('项目财务表', Url::to(['project/finance'])) ?></li>
 					<li class="divider"></li>
-                    <li><?php echo Html::a('提成管理', Url::to(['bonus/list'])) ?></li>
+                    <li><?php echo Html::a('提成计算', Url::to(['bonus/list'])) ?></li>
+                    <li><?php echo Html::a('比例查看', Url::to(['bonus/index'])) ?></li>
+                    <li><?php echo Html::a('比例添加', Url::to(['bonus/edit'])) ?></li>
                 </ul>
             </li>
         </ul>
