@@ -79,7 +79,7 @@ class BonusController extends \yii\web\Controller
         $model->part = $data['part'];
         $model->save();
 
-        return $this->redirect(['bonus/index']);
+        return $this->redirect(['bonus/edit']);
     }
 
     public function actionDelete()
