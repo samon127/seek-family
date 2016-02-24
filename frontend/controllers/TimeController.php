@@ -9,6 +9,7 @@ use common\models\iProject;
 use common\models\common\models;
 use yii\widgets\ListView;
 use common\tool\DBList;
+use common\models\ProjectBonus;
 
 class TimeController extends \yii\web\Controller
 {
@@ -16,10 +17,32 @@ class TimeController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $models = Time::find()
+        ->joinWith('project', true, 'LEFT JOIN')
+        ->joinWith('user', true, 'LEFT JOIN')
+        ->orderBy('month DESC')
+        ->all();
+
+
+        return $this->render('index', ['models' => $models]);
     }
 
-	public function actionEdit()
+    public function actionEdit()
+    {
+        if ($id = Yii::$app->getRequest()->get('id'))
+        {
+            $defaultValue = ProjectBonus::find()->asArray()->where(['id' => $id])->one();
+        }
+        else
+        {
+            $defaultValue = [];
+        }
+
+
+        return $this->render('edit', ['defaultValue' => $defaultValue]);
+    }
+
+	public function actionShow()
     {
     	$user_id = Yii::$app->getRequest()->get('user_id');
 
@@ -41,7 +64,7 @@ class TimeController extends \yii\web\Controller
     	$projectArray = iProject::getAreaProject();
 
 
-        return $this->render('edit', ['user_id'=>$user_id, 'userProjectTimes'=>$userProjectTimes, 'monthArray'=>$monthArray, 'projectArray'=>$projectArray]);
+        return $this->render('show', ['user_id'=>$user_id, 'userProjectTimes'=>$userProjectTimes, 'monthArray'=>$monthArray, 'projectArray'=>$projectArray]);
     }
 
 	public function actionSubmit()
@@ -75,7 +98,4 @@ class TimeController extends \yii\web\Controller
 
 
 
-INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '2', '40');
-INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '4', '40');
-INSERT INTO `family`.`time` (`id`, `project_id`, `month`, `user_id`, `percent`) VALUES (NULL, '124', '2016-01', '11', '40');
 

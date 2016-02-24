@@ -40,6 +40,7 @@ foreach ($projects as $project)
     echo HTML::dropDownList($page.'[project]', $defaultProjects, $options, ['class' => 'form-control', 'id' => 'projectSelect', 'multiple'=>'multiple']);
     ?>
   </div>
+  <div class="help-block with-errors"></div>
 </div>
 
 <script>

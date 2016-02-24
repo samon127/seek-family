@@ -1,100 +1,71 @@
 <?php
+use common\tool\Family;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use common\tool\Family;
+use yii\web\View;
 
-$ids = [];
-
-foreach ($projectArray as $project)
-{
-    if ($project['client_id'])
-    {
-        $ids[] = $project['client_id'];
-    }
-}
 ?>
 
-<form class="form-horizontal" action="<?php echo Url::to(['time/submit']) ?>" method="post">
+
+<form class="form-horizontal" action="<?php echo Url::to(['bonus/submit']) ?>" method="post">
+<?php if ($defaultValue) : ?>
+<input type="hidden" name="bonus[id]" value="<?php echo $defaultValue['id'] ?>" />
+<?php endif; ?>
 <fieldset>
 
-<!-- Form Name -->
-<legend>Form Name</legend>
 
 
 
-<div class="table-responsive">
-<table class="table table-bordered">
+<?php
+$selections = [];
 
-<tr>
-<th style="width:300px">项目</th>
-<?php foreach($monthArray as $month) : ?>
-<th style="width:100px"><?php echo $month ?></th>
-<?php endforeach;?>
-</tr>
+if ($defaultValue)
+{
+    $selections[] = $defaultValue['project_id'];
+}
 
-
-<?php foreach ($projectArray as $project) : ?>
-<tr>
-<td><?php echo Family::getProjectName($project, $ids) ?></td>
-<?php foreach($monthArray as $month) : ?>
-<td>
-<?php if ($percent = Family::percentExist($month, $project, $userProjectTimes)) :?>
-<input type="text" style="width:40px" class="count_<?php echo $month ?>" name="time[<?php echo $user_id ?>][<?php echo $month ?>][<?php echo $project->id ?>]" value="<?php echo $percent ?>" onchange="inputChange()" />%
-<?php else : ?>
-<input type="text" style="width:40px" class="count_<?php echo $month ?>" name="time[<?php echo $user_id ?>][<?php echo $month ?>][<?php echo $project->id ?>]" value="" onchange="inputChange()" />%
-<?php endif; ?>
-
-</td>
-<?php endforeach; ?>
-</tr>
-<?php endforeach; ?>
+echo $this->render('@common/views/form/projectSelect', ['page' => 'bonus', 'selections' => $selections, 'label'=> '项目']);
+?>
 
 
-<tr>
-<th style="width:300px">合计</th>
-<?php foreach($monthArray as $month) : ?>
-<th style="width:100px" id="count_<?php echo $month ?>">0%</th>
-<?php endforeach;?>
-</tr>
 
-</table>
+<?php
+$defaultUser = $defaultValue ? $defaultValue['user_id'] : '';
+echo $this->render('@common/views/form/userSelect', ['page' => 'bonus', 'defaultValue' => $defaultUser]);
+?>
+
+
+<?php
+$defaultMonth = $defaultValue ? $defaultValue['month'] : '';
+echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'defaultDate' => $defaultMonth, 'label'=>"到账时间", 'help'=>"如不填写则表示为“应收账款”"]);
+?>
+
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">百分比</label>
+  <div class="col-md-4">
+  <?php
+  $defaultPart = $defaultValue ? $defaultValue['part'] : '';
+  echo HTML::input('text', 'bonus[part]', $defaultPart, ['id' => 'partInput', 'class'=>'form-control input-md', 'helper'=>'123'] )
+  ?>
+  <span class="help-block">请不要填写“%”</span>
+  </div>
 </div>
-
-<script>
-$(document).ready(function () {
-
-	inputChange = function(){
-
-	<?php foreach ($monthArray as $month) :?>
-
-	var sum = 0;
-	$('.count_<?php echo $month; ?>').each(function(){
-	    if ($(this).val())
-	    {
-	    	sum += parseInt($(this).val());
-	    }
-	});
-	$('#count_<?php echo $month; ?>').html(sum+"%")
-
-	<?php endforeach;?>
-
-	}
-
-	inputChange();
-});
-
-
-</script>
-
 
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-4">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary">提交</button>
+    <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
+    <?php if ($defaultValue) : ?>
+    <a href="<?php echo Url::to(['bonus/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <?php endif; ?>
   </div>
 </div>
 
-
 </fieldset>
 </form>
+
+

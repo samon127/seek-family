@@ -127,8 +127,9 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">时间分配
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><?php echo Html::a('时间分配设置', Url::to(['time/edit'])); ?></li>
-                    <!--   <li><?php //echo Html::a('Balance设置', Url::to(['balance/index'])) ?></li> -->
+                    <li><?php echo Html::a('时间分配设置', Url::to(['time/show'])); ?></li>
+                    <li><?php echo Html::a('时间查看', Url::to(['time/index'])); ?></li>
+                    <li><?php echo Html::a('时间添加', Url::to(['time/edit'])); ?></li>
                 </ul>
                 </li>
             </ul>

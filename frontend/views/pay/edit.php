@@ -11,9 +11,13 @@ $pid = Yii::$app->getRequest()->get('pid');
 <?php $this->registerCssFile("/vendor/select2/select2.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 <?php $this->registerJsFile('/vendor/select2/select2.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
+<?php $this->registerCssFile("/vendor/formvalidation/css/formValidation.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
+<?php $this->registerJsFile('/vendor/formvalidation/js/formValidation.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/formvalidation/js/framework/bootstrap.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
-<form class="form-horizontal" action="<?php echo Url::to(['pay/submit']) ?>" method="post">
+
+<form class="form-horizontal" action="<?php echo Url::to(['pay/submit']) ?>" method="post" id="pay-form"  data-toggle="validator" role="form" >
 <?php if ($defaultValue) : ?>
 <input type="hidden" name="pay[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
@@ -137,3 +141,31 @@ echo $this->render('@common/views/form/commentTextarea', ['page' => 'pay', 'defa
 
 </fieldset>
 </form>
+
+<script>
+$(document).ready(function() {
+    $('#pay-form').formValidation({
+        framework: 'bootstrap',
+        fields: {
+            'pay[project][]': {
+                validators: {
+                    callback: {
+                        message: '请选择一个项目',
+                        callback: function (value, validator, $field) {
+							if ($("input[name='pay[category]']")[1].checked == true)
+							{
+								var options = validator.getFieldElements('pay[project][]').val();
+	                            return (options != null && options.length >= 1);
+							}
+							else
+							{
+								return true;
+							}
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
