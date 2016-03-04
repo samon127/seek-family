@@ -148,7 +148,7 @@ class IncomeController extends \yii\web\Controller
             if ($bdModel->bd_id)
             {
                 $userModel = User::find()->where(['=','gllue_id', $bdModel->bd_id])->one();
-                $model->bd_id = $userModel->id;
+                $model->bd_id = isset($userModel->id) ? $userModel->id : 26; // 26为公共客户
             }
         }
 
