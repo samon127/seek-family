@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\HTML;
+use yii\helpers\Html;
 use yii\web\View;
 ?>
 
