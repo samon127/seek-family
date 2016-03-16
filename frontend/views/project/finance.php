@@ -131,10 +131,10 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th>发票支出</th>
             <th>人员支出</th>
             <th>总支出</th>
+            <th>合作结算</th>
+            <th>提成支出</th>
             <th>总收益</th>
             <th>收益率</th>
-            <th>合作伙伴收益</th>
-            <th>项目组收益</th>
             <th>操作</th>
         </tr>
     </thead>
@@ -153,6 +153,8 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <td class="money"><?php echo $totleInvoice = $finance->getProjectTotleInvoice($project->id); ?></td>
             <td class="money"><?php echo $totleStuffPays = $finance->getProjectTotleStuffPays($project->id); ?></td>
 			<td class="money"><?php echo $totlePays = $totlePay + $totleInvoice + $totleStuffPays; ?></td>
+            <td class="money"><?php echo $partnerProfit = $finance->getTotalPartnerProfit($project->id);  ?></td>
+            <td class="money"><?php echo $finance->getTotalTeamProfit($project->id);  ?></td>
             <td class="money"><?php echo $finance->getProjectTotalProfit($project->id); ?></td>
             <td class="percent"><?php
                 if(!$totleIncome)
@@ -160,12 +162,11 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
                     echo 0;
                 }
                 else {
-                    echo ($totleIncome - $totlePays) / $totleIncome * 100;
+                    echo ($totleIncome - $totlePays - $partnerProfit) / $totleIncome * 100;
 
                 }
             ?></td>
-            <td class="money"><?php echo $finance->getTotalPartnerProfit($project->id);  ?></td>
-            <td class="money"><?php echo $finance->getTotalTeamProfit($project->id);  ?></td>
+
 
 
 
@@ -219,8 +220,8 @@ $(document).ready( function () {
            { "visible": false, "targets": 7 },
            { "visible": false, "targets": 8 },
            { "visible": false, "targets": 9 },
-           { "visible": false, "targets": 13 },
-           { "visible": false, "targets": 14 }
+           { "visible": false, "targets": 11 },
+           { "visible": false, "targets": 12 }
        ],
     	paging: false,
     	buttons: [{
@@ -256,7 +257,7 @@ $(document).ready( function () {
                         i : 0;
             };
 
-            $([4,10]).each(function(i, j){
+            $([4,10,13]).each(function(i, j){
             	pageTotal = api
                     .column( j, { page: 'current'} )
                     .data()
