@@ -7,14 +7,17 @@ use yii\web\View;
 ?>
 
 
-<form class="form-horizontal" action="<?php echo Url::to(['bonus/submit']) ?>" method="post">
+<form class="form-horizontal" action="<?php echo Url::to(['time/submit']) ?>" method="post">
 <?php if ($defaultValue) : ?>
-<input type="hidden" name="bonus[id]" value="<?php echo $defaultValue['id'] ?>" />
+<input type="hidden" name="time[id]" value="<?php echo $defaultValue['id'] ?>" />
 <?php endif; ?>
 <fieldset>
 
 
-
+<?php
+$defaultMonth = $defaultValue ? $defaultValue['month'] : '';
+echo $this->render('@common/views/form/monthInput', ['page' => 'time', 'defaultMonth' => $defaultMonth, 'label'=>"月份", 'help'=>""]);
+?>
 
 <?php
 $selections = [];
@@ -24,21 +27,16 @@ if ($defaultValue)
     $selections[] = $defaultValue['project_id'];
 }
 
-echo $this->render('@common/views/form/projectSelect', ['page' => 'bonus', 'selections' => $selections, 'label'=> '项目']);
+echo $this->render('@common/views/form/projectSelect', ['page' => 'time', 'selections' => $selections, 'label'=> '项目']);
 ?>
 
 
 
 <?php
 $defaultUser = $defaultValue ? $defaultValue['user_id'] : '';
-echo $this->render('@common/views/form/userSelect', ['page' => 'bonus', 'defaultValue' => $defaultUser]);
+echo $this->render('@common/views/form/userSelect', ['page' => 'time', 'defaultValue' => $defaultUser]);
 ?>
 
-
-<?php
-$defaultMonth = $defaultValue ? $defaultValue['month'] : '';
-echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'defaultDate' => $defaultMonth, 'label'=>"到账时间", 'help'=>"如不填写则表示为“应收账款”"]);
-?>
 
 
 
@@ -47,8 +45,8 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
   <label class="col-md-4 control-label" for="textinput">百分比</label>
   <div class="col-md-4">
   <?php
-  $defaultPart = $defaultValue ? $defaultValue['part'] : '';
-  echo HTML::input('text', 'bonus[part]', $defaultPart, ['id' => 'partInput', 'class'=>'form-control input-md', 'helper'=>'123'] )
+  $defaultPercent = $defaultValue ? $defaultValue['percent'] : '';
+  echo HTML::input('text', 'time[percent]', $defaultPercent, ['id' => 'partInput', 'class'=>'form-control input-md', 'helper'=>'123'] )
   ?>
   <span class="help-block">请不要填写“%”</span>
   </div>
@@ -60,7 +58,7 @@ echo $this->render('@common/views/form/dateInput', ['page' => 'income', 'default
   <div class="col-md-4">
     <input type="submit" id="singlebutton" class="btn btn-primary" value="提交" />
     <?php if ($defaultValue) : ?>
-    <a href="<?php echo Url::to(['bonus/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
+    <a href="<?php echo Url::to(['time/delete', 'id'=>$defaultValue['id']]) ?>" class="btn btn-primary btn-danger" style="float:right"><span class="glyphicon glyphicon-trash"></span> 删除</a>
     <?php endif; ?>
   </div>
 </div>

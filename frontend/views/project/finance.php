@@ -135,6 +135,9 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th>提成支出</th>
             <th>总收益</th>
             <th>收益率</th>
+            <th>收益预期</th>
+            <th>收益对比绝对量</th>
+            <th>收益对比百分比</th>
             <th>操作</th>
         </tr>
     </thead>
@@ -155,21 +158,26 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
 			<td class="money"><?php echo $totlePays = $totlePay + $totleInvoice + $totleStuffPays; ?></td>
             <td class="money"><?php echo $partnerProfit = $finance->getTotalPartnerProfit($project->id);  ?></td>
             <td class="money"><?php echo $finance->getTotalTeamProfit($project->id);  ?></td>
-            <td class="money"><?php echo $finance->getProjectTotalProfit($project->id); ?></td>
+            <td class="money"><?php echo $totalProfit = $finance->getProjectTotalProfit($project->id) - $partnerProfit; ?></td>
             <td class="percent"><?php
-                if(!$totleIncome)
-                {
+                if(!$totleIncome) {
                     echo 0;
                 }
                 else {
                     echo ($totleIncome - $totlePays - $partnerProfit) / $totleIncome * 100;
-
                 }
             ?></td>
+            <td class="money"><?php echo $expect = $totlePays*0.25 + $totleStuffPays*3 ?></td>
+            <td class="money"><?php echo $totalProfit - $expect ?></td>
+            <td class="percent"><?php
+                if(!$expect) {
+                    echo 0;
+                }
+                else {
+                    echo ($totalProfit - $expect) / $expect * 100;
+                }
 
-
-
-
+            ?></td>
             <td>
             <?php echo Html::a('编辑', Url::to(['project/edit', 'id' => $project->id])) ?>
             <?php echo Html::a('收入', Url::to(['income/index', 'pid' => $project->id])) ?>
@@ -185,6 +193,9 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right">合计：</th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>

@@ -48,7 +48,7 @@ foreach ($models as $model)
             <td style="text-align:right"><?php echo $model->month ?></td>
 			<td style="text-align:right"><?php echo $model->user->english ?></td>
             <td style="text-align:right"><?php echo $model->percent ?>%</td>
-            <td><?php echo Html::a('操作', Url::to(['bonus/edit', 'id' => $model->id])) ?></td>
+            <td><?php echo Html::a('编辑', Url::to(['time/edit', 'id' => $model->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
