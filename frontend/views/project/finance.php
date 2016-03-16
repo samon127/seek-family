@@ -122,22 +122,19 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
         <tr>
             <th>月份</th>
             <th>执行时间</th>
-<!--             <th>分类</th> -->
              <th width="300px">项目名称</th>
-<!--             <th>类型</th> -->
             <th>负责人</th>
-            <th>项目收入</th>
+            <th>总收入</th>
             <th>未到账</th>
             <th>年卡收入</th>
             <th>项目支出</th>
             <th>发票支出</th>
             <th>人员支出</th>
+            <th>总支出</th>
             <th>总收益</th>
+            <th>收益率</th>
             <th>合作伙伴收益</th>
             <th>项目组收益</th>
-
-
-
             <th>操作</th>
         </tr>
     </thead>
@@ -147,17 +144,26 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
         <tr>
             <td><?php echo date('Y年m月', strtotime($project->date_start))  ?></td>
             <td><?php echo Family::displayDateArea($project->date_start, $project->date_end)  ?></td>
-            <!-- <td><?php //echo Family::getProjectStyle($project) ?></td> -->
             <td><?php echo Family::getProjectName($project, $clientIds) ?></td>
-            <!-- <td><?php //echo $project->type ? $project->type->name : '-' ?></td> -->
             <td><?php echo Family::getUserNames($project->users) ?></td>
-            <td class="money"><?php echo $finance->getProjectTotleIncomes($project->id); ?></td>
+            <td class="money"><?php echo $totleIncome = $finance->getProjectTotleIncomes($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectIncomesNeed($project->id); ?></td>
             <td class="money"><?php echo $finance->getProjectIncomesCard($project->id); ?></td>
-            <td class="money"><?php echo $finance->getProjectTotlePay($project->id); ?></td>
-            <td class="money"><?php echo $finance->getProjectTotleInvoice($project->id); ?></td>
-            <td class="money"><?php echo $finance->getProjectTotleStuffPays($project->id); ?></td>
+            <td class="money"><?php echo $totlePay = $finance->getProjectTotlePay($project->id); ?></td>
+            <td class="money"><?php echo $totleInvoice = $finance->getProjectTotleInvoice($project->id); ?></td>
+            <td class="money"><?php echo $totleStuffPays = $finance->getProjectTotleStuffPays($project->id); ?></td>
+			<td class="money"><?php echo $totlePays = $totlePay + $totleInvoice + $totleStuffPays; ?></td>
             <td class="money"><?php echo $finance->getProjectTotalProfit($project->id); ?></td>
+            <td class="percent"><?php
+                if(!$totleIncome)
+                {
+                    echo 0;
+                }
+                else {
+                    echo ($totleIncome - $totlePays) / $totleIncome * 100;
+
+                }
+            ?></td>
             <td class="money"><?php echo $finance->getTotalPartnerProfit($project->id);  ?></td>
             <td class="money"><?php echo $finance->getTotalTeamProfit($project->id);  ?></td>
 
@@ -189,6 +195,8 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
             <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
+            <th style="text-align:right"></th>
         </tr>
     </tfoot>
 </table>
@@ -196,13 +204,23 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
 
 
 <script>
+$('.money').autoNumeric('init');
+$('.percent').autoNumeric('init', {aSign:'%', pSign:'s'});
+
 $(document).ready( function () {
     $('#table_id').DataTable({
     	"dom": 'BC&gt;"clear"&lt;lfrtip',
     	"columnDefs": [
            { "visible": false, "targets": 0 },
            { "visible": false, "targets": 1 },
-           { "visible": false, "targets": 3 }
+           { "visible": false, "targets": 3 },
+           { "visible": false, "targets": 5 },
+           { "visible": false, "targets": 6 },
+           { "visible": false, "targets": 7 },
+           { "visible": false, "targets": 8 },
+           { "visible": false, "targets": 9 },
+           { "visible": false, "targets": 13 },
+           { "visible": false, "targets": 14 }
        ],
     	paging: false,
     	buttons: [{
@@ -238,7 +256,7 @@ $(document).ready( function () {
                         i : 0;
             };
 
-            $([4,5,6,7,8,9,10,11,12]).each(function(i, j){
+            $([4,10]).each(function(i, j){
             	pageTotal = api
                     .column( j, { page: 'current'} )
                     .data()
@@ -253,6 +271,6 @@ $(document).ready( function () {
         }
     });
 
-    $('.money').autoNumeric('init');
+
 } );
 </script>
