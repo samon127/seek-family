@@ -58,6 +58,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
 
     ?>
     <?php if (!Yii::$app->user->isGuest) { ?>
+    	<!--
     	<ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">系统功能
@@ -68,6 +69,7 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                 </ul>
             </li>
         </ul>
+    	 -->
 
     	<ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -92,10 +94,6 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li class="divider"></li>
                     <!--   <li><?php //echo Html::a('项目信息表', Url::to(['project/index'])) ?></li> -->
                     <li><?php echo Html::a('项目财务表', Url::to(['project/finance'])) ?></li>
-					<li class="divider"></li>
-                    <li><?php echo Html::a('提成计算', Url::to(['bonus/list'])) ?></li>
-                    <li><?php echo Html::a('比例查看', Url::to(['bonus/index'])) ?></li>
-                    <li><?php echo Html::a('比例添加', Url::to(['bonus/edit'])) ?></li>
                 </ul>
             </li>
         </ul>
@@ -124,13 +122,20 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
         <?php if (User::isUserAdmin(Yii::$app->user->identity->username)) { ?>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">时间分配
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">提成管理
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><?php //echo Html::a('时间分配设置', Url::to(['time/show'])); ?></li>
-                    <li><?php echo Html::a('时间Table', Url::to(['time/table'])); ?></li>
-                    <li><?php echo Html::a('时间查看', Url::to(['time/index'])); ?></li>
-                    <li><?php echo Html::a('时间添加', Url::to(['time/edit'])); ?></li>
+                	<li><?php echo Html::a('提成查看', Url::to(['bonus/list'])) ?></li>
+                	<li class="divider"></li>
+                    <li><?php echo Html::a('月度时长分配查看', Url::to(['time/table'])); ?></li>
+                    <li><?php echo Html::a('月度时长分配设置', Url::to(['time/index'])); ?></li>
+                    <li><?php echo Html::a('月度时长分配添加', Url::to(['time/edit'])); ?></li>
+                    <li class="divider"></li>
+                    <li><?php echo Html::a('项目利润分配查看', Url::to(['bonus/index'])) ?></li>
+                    <li><?php echo Html::a('项目利润分配添加', Url::to(['bonus/edit'])) ?></li>
+                    <li class="divider"></li>
+                    <li><?php echo Html::a('成本基准查看', Url::to(['user-balance/index'])) ?></li>
+                    <li><?php echo Html::a('成本基准添加', Url::to(['user-balance/edit'])) ?></li>
                 </ul>
                 </li>
             </ul>

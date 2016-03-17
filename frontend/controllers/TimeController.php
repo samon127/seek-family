@@ -154,11 +154,6 @@ class TimeController extends \yii\web\Controller
         }
         krsort($data);
 
-        //print_r($data);exit;
-
-
-
-
         return $this->render('table', ['data' => $data]);
     }
 }

@@ -4,11 +4,6 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use common\tool\Family;
 
-$ids = [];
-foreach ($models as $model)
-{
-    $ids[] = $model->project->client_id;
-}
 
 ?>
 
@@ -28,25 +23,25 @@ foreach ($models as $model)
 <table id="table" class="display">
     <thead>
         <tr>
-            <th>项目</th>
-            <th>成员</th>
-            <th>比例</th>
+        	<th>成员</th>
+            <th>月份</th>
+            <th>基准</th>
             <th>操作</th>
         </tr>
     </thead>
     <tfoot>
             <tr>
-                <th colspan="4" style="text-align:right"></th>
+                <th colspan="3" style="text-align:right"></th>
                 <th></th>
             </tr>
         </tfoot>
     <tbody>
     <?php foreach ($models as $model): ?>
         <tr>
-            <td><?php echo Family::getProjectName($model->project, $ids) ?></td>
-			<td style="text-align:right"><?php echo $model->user->english ?></td>
-            <td style="text-align:right"><?php echo $model->part ?></td>
-            <td><?php echo Html::a('编辑', Url::to(['bonus/edit', 'id' => $model->id])) ?></td>
+            <td style="text-align:left"><?php echo $model->user->english ?></td>
+			<td style="text-align:left"><?php echo $model->month ?></td>
+            <td style="text-align:left"><?php echo $model->balance ?></td>
+            <td><?php echo Html::a('编辑', Url::to(['user-balance/edit', 'id' => $model->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -59,7 +54,7 @@ $(document).ready( function () {
     	paging: false,
     	"info": false,
     	"searching": false,
-    	"order": [2],
+    	"order": false,
     	"footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
         }
