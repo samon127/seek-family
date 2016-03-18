@@ -132,8 +132,10 @@ $this->registerJsFile('/vendor/jquery/jquery-2.1.4.min.js', ['position' => View:
                     <li><?php echo Html::a('月度时长分配设置', Url::to(['time/index'])); ?></li>
                     <li><?php echo Html::a('月度时长分配添加', Url::to(['time/edit'])); ?></li>
                     <li class="divider"></li>
-                    <li><?php echo Html::a('项目利润分配查看', Url::to(['bonus/index'])) ?></li>
-                    <li><?php echo Html::a('项目利润分配添加', Url::to(['bonus/edit'])) ?></li>
+                    <li><?php echo Html::a('提成金额表', Url::to(['bonus/money'])) ?></li>
+                    <li><?php echo Html::a('提成比例表', Url::to(['bonus/table'])) ?></li>
+                    <li><?php echo Html::a('提成比例查看', Url::to(['bonus/index'])) ?></li>
+                    <li><?php echo Html::a('提成比例添加', Url::to(['bonus/edit'])) ?></li>
                     <li class="divider"></li>
                     <li><?php echo Html::a('成本基准查看', Url::to(['user-balance/index'])) ?></li>
                     <li><?php echo Html::a('成本基准添加', Url::to(['user-balance/edit'])) ?></li>

@@ -28,23 +28,19 @@ $columnNumber = count($content['userIds']);
             <?php foreach ($content['userNames'] as $userName) : ?>
 			<th><?php echo $userName; ?></th>
             <?php endforeach;?>
+            <th>合计</th>
         </tr>
     </thead>
-    	<tfoot>
-            <tr>
-            	<th style="text-align:right">合计：</th>
-            	<?php foreach (range(1, $columnNumber) as $column) :?>
-				<th></th>
-            	<?php endforeach;?>
-            </tr>
-        </tfoot>
     <tbody>
     	<?php foreach ($content['projects'] as $projectName => $userPercent): ?>
 		<tr>
 			<td><?php echo $projectName ?></td>
+			<?php $count = 0;?>
 			<?php foreach ($userPercent as $percent): ?>
-            <td width="100px"><?php echo $percent ? $percent : '' ?></td>
+            <td width="100px"><?php echo $percent ? $percent.'%' : '' ?></td>
+            <?php $count += $percent; ?>
 			<?php endforeach; ?>
+			<td><?php echo $count ?>%</td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -57,37 +53,6 @@ $(document).ready( function () {
 		paging: false,
 		"info": false,
 		"searching": false,
-
-		"footerCallback": function ( row, data, start, end, display ) {
-	        var api = this.api(), data;
-
-	     	// Remove the formatting to get integer data for summation
-            var intVal = function ( i ) {
-                return typeof i === 'string' ?
-                    i.replace(/[\$,]/g, '')*1 :
-                    typeof i === 'number' ?
-                        i : 0;
-            };
-
-            <?php
-            $jsString = '';
-            foreach (range(1, $columnNumber) as $column){
-                $jsString .= $column . ',';
-            }
-            ?>
-            $([<?php echo $jsString; ?>]).each(function(i, j){
-            	pageTotal = api
-                    .column( j, { page: 'current'} )
-                    .data()
-                    .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0 );
-
-                $( api.column( j ).footer() ).html(
-                	'<span class="money">'+Math.round(pageTotal*100)/100+'</span>'
-                );
-            })
-	    }
 	});
 } );
 
