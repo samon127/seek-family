@@ -5,6 +5,7 @@ use Yii;
 use common\models\Project;
 use common\models\iProject;
 use common\models\ProjectBonus;
+use common\tool\Family;
 
 class BonusController extends \yii\web\Controller
 {
@@ -44,6 +45,57 @@ class BonusController extends \yii\web\Controller
 
 
         return $this->render('index', ['models' => $models]);
+    }
+
+    public function actionTable()
+    {
+        $models = ProjectBonus::find()
+        ->joinWith('project', true, 'LEFT JOIN')
+        ->joinWith('user', true, 'LEFT JOIN')
+        ->orderBy('project.date_start DESC')
+        ->all();
+
+        $ids = [];
+        foreach ($models as $model)
+        {
+            $ids[] = $model->project->client_id;
+        }
+
+        $data = [];
+
+        foreach ($models as $model)
+        {
+            $month = substr($model->project->date_start, 0, 7);
+            // 数组结构初始化
+            $data[$month]['userIds'] = isset($data[$month]['userIds']) ? $data[$month]['userIds'] : [];
+            $data[$month]['userNames'] = isset($data[$month]['userNames']) ? $data[$month]['userNames'] : [];
+            $data[$month]['projects'] = isset($data[$month]['projects']) ? $data[$month]['projects'] : [];
+
+            // 设置数组中的 userIds 和 userNames
+            if (!in_array($model->user_id, $data[$month]['userIds'])) {
+                array_push($data[$month]['userIds'], $model->user_id);
+                array_push($data[$month]['userNames'], $model->user->english);
+            }
+        }
+
+        foreach ($models as $model) {
+            $month = substr($model->project->date_start, 0, 7);
+
+            // 设置数组中的 projects，下面的这个 foreach 是为了获取 $percent 的值，对于一个跳空的 userId 填空（0值），否则会在循环的时候打乱Table的显示次序
+            foreach ($data[$month]['userIds'] as $userId)
+            {
+                $data[$month]['projects'][Family::getProjectName($model->project, $ids)][$userId] = 0;
+                if ($model->user_id == $userId) {
+                    $percent = $model->part;
+                    $data[$month]['projects'][Family::getProjectName($model->project, $ids)][$userId] = substr($percent, 0, strlen($percent) - 1);
+                }
+            }
+        }
+        krsort($data);
+
+        print_r($data);exit;
+
+        return $this->render('table', ['data' => $data]);
     }
 
     public function actionEdit()
