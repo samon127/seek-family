@@ -33,7 +33,7 @@ echo $this->render('@common/views/form/text', ['name' => 'user[name]', 'label'=>
 
 <?php
 $value = $defaultValue ? $defaultValue['english'] : '';
-echo $this->render('@common/views/form/text', ['name' => 'user[english]', 'label'=>'姓名','defaultValue' => $value]);
+echo $this->render('@common/views/form/text', ['name' => 'user[english]', 'label'=>'英文名','defaultValue' => $value]);
 ?>
 
 <?php
