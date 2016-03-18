@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\HTMl;
+use yii\helpers\Html;
 
 $defaultValue = isset($defaultValue) ? $defaultValue : '';
 $help = isset($help) ? $help : '';
