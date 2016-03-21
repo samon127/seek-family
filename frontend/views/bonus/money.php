@@ -52,7 +52,7 @@ $columnNumber = count($content['userIds']);
             <td width="100px" class="money"><?php echo $percent ? $percent : '' ?></td>
             <?php $count += $percent; ?>
 			<?php endforeach; ?>
-			<td class="money"><?php echo $count ?></td>
+			<td width="100px" class="money"><?php echo $count ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

@@ -57,6 +57,10 @@ echo $this->render('@common/views/partial/incomeTable', ['incomes'=>$incomes]);
 <?php $this->registerJsFile('vendor/autoNumeric/autoNumeric-1.9.36.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
 
 
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/buttons.html5.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/extensions/buttons/js/dataTables.buttons.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerJsFile('/vendor/dataTables/jszip.min.js', ['depends' => [\yii\web\JqueryAsset::className()], 'position' => View::POS_HEAD]); ?>
+<?php $this->registerCssFile("/vendor/dataTables/extensions/buttons/css/buttons.dataTables.min.css", ['depends' => [\yii\bootstrap\BootstrapAsset::className()]]); ?>
 
 
 
@@ -94,10 +98,15 @@ echo $this->render('@common/views/partial/incomeTable', ['incomes'=>$incomes]);
 <script>
 $(document).ready( function () {
     $('#pay_table<?php echo $random ?>').DataTable({
+    	"dom": 'BC&gt;"clear"&lt;lfrtip',
     	paging: false,
     	"info": false,
     	"searching": false,
     	"order": [],
+    	buttons: [{
+			extend: 'excelHtml5',
+			text: '保存为Excel',
+    	}],
     	"footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
 
