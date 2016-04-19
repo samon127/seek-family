@@ -9,6 +9,7 @@ use common\tool\FamilyFinance;
 use common\tool\DBList;
 
 $projectTypes = DBList::getProjectType();
+$teachers = DBList::getTeacher();
 
 $clientIds = [];
 foreach ($projects as $project)
@@ -102,7 +103,23 @@ echo $this->render('@common/views/form/clientSelect', ['page' => 's', 'defaultVa
   </div>
 </div>
 
+<!-- Select Basic -->
+<div class="form-group" id="teacherSelectDiv">
+  <label class="col-md-4 control-label" for="teacherSelect">讲师</label>
+  <div class="col-md-4">
+  <?php
+    $options = $attrs = [];
+    $options[''] = '';
+    foreach ($teachers as $id => $teacher)
+    {
+        $options[$id] = $teacher['name'];
+        $attrs[$id] = ['key' => $teacher['key']];
+    }
+    echo HTML::dropDownList('s[teacher_id]', isset($defaultValue['teacher_id']) ? $defaultValue['teacher_id']: '', $options, ['options' => $attrs, 'id' => 'teacherSelect', 'class' => 'form-control']);
+    ?>
 
+  </div>
+</div>
 
 <div class="form-group" style="padding-top:10px">
   <label class="col-md-4 control-label" for="singlebutton"></label>

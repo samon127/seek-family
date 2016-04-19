@@ -241,28 +241,62 @@ class ProjectController extends Controller
                 $model->andWhere(['in','project.id',$searchKeyWord['project']]);
             }
 
-            if (!isset($searchKeyWord['date_start']) || !$searchKeyWord['date_start'])
-            {
-                $model->andWhere(['>=', 'project.date_start', date('Y-m-d', time()-60*60*24*90)]);
+            if (!isset($searchKeyWord['date_start'])) {
+                $dateStart = date('Y-m-d', time()-60*60*24*90); // 默认最近三个月
             }
-            else
+            else if (isset($searchKeyWord['date_start']) && $searchKeyWord['date_start']) {
+                $dateStart = $searchKeyWord['date_start']; // 有输入搜索的时候
+            }
+            else {
+                $dateStart = false;// 一般搜索没有输入搜索值的情况
+            }
+            if ($dateStart)
             {
-                $model->andWhere(['>=', 'project.date_start', $searchKeyWord['date_start']]);
+                $model->andWhere(['>=', 'project.date_start', $dateStart]);
             }
 
-            if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
-            {
-                $model->andWhere(['<=', 'project.date_start', date('Y-m-d', time()+24*60*60*90)]);
+            if (!isset($searchKeyWord['date_end'])) {
+                $dateEnd = date('Y-m-d', time()+24*60*60*90); // 默认往后三个月
             }
-            else
+            else if (isset($searchKeyWord['date_end']) && $searchKeyWord['date_end'])
             {
-                $model->andWhere(['<=', 'project.date_start', $searchKeyWord['date_end']]);
+                $dateEnd = $searchKeyWord['date_end']; // 有输入搜索的时候
             }
+            else {
+                $dateEnd = false; // 一般搜索没有输入搜索值的情况
+            }
+            if ($dateEnd) {
+                $model->andWhere(['<=', 'project.date_start', $dateEnd]);
+            }
+
+
+//             if (!isset($searchKeyWord['date_start']) || !$searchKeyWord['date_start'])
+//             {
+//                 $model->andWhere(['>=', 'project.date_start', date('Y-m-d', time()-60*60*24*90)]);
+//             }
+//             else
+//             {
+//                 $model->andWhere(['>=', 'project.date_start', $searchKeyWord['date_start']]);
+//             }
+
+//             if (!isset($searchKeyWord['date_end']) || !$searchKeyWord['date_end'])
+//             {
+//                 $model->andWhere(['<=', 'project.date_start', date('Y-m-d', time()+24*60*60*90)]);
+//             }
+//             else
+//             {
+//                 $model->andWhere(['<=', 'project.date_start', $searchKeyWord['date_end']]);
+//             }
 
 
             if (isset($searchKeyWord['client']) && $searchKeyWord['client'])
             {
                 $model->andWhere(['project.client_id' => $searchKeyWord['client']]);
+            }
+
+            if (isset($searchKeyWord['teacher_id']) && $searchKeyWord['teacher_id'])
+            {
+                $model->andWhere(['project.teacher_id' => $searchKeyWord['teacher_id']]);
             }
 
             if (isset($searchKeyWord['type_id']) && $searchKeyWord['type_id'])

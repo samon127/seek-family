@@ -85,7 +85,7 @@ class TimeController extends \yii\web\Controller
         $model->percent = $data['percent'];;
     	$model->save();
 
-    	return $this->redirect(['time/index']);
+    	return $this->redirect(['time/edit']);
     }
 
     public function actionDelete()
