@@ -103,6 +103,7 @@ class TimeController extends \yii\web\Controller
         $models = Project::find()
         ->joinWith('times', true, 'LEFT JOIN')
         ->joinWith('times.user', true, 'LEFT JOIN')
+        //->where(['<', 'project.id', 8])
         ->all();
 
         $ids = [];
@@ -148,7 +149,10 @@ class TimeController extends \yii\web\Controller
                         }
                     }
 
-                    $data[$month]['projects'][Family::getProjectName($model, $ids)][$userId] = $percent;
+                    $data[$month]['projects'][Family::getProjectName($model, $ids)][$userId] = array(
+                        'percent' => $percent,
+                        'id' => $time->id
+                    );
                 }
             }
         }

@@ -39,11 +39,11 @@ $columnNumber = count($content['userIds']);
             </tr>
         </tfoot>
     <tbody>
-    	<?php foreach ($content['projects'] as $projectName => $userPercent): ?>
+    	<?php foreach ($content['projects'] as $projectName => $userItem): ?>
 		<tr>
 			<td><?php echo $projectName ?></td>
-			<?php foreach ($userPercent as $percent): ?>
-            <td width="100px"><?php echo $percent ? $percent : '' ?></td>
+			<?php foreach ($userItem as $item): ?>
+            <td width="100px"><?php echo $item['percent'] ? HTML::a($item['percent'].'%', Url::to(['time/edit', 'id'=>$item['id']])) : '' ?></td>
 			<?php endforeach; ?>
         </tr>
         <?php endforeach; ?>
@@ -80,11 +80,16 @@ $(document).ready( function () {
                     .column( j, { page: 'current'} )
                     .data()
                     .reduce( function (a, b) {
-                    return intVal(a) + intVal(b);
+						if (b)
+						{
+							b = $(b).html();
+							b = b.substring(0,b.length-1)
+						}
+                        return intVal(a) + intVal(b);
                 }, 0 );
 
                 $( api.column( j ).footer() ).html(
-                	'<span class="money">'+Math.round(pageTotal*100)/100+'</span>'
+                	'<span class="money">'+Math.round(pageTotal*100)/100+'%</span>'
                 );
             })
 	    }

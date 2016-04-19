@@ -95,7 +95,10 @@ class BonusController extends \yii\web\Controller
             {
                 if ($model->user_id == $userId) {
                     $percent = $model->part;
-                    $data[$month]['projects'][Family::getProjectName($model->project, $ids)][$userId] = substr($percent, 0, strlen($percent) - 1);
+                    $data[$month]['projects'][Family::getProjectName($model->project, $ids)][$userId] = array(
+                        'percent' => substr($percent, 0, strlen($percent) - 1),
+                        'id' => $model->id
+                    );
                 }
             }
         }

@@ -32,13 +32,13 @@ $columnNumber = count($content['userIds']);
         </tr>
     </thead>
     <tbody>
-    	<?php foreach ($content['projects'] as $projectName => $userPercent): ?>
+    	<?php foreach ($content['projects'] as $projectName => $userItem): ?>
 		<tr>
 			<td><?php echo $projectName ?></td>
 			<?php $count = 0;?>
-			<?php foreach ($userPercent as $percent): ?>
-            <td width="100px"><?php echo $percent ? $percent.'%' : '' ?></td>
-            <?php $count += $percent; ?>
+			<?php foreach ($userItem as $item): ?>
+            <td width="100px"><?php echo $item['percent'] ? HTML::a($item['percent'].'%', Url::to(['bonus/edit', 'id'=>$item['id']])) : '' ?></td>
+            <?php $count += $item['percent']; ?>
 			<?php endforeach; ?>
 			<td><?php echo $count ?>%</td>
         </tr>
