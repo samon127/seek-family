@@ -167,7 +167,7 @@ $(document).ready( function () {
                 <td><?php echo $percentNumber = $time->percent ?>%</td>
             <?php endif; ?>
             <td style="text-align:right"><?php echo number_format($percentNumber*iUserBalance::getUserBalance($time->user_id, $time->month)/100, 2) ?></td>
-            <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['pay/edit', 'id' => $time->id])) ?></td>
+            <td><?php echo Html::a(Yii::t('app', 'Edit'), Url::to(['time/edit', 'id' => $time->id])) ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

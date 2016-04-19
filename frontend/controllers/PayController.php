@@ -59,7 +59,12 @@ class PayController extends \yii\web\Controller
                 $model->andWhere(['<=', 'pay_date', $searchKeyWord['date_end']]);
             }
 
-            if(Isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
+            if(isset ($searchKeyWord['number']) && $searchKeyWord['number'])
+            {
+                $model->andwhere(array('LIKE','pay.number',$searchKeyWord['number']));
+            }
+
+            if(isset ($searchKeyWord['comment']) && $searchKeyWord['comment'])
             {
                 $model->andwhere(array('LIKE','pay.comment',$searchKeyWord['comment']));
             }

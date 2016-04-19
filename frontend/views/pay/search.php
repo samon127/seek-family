@@ -43,6 +43,18 @@ use common\tool\Family;
     $defaultDates['date_end'] = isset($defaultValue['date_end']) ? $defaultValue['date_end'] : '';
     echo $this->render('@common/views/form/dateAreaInput', ['page' => 's', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
     ?>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">金额</label>
+      <div class="col-md-4">
+      <?php
+      $defaultNumber = $defaultValue ? $defaultValue['number'] : '';
+      echo HTML::input('text', 's[number]', $defaultNumber, ['id' => 'numberInput', 'class'=>'form-control input-md'] )
+      ?>
+      </div>
+    </div>
+
     <?php
     $defaultComment = isset($defaultValue['comment']) ? $defaultValue['comment'] : '';
     echo $this->render('@common/views/form/commentTextarea', ['page' => 's', 'defaultComment' => $defaultComment]);

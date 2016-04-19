@@ -30,6 +30,17 @@ $defaultDates['date_end'] = isset($defaultValue['income']['date_end']) ? $defaul
 echo $this->render('@common/views/form/dateAreaInput', ['page' => 's[income]', 'defaultDates' => $defaultDates, 'label'=>'进账时间']);
 ?>
 
+<!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="textinput">金额</label>
+      <div class="col-md-4">
+      <?php
+      $defaultNumber = $defaultValue ? $defaultValue['number'] : '';
+      echo HTML::input('text', 's[number]', $defaultNumber, ['id' => 'numberInput', 'class'=>'form-control input-md'] )
+      ?>
+      </div>
+    </div>
+
 <?php
 //$defaultDates2['date_start'] = isset($defaultValue['project']['date_start']) ? $defaultValue['project']['date_start'] : '';
 //$defaultDates2['date_end'] = isset($defaultValue['project']['date_end']) ? $defaultValue['project']['date_end'] : '';
