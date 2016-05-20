@@ -285,7 +285,7 @@ $(document).ready( function () {
                         i : 0;
             };
 
-            $([4,10,13]).each(function(i, j){
+            $([4,10,11,13]).each(function(i, j){
             	pageTotal = api
                     .column( j, { page: 'current'} )
                     .data()
